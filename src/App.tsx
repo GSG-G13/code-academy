@@ -1,5 +1,5 @@
 import Providers from './Providers';
-import MiniDrawer from './components/Layout/LeftBar.tsx';
+import MiniDrawer from './components/Layout/layout';
 
 function App() {
   return (
