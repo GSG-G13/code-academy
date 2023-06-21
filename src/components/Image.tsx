@@ -22,11 +22,11 @@ const StyledMenuItem = styled(MenuItem)`
   && {
     width: 100%;
     color: #fff;
-    background: #000;
+    background: #252537;
     border-radius: 6px;
     &:hover {
       background: #fff;
-      color: #000;
+      color: #252537;
     }
   }
 `;
