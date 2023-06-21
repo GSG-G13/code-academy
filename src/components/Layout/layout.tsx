@@ -10,7 +10,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { ImMakeGroup } from 'react-icons/im';
+import { HiOutlineUserGroup } from 'react-icons/hi';
 import { CiGrid42, CiBank } from 'react-icons/ci';
 import { LuLogOut, LuAlignJustify } from 'react-icons/lu';
 import { BiBookmarks, BiUser } from 'react-icons/bi';
@@ -145,7 +145,7 @@ export default function MiniDrawer() {
           {[
             { label: 'Profile', icon: BiUser },
             { label: 'Cohorts', icon: VscSymbolClass },
-            { label: 'Members', icon: ImMakeGroup },
+            { label: 'Members', icon: HiOutlineUserGroup },
             { label: 'Saves', icon: BiBookmarks },
           ].map((item) => (
             <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
