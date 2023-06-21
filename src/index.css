@@ -1,5 +1,23 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Baloo 2', cursive;
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+}
+span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-10hburv-MuiTypography-root {
+  font-size: 1.15rem;
+}
+
+.css-1r9jet7 {
+  justify-content: space-between;
+  padding: 0px 8px 0 63px;
+}
+@media (min-width: 600px) {
+  .css-hyum1k-MuiToolbar-root {
+    min-height: 64px;
+    display: flex;
+    justify-content: space-between;
+  }
 }
