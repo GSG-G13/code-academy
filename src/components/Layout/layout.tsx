@@ -10,13 +10,12 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { HiViewGrid } from 'react-icons/hi';
-import { CiGrid42 } from 'react-icons/ci';
+import { ImMakeGroup } from 'react-icons/im';
+import { CiGrid42, CiBank } from 'react-icons/ci';
 import { LuLogOut, LuAlignJustify } from 'react-icons/lu';
-import { BiBookmarks } from 'react-icons/bi';
-import { GrFreebsd } from 'react-icons/gr';
-import { FaUserAlt } from 'react-icons/fa';
-import { TiCog } from 'react-icons/ti';
+import { BiBookmarks, BiUser } from 'react-icons/bi';
+import { VscSettings, VscSymbolClass } from 'react-icons/vsc';
+import { styled } from 'styled-components';
 import { Drawer, AppBar, DrawerHeader } from './layout.styled';
 import CustomizedInputBase from '../Search';
 import BadgeAvatars from '../Image';
@@ -28,6 +27,23 @@ export default function MiniDrawer() {
   const handleSideBar = () => {
     setOpen((prev) => !prev);
   };
+
+  const Dot = styled.span`
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    background: #676773;
+    margin: 1.2rem auto;
+    display: block;
+  `;
+
+  const Title = styled.span`
+    font-size: 0.8rem;
+    color: #dbdbde;
+    margin: 1.2rem 0.8rem;
+    display: block;
+  `;
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -99,15 +115,9 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {[
-            { label: 'G13', icon: CiGrid42 },
-            { label: 'Community', icon: HiViewGrid },
-            { label: 'Profile', icon: FaUserAlt },
-            { label: 'Cohorts', icon: GrFreebsd },
-            { label: 'Members', icon: HiViewGrid },
-            { label: 'Saves', icon: BiBookmarks },
-            { label: 'logout', icon: LuLogOut },
-            { label: 'Setting', icon: TiCog },
-          ].map((item, i) => (
+            { label: 'G13', icon: CiBank },
+            { label: 'Community', icon: CiGrid42 },
+          ].map((item) => (
             <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
               <ListItemButton
                 sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}
@@ -120,9 +130,65 @@ export default function MiniDrawer() {
                     color: '#007fff',
                   }}
                 >
-                  <item.icon
-                    style={{ padding: i === 2 || i === 3 ? '0.2rem' : '0', fontSize: '1.5rem' }}
-                  />
+                  <item.icon style={{ fontSize: '1.5rem' }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.label}
+                  sx={{
+                    opacity: open ? 1 : 0,
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+          {open ? <Title>COMMUNITY</Title> : <Dot />}
+          {[
+            { label: 'Profile', icon: BiUser },
+            { label: 'Cohorts', icon: VscSymbolClass },
+            { label: 'Members', icon: ImMakeGroup },
+            { label: 'Saves', icon: BiBookmarks },
+          ].map((item) => (
+            <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
+              <ListItemButton
+                sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: '#007fff',
+                  }}
+                >
+                  <item.icon style={{ fontSize: '1.5rem' }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.label}
+                  sx={{
+                    opacity: open ? 1 : 0,
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+          {open ? <Title>OTHERS</Title> : <Dot />}
+          {[
+            { label: 'logout', icon: LuLogOut },
+            { label: 'Setting', icon: VscSettings },
+          ].map((item) => (
+            <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
+              <ListItemButton
+                sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: '#007fff',
+                  }}
+                >
+                  <item.icon style={{ fontSize: '1.5rem' }} />
                 </ListItemIcon>
                 <ListItemText
                   primary={item.label}
@@ -136,7 +202,7 @@ export default function MiniDrawer() {
         </List>
         <Divider />
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }} />
+      <Box component="main" sx={{ flexGrow: 1, padding: '3px' }} />
     </Box>
   );
 }
