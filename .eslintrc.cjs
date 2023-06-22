@@ -20,5 +20,6 @@ module.exports = {
     'import/extensions': 'off',
     'no-use-before-define': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
   },
 };
