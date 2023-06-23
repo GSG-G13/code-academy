@@ -10,19 +10,15 @@ const TabsContainer = styled.div`
   background-color: white;
   gap: 20px;
   font-size: 20px;
-
-
 `;
 
 const TabContent = styled.div`
-  padding:0rem  2.014rem;
+  padding: 0rem 2.014rem;
   background-color: #eff2f3;
-
-
 `;
 
 const Tab2 = styled(Link)`
-margin-top:-50px;
+  margin-top: -50px;
 
   padding: 27px 13px;
   color: #48465b;
@@ -41,4 +37,14 @@ margin-top:-50px;
     border-bottom: 2px solid #5f73e0;
   }
 `;
-export { TabsContainer, TabContent, Tab2 };
+const countSpan = styled.span`
+  margin-left: 5px;
+  padding: 2px 5px;
+  border-radius: 50%;
+  background-color: #5f73e0;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+`;
+export { TabsContainer, TabContent, Tab2, countSpan };

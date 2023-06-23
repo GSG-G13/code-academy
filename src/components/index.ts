@@ -1,5 +1,5 @@
 import ProfileTabComponent from './Profile/ProfileTabComponent';
 import ProfileUserComponent from './Profile/ProfileUserComponent';
-import post from './posts';
+import PostsComponent from './Profile/PostsComponent';
 
-export { ProfileTabComponent, ProfileUserComponent, post };
+export { ProfileTabComponent, ProfileUserComponent, PostsComponent };
