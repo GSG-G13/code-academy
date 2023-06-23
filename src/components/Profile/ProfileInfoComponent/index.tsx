@@ -79,10 +79,10 @@ const ProfileInfo = ({ defaultName, defaultBirthdate }) => {
     let day = currentDate.getDate();
 
     if (month < 10) {
-      month = '0' + month;
+      month = `0${month}`;
     }
     if (day < 10) {
-      day = '0' + day;
+      day = `0${day}`;
     }
 
     return `${year}-${month}-${day}`;
@@ -95,38 +95,22 @@ const ProfileInfo = ({ defaultName, defaultBirthdate }) => {
         <PopupForm>
           <label>
             Name:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
           </label>
           <br />
           <label>
             First Name:
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           </label>
           <br />
           <label>
             Last Name:
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
           </label>
           <br />
           <label>
             Birthdate:
-            <input
-              type="date"
-              value={birthdate}
-              onChange={(e) => setBirthdate(e.target.value)}
-            />
+            <input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
           </label>
           <br />
           <label>

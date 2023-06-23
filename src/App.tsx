@@ -3,6 +3,7 @@ import { Key, useState } from 'react';
 import Providers from './Providers';
 
 import ProfileInfoForm from './components/Profile/ProfileInfoComponent';
+import GroupsPage from './components/Profile/GroupsPageComponent';
 
 const App = () => (
   // const [posts, setPosts] = useState([
@@ -60,11 +61,10 @@ const App = () => (
           />
         ))}
       </Container> */}
-    <div>
-      {/* Other components */}
-      <ProfileInfoForm />
-      {/* Other components */}
-    </div>
+    {/* <div>
+      <ProfileInfoForm defaultName={undefined} defaultBirthdate={undefined} />
+    </div> */}
+    <GroupsPage />
   </Providers>
 );
 export default App;
