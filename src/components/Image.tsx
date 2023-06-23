@@ -31,7 +31,7 @@ const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
-export default function BadgeAvatars() {
+const Image = () => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
@@ -128,4 +128,6 @@ export default function BadgeAvatars() {
       </div>
     </Stack>
   );
-}
+};
+
+export default Image;

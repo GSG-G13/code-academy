@@ -1,12 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
 import Providers from './Providers';
-import MiniDrawer from './components/Layout/layout';
+import router from './router';
 
-function App() {
-  return (
-    <Providers>
-      <MiniDrawer />
-    </Providers>
-  );
-}
+const App = () => (
+  <Providers>
+    <RouterProvider router={router} />
+  </Providers>
+);
 
 export default App;
