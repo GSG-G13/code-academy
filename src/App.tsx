@@ -1,43 +1,42 @@
 import { Container } from '@mui/system';
 import { Key, useState } from 'react';
 import Providers from './Providers';
-import ProfileCard from './components/Profile/PostsComponent';
-import { ProfileTabComponent, ProfileUserComponent } from './components';
 
-const App = () => {
-  const [posts, setPosts] = useState([
-    {
-      id: '1',
-      author: 'John Doe',
-      datePost: new Date(),
-      cohort: 'Cohort 2023',
-      state: 'Active',
-      imageSrc: 'https://example.com/profile-image.jpg',
-    },
-    {
-      id: '2',
-      author: 'Jane Smith',
-      datePost: new Date(),
-      cohort: 'Cohort 2022',
-      state: 'Inactive',
-      imageSrc: 'https://example.com/profile-image.jpg',
-    },
-  ]);
+import ProfileInfoForm from './components/Profile/ProfileInfoComponent';
 
-  const user = {
-    name: 'Vernon Dahmer',
-    cohort: 13,
-    speciality: 'Purchasing manager',
-    imageUrl: 'https://ik.imagekit.io/crv83iwkz/person-img.jpg?updatedAt=1687303538443',
-    email: 'shathaamin63@gmail.com',
-    github: 'https://github.com/Shatha-Amin',
-    linkedin:
-      'https://www.linkedin.com/authwall?trk=qf&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2F',
-  };
+const App = () => (
+  // const [posts, setPosts] = useState([
+  //   {
+  //     id: '1',
+  //     author: 'John Doe',
+  //     datePost: new Date(),
+  //     cohort: 'Cohort 2023',
+  //     state: 'Active',
+  //     imageSrc: 'https://example.com/profile-image.jpg',
+  //   },
+  //   {
+  //     id: '2',
+  //     author: 'Jane Smith',
+  //     datePost: new Date(),
+  //     cohort: 'Cohort 2022',
+  //     state: 'Inactive',
+  //     imageSrc: 'https://example.com/profile-image.jpg',
+  //   },
+  // ]);
 
-  return (
-    <Providers>
-      <ProfileUserComponent
+  // const user = {
+  //   name: 'Vernon Dahmer',
+  //   cohort: 13,
+  //   speciality: 'Purchasing manager',
+  //   imageUrl: 'https://ik.imagekit.io/crv83iwkz/person-img.jpg?updatedAt=1687303538443',
+  //   email: 'shathaamin63@gmail.com',
+  //   github: 'https://github.com/Shatha-Amin',
+  //   linkedin:
+  //     'https://www.linkedin.com/authwall?trk=qf&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2F',
+  // };
+
+  <Providers>
+    {/* <ProfileUserComponent
         name={user.name}
         cohort={user.cohort}
         specialty={user.speciality}
@@ -60,9 +59,12 @@ const App = () => {
             imageSrc={post.imageSrc}
           />
         ))}
-      </Container>
-    </Providers>
-  );
-};
-
+      </Container> */}
+    <div>
+      {/* Other components */}
+      <ProfileInfoForm />
+      {/* Other components */}
+    </div>
+  </Providers>
+);
 export default App;

@@ -40,7 +40,7 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
     if (comment.trim() === '') return;
 
     const newComment: Comment = {
-      id: uuid(), // Generate unique id using UUID library
+      id: uuid(),
       author: 'You',
       content: comment,
       date: new Date(),
@@ -77,8 +77,6 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
         </ProfileImageWrapper>
         {comments.map((comment) => (
           <ProfileComment key={comment.id}>
-            {' '}
-            {/* Use unique id as key */}
             <Avatar>U</Avatar>
             <CommentContent>
               <Typography variant="body2" gutterBottom>
