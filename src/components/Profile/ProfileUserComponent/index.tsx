@@ -24,7 +24,7 @@ interface IProfileUserProps {
 const ProfileUserComponent = ({
   name,
   cohort,
-  specialty: speciality,
+  specialty,
   imageUrl,
   email,
   github,
@@ -47,13 +47,6 @@ const ProfileUserComponent = ({
         </ProfileUserIconLinkedin>
         <ProfileUserIconEmail>
           <a href={`mailto:${email}`}>
-            <style>
-              {`
-    a:hover {
-      color: green;
-    }
-  `}
-            </style>
             <RiGoogleLine />
           </a>
         </ProfileUserIconEmail>
@@ -64,7 +57,7 @@ const ProfileUserComponent = ({
       <ProfileUserCohort>
         <span>{cohort}</span>
         <span>.</span>
-        <span>{speciality}</span>
+        <span>{specialty}</span>
       </ProfileUserCohort>
     </ProfileUserInfo>
   </ProfileContainer>

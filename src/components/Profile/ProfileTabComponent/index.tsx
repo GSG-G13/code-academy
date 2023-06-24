@@ -7,10 +7,10 @@ interface Tab {
 }
 
 const tabs: Tab[] = [
-  { title: 'Activity', path: '/activity' },
-  { title: 'Profile', path: '/Profile' },
-  { title: 'Cohorts', path: '/Cohorts', count: 2 },
-  { title: 'Likes', path: '/Likes', count: 5 },
+  { title: 'Activity', path: '/academy/my-profile/activity' },
+  { title: 'ProfileInfo', path: '/academy/my-profile/ProfileInfo' },
+  { title: 'Cohorts', path: '/academy/my-profile/Cohorts', count: 2 },
+  { title: 'Likes', path: '/academy/my-profile/Likes', count: 5 },
 ];
 
 const ProfileTabComponent = () => (
@@ -25,7 +25,7 @@ const ProfileTabComponent = () => (
         key={title}
       >
         {title}
-        {count && ( // Render the count if it exists
+        {count && (
           <span
             style={{
               display: 'flex',

@@ -1,16 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom';
-<<<<<<< HEAD
-=======
 import { Outlet, createBrowserRouter } from 'react-router-dom';
 import MiniDrawer from '../components/Layout/layout';
->>>>>>> main
+import { MainPage, ActivityPage, CohortsPage, LikesPage, ProfileInfoPage } from '../pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>shatha</div>,
-<<<<<<< HEAD
-=======
     element: (
       <div>
         <h1>Home - Landing Page</h1>
@@ -49,7 +43,49 @@ const router = createBrowserRouter([
       { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <div>Cohorts</div> },
       { path: 'members', element: <div>Members</div> },
-      { path: 'my-profile', element: <div>My Profile</div> },
+      {
+        path: 'my-profile',
+        element: (
+          <div>
+            <MainPage />
+          </div>
+        ),
+        children: [
+          {
+            path: 'Activity',
+            element: (
+              <div>
+                <ActivityPage />
+              </div>
+            ),
+          },
+          {
+            path: 'ProfileInfo',
+            element: (
+              <div>
+                <ProfileInfoPage />
+              </div>
+            ),
+          },
+          {
+            path: 'Cohorts',
+            element: (
+              <div>
+                <CohortsPage />
+              </div>
+            ),
+          },
+          {
+            path: 'Likes',
+            element: (
+              <div>
+                <LikesPage />
+              </div>
+            ),
+          },
+        ],
+      },
+
       { path: 'saves', element: <div>Saves</div> },
     ],
   },
@@ -64,7 +100,6 @@ const router = createBrowserRouter([
   {
     path: '*',
     element: <div>Not Found</div>,
->>>>>>> main
   },
 ]);
 
