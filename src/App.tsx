@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 import { Container } from '@mui/system';
 import { useState } from 'react';
 import Providers from './Providers';
 import { ProfileUserComponent, ProfileTabComponent, ProfileCard } from './components';
+=======
+import Providers from './Providers';
+import { ProfileTabComponent, ProfileUserComponent, post } from './components';
+>>>>>>> main
 
 const App = () => {
   const user = {
@@ -68,4 +73,27 @@ const App = () => {
   );
 };
 
+<<<<<<< HEAD
+=======
+// const Container = styled.div`
+//   min-height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
+
+// const Title = styled.h1`
+//   color: ${({ theme }) => theme.colors.primary};
+// `;
+import { RouterProvider } from 'react-router-dom';
+import Providers from './Providers';
+import router from './router';
+
+const App = () => (
+  <Providers>
+    <RouterProvider router={router} />
+  </Providers>
+);
+
+>>>>>>> main
 export default App;
