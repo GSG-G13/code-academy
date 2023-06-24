@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { FaUserFriends } from 'react-icons/fa';
 import { useEffect } from 'react';
 import { Grid } from '@mui/material';
+import { MembersCountBox, SelectElement } from './style';
 
 const CohortMembersTopBar = () => {
   const [loading, setLoading] = React.useState(true);
@@ -21,7 +22,7 @@ const CohortMembersTopBar = () => {
 
   return (
     <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
-      <Grid item sm={6} lg={6} md={6} xs={12}>
+      <Grid item sm={6} lg={6} md={6} xs={12} alignItems="center">
         <Box sx={{ '& > button': { m: 0 } }}>
           <LoadingButton
             sx={{
@@ -33,6 +34,7 @@ const CohortMembersTopBar = () => {
               fontWeight: '600',
               opacity: '1',
               borderRadius: '0.3rem',
+              position: 'relative',
             }}
             // eslint-disable-next-line react/jsx-no-bind
             onClick={handleClick}
@@ -42,11 +44,21 @@ const CohortMembersTopBar = () => {
             variant="contained"
           >
             <p>All Members</p>
+            <MembersCountBox>80</MembersCountBox>
           </LoadingButton>
         </Box>
       </Grid>
       <Grid item sm={6} lg={3} md={6} xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Box sx={{ '& > button': { m: 0 } }}>{/* Here */}</Box>
+        <Box sx={{ '& > button': { m: 0 } }}>
+          <SelectElement name="users">
+            <option selected> Last Active</option>
+            <option>Newest Registered</option>
+            <option>Alphabetical</option>
+          </SelectElement>
+        </Box>
+        <Box sx={{ '& > button': { m: 0 } }}>
+          <h2>Hi</h2>
+        </Box>
       </Grid>
     </Grid>
   );

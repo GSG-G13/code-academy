@@ -7,7 +7,7 @@ interface IProps {
 
 const PageTitle = ({ children }: IProps) => <Title>{children}</Title>;
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-weight: 600;
   margin-bottom: 30px;
   color: rgb(72, 70, 91);

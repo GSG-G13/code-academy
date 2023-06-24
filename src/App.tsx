@@ -1,19 +1,11 @@
-import { styled } from 'styled-components';
+import { RouterProvider } from 'react-router-dom';
 import Providers from './Providers';
-import Members from './pages';
+import router from './router';
 
 const App = () => (
   <Providers>
-    <Container>
-      <Members />
-    </Container>
+    <RouterProvider router={router} />
   </Providers>
 );
-
-const Container = styled.div`
-  min-height: 100vh;
-  padding: 3%;
-  background-color: #f0f3f4;
-`;
 
 export default App;

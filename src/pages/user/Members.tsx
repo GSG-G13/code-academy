@@ -1,10 +1,13 @@
-import { PageTitle, CohortMembersTopBar, UsersCardsWrapper } from '../../components';
+import {
+  PageTitle, CohortMembersTopBar, UsersCardsWrapper, Pagination,
+} from '../../components';
 
 const Members = () => (
   <>
     <PageTitle>Members</PageTitle>
     <CohortMembersTopBar />
     <UsersCardsWrapper />
+    <Pagination />
   </>
 );
 
