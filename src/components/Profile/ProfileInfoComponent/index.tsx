@@ -24,39 +24,18 @@ const ResultTableCell = styled.td`
   padding: 8px;
 `;
 
-const Card = styled.div`
+const Card = styled.form`
   background: white;
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
-const PopupForm = styled(Card)`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const PopupFormOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-`;
-
 const SaveButton = styled.button`
   margin-top: 20px;
 `;
 
-const ProfileInfo = ({ defaultName, defaultBirthdate }) => {
+const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
   const [name, setName] = useState(defaultName || 'Shatha Amin');
   const [firstName, setFirstName] = useState('Shatha');
   const [lastName, setLastName] = useState('Amin');
@@ -68,7 +47,8 @@ const ProfileInfo = ({ defaultName, defaultBirthdate }) => {
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = (e) => {
+    e.preventDefault();
     setIsEditing(false);
   };
 
@@ -89,74 +69,67 @@ const ProfileInfo = ({ defaultName, defaultBirthdate }) => {
   }
 
   return (
-    <>
-      {isEditing && <PopupFormOverlay onClick={handleSaveClick} />}
-      {isEditing ? (
-        <PopupForm>
-          <label>
-            Name:
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            First Name:
-            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            Last Name:
-            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            Birthdate:
-            <input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            Gender:
-            <select value={gender} onChange={(e) => setGender(e.target.value)}>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
-          </label>
-          <br />
-          <SaveButton onClick={handleSaveClick}>Save</SaveButton>
-        </PopupForm>
-      ) : (
-        <Card>
-          <ResultTable>
-            <tbody>
-              <tr>
-                <ResultTableHeader>Field</ResultTableHeader>
-                <ResultTableHeader>Value</ResultTableHeader>
-              </tr>
-              <tr onClick={handleFieldClick}>
-                <ResultTableCell>NAME</ResultTableCell>
-                <ResultTableCell>{name}</ResultTableCell>
-              </tr>
-              <tr onClick={handleFieldClick}>
-                <ResultTableCell>FIRST NAME</ResultTableCell>
-                <ResultTableCell>{firstName}</ResultTableCell>
-              </tr>
-              <tr onClick={handleFieldClick}>
-                <ResultTableCell>LAST NAME</ResultTableCell>
-                <ResultTableCell>{lastName}</ResultTableCell>
-              </tr>
-              <tr onClick={handleFieldClick}>
-                <ResultTableCell>BIRTHDATE</ResultTableCell>
-                <ResultTableCell>{birthdate}</ResultTableCell>
-              </tr>
-              <tr onClick={handleFieldClick}>
-                <ResultTableCell>GENDER</ResultTableCell>
-                <ResultTableCell>{gender}</ResultTableCell>
-              </tr>
-            </tbody>
-          </ResultTable>
-        </Card>
-      )}
-    </>
+    <Card onSubmit={handleSaveClick}>
+      <label>
+        Name:
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        First Name:
+        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Last Name:
+        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Birthdate:
+        <input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Gender:
+        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </label>
+      <br />
+      <SaveButton type="submit">Save</SaveButton>
+
+      <ResultTable>
+        <tbody>
+          <tr onClick={handleFieldClick}>
+            <ResultTableHeader>Field</ResultTableHeader>
+            <ResultTableHeader>Value</ResultTableHeader>
+          </tr>
+          <tr onClick={handleFieldClick}>
+            <ResultTableCell>NAME</ResultTableCell>
+            <ResultTableCell>{name}</ResultTableCell>
+          </tr>
+          <tr onClick={handleFieldClick}>
+            <ResultTableCell>FIRST NAME</ResultTableCell>
+            <ResultTableCell>{firstName}</ResultTableCell>
+          </tr>
+          <tr onClick={handleFieldClick}>
+            <ResultTableCell>LAST NAME</ResultTableCell>
+            <ResultTableCell>{lastName}</ResultTableCell>
+          </tr>
+          <tr onClick={handleFieldClick}>
+            <ResultTableCell>BIRTHDATE</ResultTableCell>
+            <ResultTableCell>{birthdate}</ResultTableCell>
+          </tr>
+          <tr onClick={handleFieldClick}>
+            <ResultTableCell>GENDER</ResultTableCell>
+            <ResultTableCell>{gender}</ResultTableCell>
+          </tr>
+        </tbody>
+      </ResultTable>
+    </Card>
   );
 };
 
-export default ProfileInfo;
+export default ProfileInfoComponent;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -110,7 +110,7 @@ const cohortData = [
   },
 ];
 
-const CohortCardComponent: React.FC = () => {
+const CohortCardComponent = () => {
   const [deletedCards, setDeletedCards] = useState<number[]>([]);
 
   const handleLeaveGroup = (id: number) => {

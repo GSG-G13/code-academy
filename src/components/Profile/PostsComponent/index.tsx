@@ -21,7 +21,7 @@ interface Iprops {
 }
 
 interface Comment {
-  id: string; // Add id property
+  id: string;
   author: string;
   content: string;
   date: Date;
@@ -54,7 +54,7 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
     <StyledCard>
       <CardHeader
         avatar={<Avatar>{auther[0]}</Avatar>}
-        title={(
+        title={
           <TitleWrapper>
             <StyledTypography variant="subtitle1">{auther}</StyledTypography>
             <StyledTypography variant="subtitle2" color="textSecondary">
@@ -66,7 +66,7 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
               </a>
             </Typography>
           </TitleWrapper>
-        )}
+        }
         subheader={datePost.toString()}
       />
       <CardContent>
@@ -86,13 +86,7 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
                 {comment.content}
               </Typography>
               <Typography variant="caption" color="textSecondary">
-                Posted by
-                {' '}
-                {comment.author}
-                {' '}
-                •
-                {' '}
-                {comment.date.toString()}
+                Posted by {comment.author} • {comment.date.toString()}
               </Typography>
             </CommentContent>
           </ProfileComment>
