@@ -1,7 +1,15 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
+import MiniDrawer from '../components/Layout/layout';
 
 const router = createBrowserRouter([
-  { path: '/', element: <div><h1>Home - Landing Page</h1></div> },
+  {
+    path: '/',
+    element: (
+      <div>
+        <h1>Home - Landing Page</h1>
+      </div>
+    ),
+  },
   // admin routes
   {
     path: '/admin',
@@ -14,7 +22,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <div>Dashboard</div> },
       { path: 'settings', element: <div>Settings</div> },
-
     ],
   },
   // user routes
@@ -22,15 +29,21 @@ const router = createBrowserRouter([
     path: '/academy',
     element: (
       <div>
-        <h1>Academy</h1>
-        <Outlet />
+        <MiniDrawer>
+          <Outlet />
+        </MiniDrawer>
       </div>
     ),
     children: [
-      { index: true, element: <div>Home</div> },
+      {
+        index: true,
+        element: <div>Home</div>,
+      },
+      { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <div>Cohorts</div> },
       { path: 'members', element: <div>Members</div> },
       { path: 'my-profile', element: <div>My Profile</div> },
+      { path: 'saves', element: <div>Saves</div> },
     ],
   },
   {
