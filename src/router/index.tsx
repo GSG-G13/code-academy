@@ -1,5 +1,6 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
 import MiniDrawer from '../components/Layout/layout';
+import Login from '../components/Login';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: '/academy/*',
     element: <div>Academy - Not Found</div>,
+  },
+  {
+    path: '/login',
+    element: <Login />,
   },
   {
     path: '*',
