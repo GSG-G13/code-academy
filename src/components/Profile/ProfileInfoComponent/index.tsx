@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import TextField from '@mui/material/TextField';
 
 const ProfileContainer = styled.div`
   display: grid;
@@ -70,34 +71,56 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
 
   return (
     <Card onSubmit={handleSaveClick}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        First Name:
-        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Last Name:
-        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Birthdate:
-        <input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Gender:
-        <select value={gender} onChange={(e) => setGender(e.target.value)}>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </label>
-      <br />
+      <TextField
+        id="name"
+        label="Name"
+        variant="filled"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        fullWidth
+        helperText="Helper text"
+      />
+      <TextField
+        id="firstName"
+        label="First Name"
+        variant="filled"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+        fullWidth
+        helperText="Helper text"
+      />
+      <TextField
+        id="lastName"
+        label="Last Name"
+        variant="filled"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+        fullWidth
+        helperText="Helper text"
+      />
+      <TextField
+        id="birthdate"
+        label="Birthdate"
+        variant="filled"
+        type="date"
+        value={birthdate}
+        onChange={(e) => setBirthdate(e.target.value)}
+        fullWidth
+        helperText="Helper text"
+      />
+      <TextField
+        id="gender"
+        label="Gender"
+        variant="filled"
+        select
+        value={gender}
+        onChange={(e) => setGender(e.target.value)}
+        fullWidth
+        helperText="Helper text"
+      >
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </TextField>
       <SaveButton type="submit">Save</SaveButton>
 
       <ResultTable>

@@ -1,0 +1,156 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const ProfileContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+`;
+
+const ResultTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+const ResultTableHeader = styled.th`
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+`;
+
+const ResultTableRow = styled.tr`
+  cursor: pointer;
+`;
+
+const ResultTableCell = styled.td`
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+`;
+
+const Card = styled.form`
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+`;
+
+const SaveButton = styled.button`
+  margin-top: 20px;
+`;
+
+const Label = styled.label`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+const HelperText = styled.span`
+  font-size: 12px;
+  color: #888;
+`;
+
+const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
+  const [name, setName] = useState(defaultName || 'Shatha Amin');
+  const [firstName, setFirstName] = useState('Shatha');
+  const [lastName, setLastName] = useState('Amin');
+  const [birthdate, setBirthdate] = useState(defaultBirthdate || getCurrentDate());
+  const [gender, setGender] = useState('Female');
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleFieldClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = (e) => {
+    e.preventDefault();
+    setIsEditing(false);
+  };
+
+  function getCurrentDate() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    let month = currentDate.getMonth() + 1;
+    let day = currentDate.getDate();
+
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    if (day < 10) {
+      day = `0${day}`;
+    }
+
+    return `${year}-${month}-${day}`;
+  }
+
+  return (
+    <Card onSubmit={handleSaveClick}>
+      <ProfileContainer>
+        <div>
+          <Label>
+            Name:
+            <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          </Label>
+          <Label>
+            First Name:
+            <Input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          </Label>
+          <Label>
+            Last Name:
+            <Input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          </Label>
+          <Label>
+            Birthdate:
+            <Input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
+          </Label>
+          <Label>
+            Gender:
+            <select value={gender} onChange={(e) => setGender(e.target.value)}>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </Label>
+          <SaveButton type="submit">Save</SaveButton>
+        </div>
+        <ResultTable>
+          <tbody>
+            <ResultTableRow onClick={handleFieldClick}>
+              <ResultTableHeader>Field</ResultTableHeader>
+              <ResultTableHeader>Value</ResultTableHeader>
+            </ResultTableRow>
+            <ResultTableRow onClick={handleFieldClick}>
+              <ResultTableCell>NAME</ResultTableCell>
+              <ResultTableCell>{name}</ResultTableCell>
+            </ResultTableRow>
+            <ResultTableRow onClick={handleFieldClick}>
+              <ResultTableCell>FIRST NAME</ResultTableCell>
+              <ResultTableCell>{firstName}</ResultTableCell>
+            </ResultTableRow>
+            <ResultTableRow onClick={handleFieldClick}>
+              <ResultTableCell>LAST NAME</ResultTableCell>
+              <ResultTableCell>{lastName}</ResultTableCell>
+            </ResultTableRow>
+            <ResultTableRow onClick={handleFieldClick}>
+              <ResultTableCell>BIRTHDATE</ResultTableCell>
+              <ResultTableCell>{birthdate}</ResultTableCell>
+            </ResultTableRow>
+            <ResultTableRow onClick={handleFieldClick}>
+              <ResultTableCell>GENDER</ResultTableCell>
+              <ResultTableCell>{gender}</ResultTableCell>
+            </ResultTableRow>
+          </tbody>
+        </ResultTable>
+      </ProfileContainer>
+    </Card>
+  );
+};
+
+export default ProfileInfoComponent;
