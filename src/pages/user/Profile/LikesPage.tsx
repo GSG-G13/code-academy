@@ -6,7 +6,6 @@ import MiniDrawer from '../../../components/Layout/layout';
 const LikesPage = () => (
   <div>
     <MiniDrawer children={undefined} />
-
     <ProfileUserComponent
       name="shatha"
       cohort={13}
@@ -17,7 +16,9 @@ const LikesPage = () => (
       linkedin="https://github.com/Shatha-Amin"
     />
     <ProfileTabComponent />
-    <ProfileCard auther="shatha" datePost={undefined} cohort="" state="" imageSrc="" />
+    <div>
+      <ProfileCard auther="Shatha" datePost={undefined} cohort="" state="" imageSrc="" />{' '}
+    </div>{' '}
   </div>
 );
 

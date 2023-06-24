@@ -5,8 +5,6 @@ import MiniDrawer from '../../../components/Layout/layout';
 
 const ActivityPage = () => (
   <div>
-    <MiniDrawer children={undefined} />
-
     <ProfileUserComponent
       name="shatha"
       cohort={13}
@@ -17,7 +15,9 @@ const ActivityPage = () => (
       linkedin="https://github.com/Shatha-Amin"
     />
     <ProfileTabComponent />
-    <ProfileCard auther="shatha" datePost={undefined} cohort="G13"state={''} imageSrc={''} />
+    <div>
+      <ProfileCard auther="Shatha" datePost={undefined} cohort="" state="" imageSrc="" />{' '}
+    </div>{' '}
   </div>
 );
 

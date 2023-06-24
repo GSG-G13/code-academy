@@ -10,10 +10,10 @@ import {
   Button,
 } from '@mui/material';
 import CommentIcon from '@mui/icons-material/Comment';
-import { v4 as uuid } from 'uuid'; // Import UUID library
+import { v4 as uuid } from 'uuid';
 
 interface Iprops {
-  auther: string;
+  author: string;
   datePost: Date;
   cohort: string;
   state: string;
@@ -27,7 +27,7 @@ interface Comment {
   date: Date;
 }
 
-const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
+const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState<Comment[]>([]);
@@ -53,10 +53,10 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
   return (
     <StyledCard>
       <CardHeader
-        avatar={<Avatar>{auther[0]}</Avatar>}
-        title={
+        avatar={<Avatar>{author[0]}</Avatar>}
+        title={(
           <TitleWrapper>
-            <StyledTypography variant="subtitle1">{auther}</StyledTypography>
+            <StyledTypography variant="subtitle1">{author}</StyledTypography>
             <StyledTypography variant="subtitle2" color="textSecondary">
               {state}
             </StyledTypography>
@@ -66,7 +66,7 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
               </a>
             </Typography>
           </TitleWrapper>
-        }
+        )}
         subheader={datePost.toString()}
       />
       <CardContent>
@@ -86,7 +86,13 @@ const ProfileCard = ({ auther, datePost, cohort, state, imageSrc }: Iprops) => {
                 {comment.content}
               </Typography>
               <Typography variant="caption" color="textSecondary">
-                Posted by {comment.author} • {comment.date.toString()}
+                Posted by
+                {' '}
+                {comment.author}
+                {' '}
+                •
+                {' '}
+                {comment.date.toString()}
               </Typography>
             </CommentContent>
           </ProfileComment>
@@ -156,4 +162,40 @@ const StyledTypography = styled(Typography)`
   border-radius: 50%;
 `;
 
-export default ProfileCard;
+const PostsComponent = () => {
+  const [posts, setPosts] = useState([
+    {
+      id: '1',
+      author: 'Shatha Amin',
+      datePost: new Date(),
+      cohort: 'Cohort 2023',
+      state: 'Active',
+      imageSrc: 'https://example.com/profile-image.jpg',
+    },
+    {
+      id: '2',
+      author: 'Shatha Amin',
+      datePost: new Date(),
+      cohort: 'Cohort 2022',
+      state: 'Inactive',
+      imageSrc: 'https://example.com/profile-image.jpg',
+    },
+  ]);
+
+  return (
+    <div>
+      {posts.map((post) => (
+        <ProfileCard
+          key={post.id}
+          author={post.author}
+          datePost={post.datePost}
+          cohort={post.cohort}
+          state={post.state}
+          imageSrc={post.imageSrc}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default PostsComponent;

@@ -7,7 +7,10 @@ const router = createBrowserRouter([
     path: '/',
     element: (
       <div>
-        <h1>Home - Landing Page</h1>
+        <CohortsPage />
+        <ProfileInfoPage />
+        <LikesPage />
+
       </div>
     ),
   },
