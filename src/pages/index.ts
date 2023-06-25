@@ -1,3 +1,5 @@
 import Cohorts from './user/Cohorts';
 
-export default Cohorts;
+import { Members, Login } from './user';
+
+export { Members, Login, Cohorts };

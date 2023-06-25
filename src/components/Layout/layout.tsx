@@ -110,6 +110,7 @@ const MiniDrawer = ({ children }: IProps) => {
         </Toolbar>
       </AppBar>
       <Drawer
+        className="karam"
         variant="permanent"
         open={open}
         sx={{
