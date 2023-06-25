@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 const ProfileContainer = styled.div`
   width: 100%;
   display: flex;
+  margin-right:0px;
   flex-direction: row;
   background-image: url('../../src/assets/black-paper.png');
   background-repeat: no-repeat;

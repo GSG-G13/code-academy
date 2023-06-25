@@ -1,12 +1,11 @@
 /* eslint-disable react/no-children-prop */
 
+import { Outlet } from 'react-router-dom';
 import { ProfileUserComponent, ProfileTabComponent } from '../../../components';
 import MiniDrawer from '../../../components/Layout/layout';
 
 const MainPage = () => (
   <div>
-    <MiniDrawer children={undefined} />
-
     <ProfileUserComponent
       name="shatha"
       cohort={13}
@@ -17,6 +16,7 @@ const MainPage = () => (
       linkedin="https://github.com/Shatha-Amin"
     />
     <ProfileTabComponent />
+    <Outlet />
   </div>
 );
 

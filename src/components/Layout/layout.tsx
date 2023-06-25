@@ -271,6 +271,6 @@ const MiniDrawer = ({ children }: IProps) => {
 export default MiniDrawer;
 
 const OutletContainer = styled.div`
-  padding: calc(70px + 1rem) 1rem 1rem;
+  padding: calc(70px) 0 1rem;
   width: 100%;
 `;

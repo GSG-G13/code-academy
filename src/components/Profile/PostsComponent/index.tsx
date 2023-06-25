@@ -57,14 +57,6 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
         title={(
           <TitleWrapper>
             <StyledTypography variant="subtitle1">{author}</StyledTypography>
-            <StyledTypography variant="subtitle2" color="textSecondary">
-              {state}
-            </StyledTypography>
-            <Typography variant="body1" gutterBottom>
-              <a href={cohort} style={{ color: '#48465b' }}>
-                {cohort}
-              </a>
-            </Typography>
           </TitleWrapper>
         )}
         subheader={datePost.toString()}
@@ -79,10 +71,14 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
           <ProfileComment key={comment.id}>
             <Avatar>U</Avatar>
             <CommentContent>
-              <Typography variant="body2" gutterBottom>
+              <Typography variant="body2" gutterBottom style={{ fontWeight: 'bold' }}>
                 {comment.author}
               </Typography>
-              <Typography variant="body2" color="textSecondary">
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                style={{ fontSize: '20px', color: 'grey' }}
+              >
                 {comment.content}
               </Typography>
               <Typography variant="caption" color="textSecondary">
@@ -106,7 +102,14 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
-            <Button variant="contained" color="primary" onClick={handleAddComment}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleAddComment}
+              style={{
+                marginTop: '15px',
+              }}
+            >
               Add Comment
             </Button>
           </>
@@ -154,6 +157,7 @@ const CommentContent = styled.div`
 const TitleWrapper = styled.div`
   display: flex;
   align-items: baseline;
+  gap: 5px;
 `;
 
 const StyledTypography = styled(Typography)`

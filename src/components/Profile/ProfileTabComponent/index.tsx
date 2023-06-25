@@ -29,16 +29,18 @@ const ProfileTabComponent = () => (
           <span
             style={{
               display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
               background: '#4E64DD',
               backgroundSize: '1px',
               color: '#fff',
               borderRadius: '50%',
               fontSize: '12px',
-              width: '20px',
-              height: ' 20px',
-              padding: '4px 4px 4px 4px',
-              marginLeft: '10px',
-              marginTop: '15px',
+              width: '18px',
+              height: ' 18px',
+              padding: '4px 4px 0px 4px',
+              margin: '10px 20px 0px 25px ',
               content: 'center',
             }}
           >

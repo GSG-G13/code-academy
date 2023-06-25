@@ -10,7 +10,6 @@ const router = createBrowserRouter([
         <CohortsPage />
         <ProfileInfoPage />
         <LikesPage />
-
       </div>
     ),
   },
@@ -48,42 +47,30 @@ const router = createBrowserRouter([
       { path: 'members', element: <div>Members</div> },
       {
         path: 'my-profile',
-        element: (
-          <div>
-            <MainPage />
-          </div>
-        ),
+        element: <MainPage />,
         children: [
           {
             path: 'Activity',
             element: (
-              <div>
-                <ActivityPage />
-              </div>
+              <ActivityPage />
             ),
           },
           {
             path: 'ProfileInfo',
             element: (
-              <div>
-                <ProfileInfoPage />
-              </div>
+              <ProfileInfoPage />
             ),
           },
           {
-            path: 'Cohorts',
+            path: 'cohorts',
             element: (
-              <div>
-                <CohortsPage />
-              </div>
+              <CohortsPage />
             ),
           },
           {
-            path: 'Likes',
+            path: 'likes',
             element: (
-              <div>
-                <LikesPage />
-              </div>
+              <LikesPage />
             ),
           },
         ],
