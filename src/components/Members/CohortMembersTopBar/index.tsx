@@ -2,9 +2,11 @@ import * as React from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Box from '@mui/material/Box';
 import { FaUserFriends } from 'react-icons/fa';
+import { RiSoundModuleLine } from 'react-icons/ri';
 import { useEffect } from 'react';
 import { Grid } from '@mui/material';
-import { MembersCountBox, SelectElement } from './style';
+import { MembersCountBox, SearchBtn } from './style';
+import SelectSmall from './SelectSmall';
 
 const CohortMembersTopBar = () => {
   const [loading, setLoading] = React.useState(true);
@@ -22,7 +24,7 @@ const CohortMembersTopBar = () => {
 
   return (
     <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
-      <Grid item sm={6} lg={6} md={6} xs={12} alignItems="center">
+      <Grid item sm={6} lg={6} md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
         <Box sx={{ '& > button': { m: 0 } }}>
           <LoadingButton
             sx={{
@@ -48,16 +50,21 @@ const CohortMembersTopBar = () => {
           </LoadingButton>
         </Box>
       </Grid>
-      <Grid item sm={6} lg={3} md={6} xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Grid
+        item
+        sm={6}
+        lg={3}
+        md={6}
+        xs={12}
+        sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
+      >
         <Box sx={{ '& > button': { m: 0 } }}>
-          <SelectElement name="users">
-            <option selected> Last Active</option>
-            <option>Newest Registered</option>
-            <option>Alphabetical</option>
-          </SelectElement>
+          <SelectSmall />
         </Box>
-        <Box sx={{ '& > button': { m: 0 } }}>
-          <h2>Hi</h2>
+        <Box sx={{ '& > button': { marginLeft: '10px' } }}>
+          <SearchBtn>
+            <RiSoundModuleLine />
+          </SearchBtn>
         </Box>
       </Grid>
     </Grid>

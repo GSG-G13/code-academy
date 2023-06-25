@@ -15,23 +15,22 @@ const MembersCountBox = styled.span`
   font-size: 0.7em;
 `;
 
-const SelectElement = styled.select`
-  padding: 10px;
+const SearchBtn = styled.button`
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 4px;
   border: none;
   outline: none;
   cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  position: relative;
-  text-align: center;
-  &::after {
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    transform: translateY(-50%);
-    content: 'hi';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+  transition: 0.3s;
+  &:hover {
+    border-color: #4E64DD;
   }
 `;
 
-export { MembersCountBox, SelectElement };
+export { MembersCountBox, SearchBtn };

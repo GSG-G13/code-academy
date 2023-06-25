@@ -35,26 +35,101 @@ const UsersCardsWrapper = () => {
   ];
 
   return (
-    <Grid spacing={2}>
-      <Grid container spacing={{ xs: 2, md: 3 }}>
-        <UserCard
-          alt="Khaled Al Nabaheen"
-          img="https://a.foxdcg.com/dpp-uploaded/images/credits/502556198884/alert_missing_persons_unit_ryan_broussard_square_2x.jpg?fit=inside%7C*:278"
-          name="Khaled Al Nabaheen"
-          cohort="G13"
-          jobTitle="FullStack-Developer"
-        >
-          <UserSocialLinks>
-            {links.map(({
-              name, iconColor, hoverColor, icon,
-            }) => (
-              <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
-                {icon}
-              </UserSocialLinkBox>
-            ))}
-          </UserSocialLinks>
-        </UserCard>
-      </Grid>
+    <Grid
+      container
+      spacing={2}
+      columns={{
+        xs: 15,
+        sm: 15,
+        md: 15,
+        lg: 15,
+      }}
+    >
+      <UserCard
+        alt="Khaled Al Nabaheen"
+        img="https://a.foxdcg.com/dpp-uploaded/images/credits/502556198884/alert_missing_persons_unit_ryan_broussard_square_2x.jpg?fit=inside%7C*:278"
+        name="Khaled Al Nabaheen"
+        cohort="G13"
+        jobTitle="FullStack-Developer"
+      >
+        <UserSocialLinks>
+          {links.map(({
+            name, iconColor, hoverColor, icon,
+          }) => (
+            <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
+              {icon}
+            </UserSocialLinkBox>
+          ))}
+        </UserSocialLinks>
+      </UserCard>
+      <UserCard
+        alt="Khaled Al Nabaheen"
+        img="https://a.foxdcg.com/dpp-uploaded/images/credits/502556198884/alert_missing_persons_unit_ryan_broussard_square_2x.jpg?fit=inside%7C*:278"
+        name="Khaled Al Nabaheen"
+        cohort="G13"
+        jobTitle="FullStack-Developer"
+      >
+        <UserSocialLinks>
+          {links.map(({
+            name, iconColor, hoverColor, icon,
+          }) => (
+            <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
+              {icon}
+            </UserSocialLinkBox>
+          ))}
+        </UserSocialLinks>
+      </UserCard>
+      <UserCard
+        alt="Khaled Al Nabaheen"
+        img="https://a.foxdcg.com/dpp-uploaded/images/credits/502556198884/alert_missing_persons_unit_ryan_broussard_square_2x.jpg?fit=inside%7C*:278"
+        name="Khaled Al Nabaheen"
+        cohort="G13"
+        jobTitle="FullStack-Developer"
+      >
+        <UserSocialLinks>
+          {links.map(({
+            name, iconColor, hoverColor, icon,
+          }) => (
+            <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
+              {icon}
+            </UserSocialLinkBox>
+          ))}
+        </UserSocialLinks>
+      </UserCard>
+      <UserCard
+        alt="Khaled Al Nabaheen"
+        img="https://a.foxdcg.com/dpp-uploaded/images/credits/502556198884/alert_missing_persons_unit_ryan_broussard_square_2x.jpg?fit=inside%7C*:278"
+        name="Khaled Al Nabaheen"
+        cohort="G13"
+        jobTitle="FullStack-Developer"
+      >
+        <UserSocialLinks>
+          {links.map(({
+            name, iconColor, hoverColor, icon,
+          }) => (
+            <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
+              {icon}
+            </UserSocialLinkBox>
+          ))}
+        </UserSocialLinks>
+      </UserCard>
+      <UserCard
+        alt="Khaled Al Nabaheen"
+        img="https://a.foxdcg.com/dpp-uploaded/images/credits/502556198884/alert_missing_persons_unit_ryan_broussard_square_2x.jpg?fit=inside%7C*:278"
+        name="Khaled Al Nabaheen"
+        cohort="G13"
+        jobTitle="FullStack-Developer"
+      >
+        <UserSocialLinks>
+          {links.map(({
+            name, iconColor, hoverColor, icon,
+          }) => (
+            <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
+              {icon}
+            </UserSocialLinkBox>
+          ))}
+        </UserSocialLinks>
+      </UserCard>
     </Grid>
   );
 };
