@@ -1,79 +1,19 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { format } from 'date-fns';
+import {
+  CohortContainer,
+  CohortCard,
+  CohortBackground,
+  CohortImage,
+  CohortInfo,
+  MemberCount,
+  JoinDate,
+  LeaveButton,
+} from './style';
 
-// Styles for the components
-const CohortCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  margin-bottom: 16px;
-  width: 30%;
-  height: 20%;
-  width: calc(33.33% - 16px);
-`;
-const CohortContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
-const CohortBackground = styled.div<{ imageUrl: string }>`
-  width: 100%;
-  height: 200px;
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-`;
-
-const CohortImage = styled.img`
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 5px solid white;
-`;
-
-const CohortInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 8px;
-`;
-
-const CohortName = styled(Typography)`
-  font-weight: bold;
-  margin-right: 8px;
-`;
-
-const GroupInfo = styled(Typography)`
-  font-size: 12px;
-`;
-
-const MemberCount = styled(Typography)`
-  font-size: 12px;
-  margin-right: 8px;
-`;
-
-const JoinDate = styled(Typography)`
-  font-size: 12px;
-`;
-
-const LeaveButton = styled(IconButton)`
-  margin-left: auto;
-`;
-
-// Sample cohort data
 const cohortData = [
   {
     id: 1,
@@ -137,12 +77,21 @@ const CohortCardComponent = () => {
               </CohortInfo>
               <CohortInfo>
                 <MemberCount variant="body2">
-                  {cohort.isPrivate ? 'Private Group' : 'Public Group'} • {cohort.memberCount}{' '}
+                  {cohort.isPrivate ? 'Private Group' : 'Public Group'}
+                  {' '}
+                  •
+                  {' '}
+                  {cohort.memberCount}
+                  {' '}
                   members
                 </MemberCount>
               </CohortInfo>
               <CohortInfo>
-                <JoinDate variant="body2">Joined: {format(cohort.joinDate, 'dd/MM/yyyy')}</JoinDate>
+                <JoinDate variant="body2">
+                  Joined:
+                  {' '}
+                  {format(cohort.joinDate, 'dd/MM/yyyy')}
+                </JoinDate>
                 <LeaveButton onClick={() => handleLeaveGroup(cohort.id)}>
                   <DeleteIcon />
                 </LeaveButton>

@@ -24,10 +24,10 @@ const SaveButton = styled.button`
 `;
 
 const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
-  const [name, setName] = useState('');
-  const [Github, setGithub] = useState('Github');
-  const [Linkedin, setLinkedin] = useState('Linkedin');
-  const [Gmail, setGmail] = useState('Gmail');
+  const [name, setName] = useState(' ');
+  const [Github, setGithub] = useState(' ');
+  const [Linkedin, setLinkedin] = useState(' ');
+  const [Gmail, setGmail] = useState(' ');
   const [birthdate, setBirthdate] = useState(defaultBirthdate || getCurrentDate());
   const [gender, setGender] = useState('Female');
 
@@ -54,22 +54,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
     setGender(event.target.value);
   };
 
-  function getCurrentDate() {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    let month = currentDate.getMonth() + 1;
-    let day = currentDate.getDate();
-
-    if (month < 10) {
-      month = `0${month}`;
-    }
-    if (day < 10) {
-      day = `0${day}`;
-    }
-
-    return `${year}-${month}-${day}`;
-  }
-
   return (
     <Card onSubmit={handleSaveClick}>
       <tbody>
@@ -88,7 +72,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
             required
             id="outlined-required"
             label=" Gmail(Required)"
-            defaultValue="example@gmail.com"
             value={Gmail}
             onChange={handleSetGmail}
             style={{ width: '600px' }}
@@ -99,7 +82,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
             required
             id="outlined-required"
             label=" Linkedin(Required)"
-            defaultValue="Linkedin"
             value={Linkedin}
             onChange={handleSetLinkedin}
             style={{ width: '600px' }}
@@ -110,7 +92,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
             required
             id="outlined-required"
             label=" Github(Required)"
-            defaultValue="Github"
             value={Github}
             onChange={handleSetGithub}
             style={{ width: '600px' }}
@@ -121,7 +102,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
             required
             id="outlined-required"
             label=" BIRTHDATE(Required)"
-            defaultValue="example@gmail.com"
             value={birthdate}
             type="date"
             onChange={handleSetbirthdate}
@@ -164,3 +144,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
 };
 
 export default ProfileInfoComponent;
+function getCurrentDate(): any {
+  throw new Error('Function not implemented.');
+}
