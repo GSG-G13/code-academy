@@ -13,6 +13,7 @@ import {
   Button,
 } from './LoginForm/Login.styled';
 import LoginForm from './LoginForm';
+import CallToAction from './uikit';
 
 export {
   CodeAcademy,
@@ -28,4 +29,5 @@ export {
   InputForm,
   Button,
   LoginForm,
+  CallToAction,
 };
