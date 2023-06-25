@@ -1,4 +1,5 @@
 import { RiLinkedinLine, RiGithubLine, RiGoogleLine } from 'react-icons/ri';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import {
   ProfileContainer,
   ProfileUserDetails,

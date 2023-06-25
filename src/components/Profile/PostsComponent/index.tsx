@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { CardContent, CardHeader, Avatar, Typography, TextField, Button } from '@mui/material';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import CommentIcon from '@mui/icons-material/Comment';
 import { v4 as uuid } from 'uuid';
-import { StyledCard, TitleWrapper, StyledTypography, ProfileImageWrapper, ProfileImage, ProfileComment, CommentContent } from './style';
+import {
+  StyledCard,
+  TitleWrapper,
+  StyledTypography,
+  ProfileImageWrapper,
+  ProfileImage,
+  ProfileComment,
+  CommentContent,
+} from './style';
 
 interface Iprops {
   author: string;
@@ -47,11 +55,11 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
     <StyledCard>
       <CardHeader
         avatar={<Avatar>{author[0]}</Avatar>}
-        title={(
+        title={
           <TitleWrapper>
             <StyledTypography variant="subtitle1">{author}</StyledTypography>
           </TitleWrapper>
-        )}
+        }
         subheader={datePost.toString()}
       />
       <CardContent>
@@ -76,11 +84,8 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
               </Typography>
               <Typography variant="caption" color="textSecondary">
                 Posted by
-                {' '}
                 {comment.author}
-                {' '}
-                •
-                {' '}
+                FiberManualRecordIcon
                 {comment.date.toString()}
               </Typography>
             </CommentContent>
