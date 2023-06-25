@@ -1,3 +1,4 @@
 import Members from './Members';
+import Login from './Login';
 
-export default Members;
+export { Members, Login };
