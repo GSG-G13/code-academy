@@ -1,13 +1,25 @@
+import { styled } from 'styled-components';
 import {
-  PageTitle, CohortMembersTopBar, UsersCardsWrapper, Pagination,
+  PageTitle,
+  CallToAction,
+  CohortMembersTopBar,
+  UsersCardsWrapper,
+  Pagination,
 } from '../../components';
+
+const MembersContainer = styled.div`
+  padding: calc(70px + 1rem) 1rem 1rem;
+`;
 
 const Members = () => (
   <>
-    <PageTitle>Members</PageTitle>
-    <CohortMembersTopBar />
-    <UsersCardsWrapper />
-    <Pagination />
+    <MembersContainer>
+      <PageTitle>Members</PageTitle>
+      <CohortMembersTopBar />
+      <UsersCardsWrapper />
+      <Pagination />
+    </MembersContainer>
+    <CallToAction />
   </>
 );
 

@@ -1,8 +1,8 @@
-import PageTitle from './uikit';
+import { PageTitle, CallToAction } from './uikit';
 import {
   CohortMembersTopBar, UserCard, UsersCardsWrapper, Pagination,
 } from './Members';
 
 export {
-  PageTitle, UserCard, UsersCardsWrapper, CohortMembersTopBar, Pagination,
+  PageTitle, CallToAction, UserCard, UsersCardsWrapper, CohortMembersTopBar, Pagination,
 };
