@@ -1,5 +1,6 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
 import MiniDrawer from '../components/Layout/layout';
+import Login from '../pages';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
       { path: 'my-profile', element: <div>My Profile</div> },
       { path: 'saves', element: <div>Saves</div> },
     ],
+  },
+  {
+    path: '/academy/login',
+    element: <Login />,
+  },
+  {
+    path: '/admin/login',
+    element: <div>Admin Login</div>,
   },
   {
     path: '/admin/*',
