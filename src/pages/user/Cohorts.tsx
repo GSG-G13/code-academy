@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
-import { CallToAction, CohortsWrapper, Pagination } from '../../components';
+import {
+  CallToAction, CohortsWrapper, PageTitle, Pagination,
+} from '../../components';
 
 const CohortsContainer = styled.div`
   padding: calc(70px + 1rem) 1rem 1rem;
@@ -8,6 +10,7 @@ const CohortsContainer = styled.div`
 const Cohorts = () => (
   <>
     <CohortsContainer>
+      <PageTitle>Cohorts</PageTitle>
       <CohortsWrapper />
       <Pagination />
     </CohortsContainer>
