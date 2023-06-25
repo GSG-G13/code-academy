@@ -3,7 +3,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Box from '@mui/material/Box';
 import { FaUserFriends } from 'react-icons/fa';
 import { RiSoundModuleLine } from 'react-icons/ri';
-import { useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { MembersCountBox, SearchBtn } from './style';
 import SelectSmall from './SelectSmall';
@@ -15,12 +14,6 @@ const CohortMembersTopBar = () => {
   }
 
   window.onload = () => setLoading(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 4000);
-  }, [loading]);
 
   return (
     <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
