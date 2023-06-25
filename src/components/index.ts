@@ -1,3 +1,4 @@
 import CallToAction from './uikit';
+import { CohortsWrapper, CohortCard } from './Cohorts';
 
-export default CallToAction;
+export { CallToAction, CohortsWrapper, CohortCard };
