@@ -1,6 +1,6 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
 import MiniDrawer from '../components/Layout/layout';
-import Login from '../components/Login';
+import Login from '../pages';
 
 const router = createBrowserRouter([
   {

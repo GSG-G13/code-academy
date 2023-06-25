@@ -34,7 +34,8 @@ const ContainerLogin = styled('div')`
 `;
 const LeftSide = styled('div')`
   flex: 1;
-  background: url(/login.jpg) center center;
+  background: url(https://www.convergences.org/wp-content/uploads/2021/07/Copy-of-Copy-of-EVE_2780-scaled.jpg)
+    center center;
   background-size: cover;
   filter: brightness(0.5);
   border-radius: 4px;
