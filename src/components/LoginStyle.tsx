@@ -1,17 +1,19 @@
 import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
+import { TextField, styled } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 
-const CodeAcademy = styled.div`
+const CodeAcademy = styled('div')`
   background: url(/logo1.png);
   background-repeat: no-repeat;
   background-size: cover;
-  top: 50px;
-  left: 50px;
-  width: 40%;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-55%);
+  width: 200px;
   position: absolute;
   aspect-ratio: 426/127;
 `;
-const LoginPage = styled.div`
+const LoginPage = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,16 +23,16 @@ const LoginPage = styled.div`
     content: ' ';
   }
 `;
-const ContainerLogin = styled.div`
+const ContainerLogin = styled('div')`
   height: 80vh;
   width: 80vw;
-  max-width: 1111px;
+  max-width: 1200px;
   background: white;
   display: flex;
   justify-content: space-between;
   border-radius: 4px;
 `;
-const LeftSide = styled.div`
+const LeftSide = styled('div')`
   flex: 1;
   background: url(/login.jpg) center center;
   background-size: cover;
@@ -40,22 +42,11 @@ const LeftSide = styled.div`
     display: none;
   }
 `;
-const RightSide = styled.div`
+const RightSide = styled('div')`
   flex: 1;
   position: relative;
-  &::after {
-    content: ' ';
-    background: url(/screen.png);
-    background-size: cover;
-    height: min(20%, 150px);
-    display: block;
-    aspect-ratio: 1;
-    position: absolute;
-    right: 10px;
-    transform: translateY(-100%);
-  }
 `;
-const Form = styled.form`
+const Form = styled('form')`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -69,7 +60,7 @@ const Form = styled.form`
   height: 100%;
   justify-content: center;
 `;
-const TitleLogin = styled.div`
+const TitleLogin = styled('div')`
   font-size: 28px;
   color: royalblue;
   font-weight: 600;
@@ -78,6 +69,7 @@ const TitleLogin = styled.div`
   display: flex;
   align-items: center;
   padding-left: 30px;
+  margin-bottom: 1rem;
   position: relative;
   &::after,
   &::before {
@@ -120,10 +112,10 @@ const ForgetPassword = styled(Link)`
     text-decoration: underline royalblue;
   }
 `;
-const Label = styled.label`
+const Label = styled('label')`
   position: relative;
 `;
-const Span = styled.span`
+const Span = styled('span')`
   position: absolute;
   left: 10px;
   top: 15px;
@@ -132,39 +124,18 @@ const Span = styled.span`
   cursor: text;
   transition: 0.3s ease;
 `;
-const InputForm = styled.input`
-  width: 100%;
-  padding: 10px 10px 20px 10px;
-  outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
-  border-radius: 10px;
-  &:placeholder-shown + Span {
-    top: 15px;
-    font-size: 0.9em;
-  }
-  &:focus + Span,
-  &:valid + Span {
-    top: 30px;
-    font-size: 0.7em;
-    font-weight: 600;
-  }
-  &:valid + Span {
-    color: green;
+const Button = styled(LoadingButton)`
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  background-color: #4e64dd;
+
+  &:hover {
+    background-color: #2c56c6;
   }
 `;
-const Button = styled.button`
-  position: relative;
-  border: none;
-  outline: none;
-  background-color: royalblue;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transform: 0.3s ease;
-  &:hover {
-    background-color: rgb(56, 90, 194);
-  }
+
+const InputForm = styled(TextField)`
+  margin-bottom: 0.5rem;
 `;
 
 export {

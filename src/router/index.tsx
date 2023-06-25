@@ -48,16 +48,20 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/academy/login',
+    element: <Login />,
+  },
+  {
+    path: '/admin/login',
+    element: <div>Admin Login</div>,
+  },
+  {
     path: '/admin/*',
     element: <div>Admin - Not Found</div>,
   },
   {
     path: '/academy/*',
     element: <div>Academy - Not Found</div>,
-  },
-  {
-    path: '/login',
-    element: <Login />,
   },
   {
     path: '*',

@@ -7,8 +7,6 @@ import {
   Form,
   TitleLogin,
   ForgetPassword,
-  Label,
-  Span,
   InputForm,
   Button,
 } from './LoginStyle';
@@ -21,16 +19,12 @@ const Login = () => (
         <CodeAcademy />
         <Form>
           <TitleLogin>Login</TitleLogin>
-          <Label htmlFor="email">
-            <InputForm id="email" required placeholder="" type="email" />
-            <Span>Email</Span>
-          </Label>
-          <Label htmlFor="password">
-            <InputForm required placeholder="" id="password" type="password" />
-            <Span>Password</Span>
-          </Label>
-          <Button type="submit">Submit</Button>
-          <ForgetPassword to="/hello">Forget Password</ForgetPassword>
+          <InputForm id="email" label="Email" type="email" />
+          <InputForm id="password" label="password" type="password" />
+          <Button loading={false} loadingPosition="center" variant="contained">
+            Login
+          </Button>
+          <ForgetPassword to="/hello">Forget Password?</ForgetPassword>
         </Form>
       </RightSide>
     </ContainerLogin>
