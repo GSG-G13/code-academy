@@ -1,5 +1,6 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
 import MiniDrawer from '../components/Layout/layout';
+import Cohorts from '../pages';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
         element: <div>Home</div>,
       },
       { path: 'community', element: <div>Community</div> },
-      { path: 'cohorts', element: <div>Cohorts</div> },
+      { path: 'cohorts', element: <Cohorts /> },
       { path: 'members', element: <div>Members</div> },
       { path: 'my-profile', element: <div>My Profile</div> },
       { path: 'saves', element: <div>Saves</div> },
