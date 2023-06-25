@@ -110,6 +110,7 @@ const MiniDrawer = ({ children }: IProps) => {
         </Toolbar>
       </AppBar>
       <Drawer
+        className="karam"
         variant="permanent"
         open={open}
         sx={{
@@ -271,6 +272,5 @@ const MiniDrawer = ({ children }: IProps) => {
 export default MiniDrawer;
 
 const OutletContainer = styled.div`
-  padding: calc(70px + 1rem) 1rem 1rem;
   width: 100%;
 `;
