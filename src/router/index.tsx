@@ -1,4 +1,5 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
+import { Members, Login } from '../pages';
 import MiniDrawer from '../components/Layout/layout';
 import { MainPage, ActivityPage, CohortsPage, LikesPage, ProfileInfoPage } from '../pages';
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       },
       { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <div>Cohorts</div> },
+<<<<<<< HEAD
       { path: 'members', element: <div>Members</div> },
       {
         path: 'my-profile',
@@ -76,8 +78,20 @@ const router = createBrowserRouter([
         ],
       },
 
+=======
+      { path: 'members', element: <Members /> },
+      { path: 'my-profile', element: <div>My Profile</div> },
+>>>>>>> 3271b20f402fbc50b621fba533ffd4e33343286b
       { path: 'saves', element: <div>Saves</div> },
     ],
+  },
+  {
+    path: '/academy/login',
+    element: <Login />,
+  },
+  {
+    path: '/admin/login',
+    element: <div>Admin Login</div>,
   },
   {
     path: '/admin/*',
