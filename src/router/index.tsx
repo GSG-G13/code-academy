@@ -1,18 +1,18 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
-import { Members, Login } from '../pages';
+import {
+  Members,
+  Login,
+  MainPage,
+  ActivityPage,
+  CohortsPage,
+  LikesPage,
+  ProfileInfoPage,
+} from '../pages';
 import MiniDrawer from '../components/Layout/layout';
-import { MainPage, ActivityPage, CohortsPage, LikesPage, ProfileInfoPage } from '../pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <div>
-        <CohortsPage />
-        <ProfileInfoPage />
-        <LikesPage />
-      </div>
-    ),
   },
   // admin routes
   {
@@ -45,43 +45,30 @@ const router = createBrowserRouter([
       },
       { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <div>Cohorts</div> },
-<<<<<<< HEAD
-      { path: 'members', element: <div>Members</div> },
+      { path: 'members', element: <Members /> },
       {
         path: 'my-profile',
         element: <MainPage />,
         children: [
           {
             path: 'Activity',
-            element: (
-              <ActivityPage />
-            ),
+            element: <ActivityPage />,
           },
           {
             path: 'ProfileInfo',
-            element: (
-              <ProfileInfoPage />
-            ),
+            element: <ProfileInfoPage />,
           },
           {
             path: 'cohorts',
-            element: (
-              <CohortsPage />
-            ),
+            element: <CohortsPage />,
           },
           {
             path: 'likes',
-            element: (
-              <LikesPage />
-            ),
+            element: <LikesPage />,
           },
         ],
       },
 
-=======
-      { path: 'members', element: <Members /> },
-      { path: 'my-profile', element: <div>My Profile</div> },
->>>>>>> 3271b20f402fbc50b621fba533ffd4e33343286b
       { path: 'saves', element: <div>Saves</div> },
     ],
   },
