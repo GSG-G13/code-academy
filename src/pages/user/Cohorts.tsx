@@ -1,6 +1,10 @@
 import { styled } from 'styled-components';
 import {
-  CallToAction, CohortsWrapper, PageTitle, Pagination,
+  CallToAction,
+  CohortTopBar,
+  CohortsWrapper,
+  PageTitle,
+  Pagination,
 } from '../../components';
 
 const CohortsContainer = styled.div`
@@ -11,6 +15,7 @@ const Cohorts = () => (
   <>
     <CohortsContainer>
       <PageTitle>Cohorts</PageTitle>
+      <CohortTopBar />
       <CohortsWrapper />
       <Pagination />
     </CohortsContainer>
