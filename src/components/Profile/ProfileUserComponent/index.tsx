@@ -57,7 +57,7 @@ const ProfileUserComponent = ({
       <h2>{name}</h2>
       <ProfileUserCohort>
         <span>{cohort}</span>
-        <span>.</span>
+        <FiberManualRecordIcon style={{ color: 'white', width: '10px' }} />
         <span>{specialty}</span>
       </ProfileUserCohort>
     </ProfileUserInfo>

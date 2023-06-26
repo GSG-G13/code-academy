@@ -85,7 +85,8 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
               <Typography variant="caption" color="textSecondary">
                 Posted by
                 {comment.author}
-                FiberManualRecordIcon
+                <FiberManualRecordIcon style={{ color: 'white', width: '10px' }} />
+
                 {comment.date.toString()}
               </Typography>
             </CommentContent>
