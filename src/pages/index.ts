@@ -1,3 +1,3 @@
-import Login from './user';
+import { Members, Login } from './user';
 
-export default Login;
+export { Members, Login };

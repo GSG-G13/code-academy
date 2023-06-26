@@ -1,3 +1,8 @@
+import { PageTitle, CallToAction } from './uikit';
+import {
+  CohortMembersTopBar, UserCard, UsersCardsWrapper, Pagination,
+} from './Members';
+
 import {
   CodeAcademy,
   LoginPage,
@@ -13,7 +18,6 @@ import {
   Button,
 } from './LoginForm/Login.styled';
 import LoginForm from './LoginForm';
-import CallToAction from './uikit';
 
 export {
   CodeAcademy,
@@ -29,5 +33,10 @@ export {
   InputForm,
   Button,
   LoginForm,
+  PageTitle,
   CallToAction,
+  UserCard,
+  UsersCardsWrapper,
+  CohortMembersTopBar,
+  Pagination,
 };

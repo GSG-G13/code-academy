@@ -1,3 +1,4 @@
+import PageTitle from './PageTitle';
 import CallToAction from './CallToAction';
 
-export default CallToAction;
+export { CallToAction, PageTitle };
