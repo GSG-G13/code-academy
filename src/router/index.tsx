@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Outlet, createBrowserRouter } from 'react-router-dom';
+import { Members, Login } from '../pages';
 import MiniDrawer from '../components/Layout/layout';
 
 const router = createBrowserRouter([
@@ -43,10 +44,18 @@ const router = createBrowserRouter([
       },
       { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <div>Cohorts</div> },
-      { path: 'members', element: <div>Members</div> },
+      { path: 'members', element: <Members /> },
       { path: 'my-profile', element: <div>My Profile</div> },
       { path: 'saves', element: <div>Saves</div> },
     ],
+  },
+  {
+    path: '/academy/login',
+    element: <Login />,
+  },
+  {
+    path: '/admin/login',
+    element: <div>Admin Login</div>,
   },
   {
     path: '/admin/*',
