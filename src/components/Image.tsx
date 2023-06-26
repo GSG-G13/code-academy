@@ -93,7 +93,6 @@ const Image = () => {
         >
           {({ TransitionProps, placement }) => (
             <Grow
-              // eslint-disable-next-line react/jsx-props-no-spreading
               {...TransitionProps}
               style={{
                 transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom',
