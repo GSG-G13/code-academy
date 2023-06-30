@@ -3,6 +3,22 @@ import apiClient from './apiClient';
 interface Global {
   id: number;
 }
+
+interface User {
+  id: number;
+  username: string;
+  avatar: string;
+  isAdmin: boolean;
+}
+
+interface LoginResponse {
+  error: boolean;
+  data: {
+    message: string;
+    user: User;
+  };
+}
+
 class HttpService {
   endpoint: string;
 
@@ -28,6 +44,14 @@ class HttpService {
 
   async delete(id: number) {
     return apiClient.delete(`${this.endpoint}/${id}`);
+  }
+
+  async login<T>(body: T) {
+    return apiClient.post<LoginResponse>(`${this.endpoint}/login`, body);
+  }
+
+  async logout() {
+    return apiClient.post(`${this.endpoint}/logout`);
   }
 }
 
