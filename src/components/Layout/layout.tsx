@@ -22,7 +22,7 @@ import { LuAlignJustify } from 'react-icons/lu';
 import { BiBookmarks } from 'react-icons/bi';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { Drawer, AppBar, DrawerHeader } from './layout.styled';
+import { Drawer, AppBar, DrawerHeader, Dot, Title } from './layout.styled';
 import Search from '../Search';
 import Image from '../Image';
 import '../../assets/style/academy.css';
@@ -30,6 +30,32 @@ import '../../assets/style/academy.css';
 interface IProps {
   children: React.ReactNode;
 }
+
+const hoverItemStyles = `
+  .hover-item {
+    cursor: pointer;
+  }
+
+  .hover-item:hover {
+    background: linear-gradient(45deg, #0f0f18, transparent);
+  }
+
+  .hover-item:hover::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0; 
+    bottom: 0; 
+    height: 0%;
+    width: 3px;
+    background-color: #e4ddf8;
+    animation : nothing 0.5s forwards;
+  }
+  @keyframes nothing {
+    100%{ height: 100%; }
+
+  }
+`;
 
 const MiniDrawer = ({ children }: IProps) => {
   const [open, setOpen] = React.useState(true);
@@ -39,49 +65,6 @@ const MiniDrawer = ({ children }: IProps) => {
   };
 
   const navigate = useNavigate();
-
-  const Dot = styled.span`
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    background: #676773;
-    margin: 1.2rem auto;
-    display: block;
-  `;
-
-  const Title = styled.span`
-    font-size: 0.8rem;
-    color: #dbdbde;
-    margin: 1.2rem 0.8rem;
-    display: block;
-  `;
-
-  const hoverItemStyles = `
-    .hover-item {
-      cursor: pointer;
-    }
-
-    .hover-item:hover {
-      background: linear-gradient(45deg, #0f0f18, transparent);
-    }
-
-    .hover-item:hover::after {
-      content: ' ';
-      display: block;
-      position: absolute;
-      left: 0; 
-      bottom: 0; 
-      height: 0%;
-      width: 3px;
-      background-color: #e4ddf8;
-      animation : nothing 0.5s forwards;
-    }
-    @keyframes nothing {
-      100%{ height: 100%; }
-
-    }
-  `;
 
   return (
     <Box sx={{ display: 'flex' }}>

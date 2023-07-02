@@ -139,7 +139,7 @@ const Image = () => {
                     autoFocusItem={open}
                     id="composition-menu"
                     aria-labelledby="composition-button"
-                    onKeyDown={() => handleListKeyDown()}
+                    onKeyDown={(e) => handleListKeyDown(e)}
                   >
                     <StyledMenuItem>Profile</StyledMenuItem>
                     <StyledMenuItem>My account</StyledMenuItem>
