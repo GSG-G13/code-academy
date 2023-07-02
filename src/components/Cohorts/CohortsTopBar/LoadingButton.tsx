@@ -1,14 +1,14 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { FaUserFriends } from 'react-icons/fa';
 import { LoadingButton } from '@mui/lab';
 import { MembersCountBox } from '../../Members/CohortMembersTopBar/style';
 
 interface IProps {
-    btnTitle: string,
+  btnTitle: string;
+  btnStartIcon: React.ReactElement;
 }
 
-const LoadingBtn = ({ btnTitle }: IProps) => {
+const LoadingBtn = ({ btnTitle, btnStartIcon }: IProps) => {
   const [loading, setLoading] = React.useState(true);
   function handleClick() {
     setLoading(true);
@@ -32,8 +32,8 @@ const LoadingBtn = ({ btnTitle }: IProps) => {
           position: 'relative',
         }}
         // eslint-disable-next-line react/jsx-no-bind
-        onClick={handleClick}
-        startIcon={<FaUserFriends />}
+        onClick={() => handleClick()}
+        startIcon={btnStartIcon}
         loading={loading}
         loadingPosition="start"
         variant="contained"

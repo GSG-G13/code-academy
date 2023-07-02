@@ -42,6 +42,7 @@ const router = createBrowserRouter([
       },
       { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <Cohorts /> },
+      { path: 'cohorts/:cohortName', element: <div>Single Cohort</div> },
       { path: 'members', element: <Members /> },
       { path: 'my-profile', element: <div>My Profile</div> },
       { path: 'saves', element: <div>Saves</div> },
