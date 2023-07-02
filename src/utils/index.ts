@@ -7,6 +7,7 @@ import {
   Member,
   MemberData,
   MembersContextProps,
+  SocialLink,
 } from './types';
 import loginSchema from './validation';
 
@@ -19,5 +20,6 @@ export type {
   Member,
   MemberData,
   MembersContextProps,
+  SocialLink,
 };
 export { loginSchema };

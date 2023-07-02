@@ -6,6 +6,7 @@ import AuthProviderPropsType from './AuthProviderPropsType';
 import Member from './Member';
 import MemberData from './MemberData';
 import MembersContextProps from './MembersContextProps';
+import SocialLink from './SocialLink';
 
 export type {
   AppBarProps,
@@ -16,4 +17,5 @@ export type {
   Member,
   MemberData,
   MembersContextProps,
+  SocialLink,
 };

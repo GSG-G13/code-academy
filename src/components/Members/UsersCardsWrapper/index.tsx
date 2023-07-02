@@ -1,24 +1,9 @@
 import { RiLinkedinLine, RiGithubLine, RiGoogleLine } from 'react-icons/ri';
 import { Grid } from '@mui/material';
-import { ReactElement } from 'react';
 import UserCard from '../UserCard';
 import UserSocialLinkBox from '../UserCard/UserSocialLink';
 import { UserSocialLinks } from '../UserCard/style';
-
-interface SocialLink {
-  name: string;
-  iconColor: string;
-  hoverColor: string;
-  icon: ReactElement;
-}
-
-interface Member {
-  userId: string;
-  fullName: string;
-  cohorts: string;
-  avatar: string;
-  careerStatus: string;
-}
+import { Member, SocialLink } from '../../../utils';
 
 const UsersCardsWrapper = ({ members }: { members: Member[] }) => {
   const links: SocialLink[] = [
