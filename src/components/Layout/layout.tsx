@@ -26,6 +26,10 @@ import { Drawer, AppBar, DrawerHeader, Dot, Title } from './layout.styled';
 import Search from '../Search';
 import Image from '../Image';
 import '../../assets/style/academy.css';
+import { authRoutes } from '../../services';
+import { useMutation } from 'react-query';
+import { ReqError } from '../../utils';
+import { toast } from 'react-toastify';
 
 interface IProps {
   children: React.ReactNode;
@@ -66,6 +70,14 @@ const MiniDrawer = ({ children }: IProps) => {
 
   const navigate = useNavigate();
 
+  const { mutate: logout } = useMutation(() => authRoutes.logout(), {
+    onSuccess: () => {
+      navigate('/academy/login');
+    },
+    onError: (err: ReqError) => {
+      toast.error(err.response.data.data.message);
+    },
+  });
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar
@@ -211,7 +223,7 @@ const MiniDrawer = ({ children }: IProps) => {
             </ListItem>
           ))}
           {open ? <Title>OTHERS</Title> : <Dot />}
-          {[{ label: 'logout', to: '/academy/logout', icon: RiLogoutCircleLine }].map((item) => (
+          {[{ label: 'logout', icon: RiLogoutCircleLine }].map((item) => (
             <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
               <ListItemButton
                 sx={{
@@ -222,7 +234,7 @@ const MiniDrawer = ({ children }: IProps) => {
                 classes={{
                   root: 'hover-item',
                 }}
-                onClick={() => navigate(item.to)}
+                onClick={() => logout()}
               >
                 <ListItemIcon
                   sx={{
