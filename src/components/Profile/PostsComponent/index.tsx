@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { useState } from 'react';
 import { CardContent, CardHeader, Avatar, Typography, TextField, Button } from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -16,8 +17,6 @@ import {
 interface Iprops {
   author: string;
   datePost: Date;
-  cohort: string;
-  state: string;
   imageSrc: string;
 }
 
@@ -28,7 +27,7 @@ interface Comment {
   date: Date;
 }
 
-const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
+const ProfileCard = ({ author, datePost, imageSrc }: Iprops) => {
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState<Comment[]>([]);
@@ -55,11 +54,11 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
     <StyledCard>
       <CardHeader
         avatar={<Avatar>{author[0]}</Avatar>}
-        title={
+        title={(
           <TitleWrapper>
             <StyledTypography variant="subtitle1">{author}</StyledTypography>
           </TitleWrapper>
-        }
+        )}
         subheader={datePost.toString()}
       />
       <CardContent>
@@ -86,7 +85,6 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
                 Posted by
                 {comment.author}
                 <FiberManualRecordIcon style={{ color: 'white', width: '10px' }} />
-
                 {comment.date.toString()}
               </Typography>
             </CommentContent>
@@ -126,7 +124,7 @@ const ProfileCard = ({ author, datePost, cohort, state, imageSrc }: Iprops) => {
 };
 
 const PostsComponent = () => {
-  const [posts, setPosts] = useState([
+  const [posts] = useState([
     {
       id: '1',
       author: 'Shatha Amin',

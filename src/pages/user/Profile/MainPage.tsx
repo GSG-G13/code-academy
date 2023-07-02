@@ -1,8 +1,5 @@
-/* eslint-disable react/no-children-prop */
-
 import { Outlet } from 'react-router-dom';
 import { ProfileUserComponent, ProfileTabComponent } from '../../../components';
-import MiniDrawer from '../../../components/Layout/layout';
 
 const MainPage = () => (
   <div>

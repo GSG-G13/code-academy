@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { width } from '@mui/system';
 
 const Card = styled.form`
   background: white;
@@ -23,35 +22,35 @@ const SaveButton = styled.button`
   margin-top: 20px;
 `;
 
-const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
+const ProfileInfoComponent = () => {
   const [name, setName] = useState(' ');
   const [Github, setGithub] = useState(' ');
   const [Linkedin, setLinkedin] = useState(' ');
   const [Gmail, setGmail] = useState(' ');
-  const [birthdate, setBirthdate] = useState(defaultBirthdate || getCurrentDate());
+  const [birthdate, setBirthdate] = useState();
   const [gender, setGender] = useState('Female');
 
-  const handleSetName = (e) => {
+  const handleSetName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
-  const handleSetGithub = (e) => {
+  const handleSetGithub = (e: ChangeEvent<HTMLInputElement>) => {
     setGithub(e.target.value);
   };
-  const handleSetLinkedin = (e) => {
+  const handleSetLinkedin = (e: ChangeEvent<HTMLInputElement>) => {
     setLinkedin(e.target.value);
   };
-  const handleSetGmail = (e) => {
+  const handleSetGmail = (e: ChangeEvent<HTMLInputElement>) => {
     setGmail(e.target.value);
   };
   const handleSetbirthdate = (e) => {
     setBirthdate(e.target.value);
   };
 
-  const handleSaveClick = (e) => {
+  const handleSaveClick = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
   };
-  const handleChange = (event) => {
-    setGender(event.target.value);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setGender(e.target.value);
   };
 
   return (
@@ -101,7 +100,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
           <TextField
             required
             id="outlined-required"
-            label=" BIRTHDATE(Required)"
             value={birthdate}
             type="date"
             onChange={handleSetbirthdate}
@@ -110,7 +108,6 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
         </tr>
         <tr>
           <Select
-            required
             id="outlined-required"
             label="Gender(Required)"
             defaultValue=""
@@ -144,6 +141,3 @@ const ProfileInfoComponent = ({ defaultName, defaultBirthdate }) => {
 };
 
 export default ProfileInfoComponent;
-function getCurrentDate(): any {
-  throw new Error('Function not implemented.');
-}

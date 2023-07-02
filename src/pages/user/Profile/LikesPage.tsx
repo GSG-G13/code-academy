@@ -1,10 +1,5 @@
-/* eslint-disable react/no-children-prop */
-
 import { ProfileCard } from '../../../components';
 
-const LikesPage = () => (
-
-  <ProfileCard auther="Shatha" datePost={undefined} cohort="" state="" imageSrc="" />
-);
+const LikesPage = () => <ProfileCard />;
 
 export default LikesPage;
