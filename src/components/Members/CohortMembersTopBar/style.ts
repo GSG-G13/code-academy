@@ -13,6 +13,7 @@ const MembersCountBox = styled.span`
   right: -15px;
   top: -15px;
   font-size: 0.7em;
+  z-index: 1;
 `;
 
 const SearchBtn = styled.button`
