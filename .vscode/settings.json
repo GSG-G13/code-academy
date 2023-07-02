@@ -1,6 +1,5 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  },
-  "cSpell.words": ["BIRTHDATE", "FIRSTNAME", "LASTNAME", "shatha"]
+    "cSpell.words": ["fusellutation"]
 }

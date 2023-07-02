@@ -22,5 +22,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'object-curly-newline': 'off',
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/jsx-props-no-spreading': 'off',
+    'object-curly-newline': ['error', { multiline: true, consistent: true }],
   },
 };
