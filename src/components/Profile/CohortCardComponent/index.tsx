@@ -78,16 +78,13 @@ const CohortCardComponent = () => {
               <CohortInfo>
                 <MemberCount variant="body2">
                   {cohort.isPrivate ? 'Private Group' : 'Public Group'}
-             
                   {cohort.memberCount}
-           
                   members
                 </MemberCount>
               </CohortInfo>
               <CohortInfo>
                 <JoinDate variant="body2">
                   Joined:
-             
                   {format(cohort.joinDate, 'dd/MM/yyyy')}
                 </JoinDate>
                 <LeaveButton onClick={() => handleLeaveGroup(cohort.id)}>
