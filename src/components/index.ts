@@ -16,7 +16,7 @@ import {
   Button,
 } from './LoginForm/Login.styled';
 import LoginForm from './LoginForm';
-import ScrollUp from './scrollUp';
+import ScrollUp from './ScrollUp';
 
 export {
   CodeAcademy,
