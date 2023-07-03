@@ -6,23 +6,32 @@ import { MembersCountBox } from '../../Members/CohortMembersTopBar/style';
 interface IProps {
   btnTitle: string;
   btnStartIcon: React.ReactElement;
+  cohortsCount: string;
 }
 
-const LoadingBtn = ({ btnTitle, btnStartIcon }: IProps) => {
+const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount }: IProps) => {
   const [loading, setLoading] = React.useState(true);
+
   function handleClick() {
     setLoading(true);
   }
 
-  setTimeout(() => {
-    setLoading(false);
-  }, 3000);
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <Box sx={{ '& > button': { m: 0 } }}>
       <LoadingButton
         sx={{
           backgroundColor: '#4E64DD',
-          'border-color': 'rgba(0,0,0,0)',
+          borderColor: 'rgba(0,0,0,0)',
           padding: '0.5rem 1rem',
           fontFamily: 'Poppins',
           textTransform: 'capitalize',
@@ -31,15 +40,14 @@ const LoadingBtn = ({ btnTitle, btnStartIcon }: IProps) => {
           borderRadius: '0.3rem',
           position: 'relative',
         }}
-        // eslint-disable-next-line react/jsx-no-bind
-        onClick={() => handleClick()}
+        onClick={handleClick}
         startIcon={btnStartIcon}
         loading={loading}
         loadingPosition="start"
         variant="contained"
       >
         <p>{btnTitle}</p>
-        <MembersCountBox>80</MembersCountBox>
+        <MembersCountBox>{cohortsCount}fc</MembersCountBox>
       </LoadingButton>
     </Box>
   );

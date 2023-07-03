@@ -16,7 +16,7 @@ const CohortTopBar = () => (
   <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
     <Grid item sm={6} lg={6} md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
       <ButtonsWrapper>
-        <LoadingBtn btnTitle="All Members" btnStartIcon={<FaUserFriends />} />
+        <LoadingBtn btnTitle="All Cohorts" btnStartIcon={<FaUserFriends />} />
         <LoadingBtn btnTitle="My Groups" btnStartIcon={<FaUserFriends />} />
       </ButtonsWrapper>
     </Grid>

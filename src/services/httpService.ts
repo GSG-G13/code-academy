@@ -29,6 +29,9 @@ class HttpService {
   async getAll<T>() {
     return apiClient.get<T[]>(this.endpoint);
   }
+  async getAllByPage<T>(page: number) {
+    return apiClient.get<T>(`${this.endpoint}?page=${page}`);
+  }
 
   async getOne<T>(id: number) {
     return apiClient.get<T>(`${this.endpoint}/${id}`);

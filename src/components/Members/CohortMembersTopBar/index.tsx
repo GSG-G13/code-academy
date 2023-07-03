@@ -31,7 +31,6 @@ const CohortMembersTopBar = () => {
               borderRadius: '0.3rem',
               position: 'relative',
             }}
-            // eslint-disable-next-line react/jsx-no-bind
             onClick={handleClick}
             startIcon={<FaUserFriends />}
             loading={loading}
