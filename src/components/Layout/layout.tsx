@@ -33,6 +33,7 @@ interface IProps {
 
 const MiniDrawer = ({ children }: IProps) => {
   const [open, setOpen] = React.useState(true);
+  const [activeItem, setActiveItem] = React.useState('');
 
   const handleSideBar = () => {
     setOpen((prev) => !prev);
@@ -163,11 +164,32 @@ const MiniDrawer = ({ children }: IProps) => {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                   position: 'relative',
+                  background:
+                    activeItem === item.label
+                      ? 'linear-gradient(45deg, #0f0f18, transparent)'
+                      : 'transparent',
+                  '&::after':
+                    activeItem === item.label
+                      ? {
+                        content: '""',
+                        display: 'block',
+                        position: 'absolute',
+                        left: '0',
+                        bottom: '0',
+                        height: '0%',
+                        width: '3px',
+                        backgroundColor: '#e4ddf8',
+                        animation: 'nothing 0.5s forwards',
+                      }
+                      : 'transparent',
                 }}
                 classes={{
                   root: 'hover-item',
                 }}
-                onClick={() => navigate(item.to)}
+                onClick={() => {
+                  navigate(item.to);
+                  setActiveItem(item.label);
+                }}
               >
                 <ListItemIcon
                   sx={{
@@ -202,11 +224,32 @@ const MiniDrawer = ({ children }: IProps) => {
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                   position: 'relative',
+                  background:
+                    activeItem === item.label
+                      ? 'linear-gradient(45deg, #0f0f18, transparent)'
+                      : 'transparent',
+                  '&::after':
+                    activeItem === item.label
+                      ? {
+                        content: '""',
+                        display: 'block',
+                        position: 'absolute',
+                        left: '0',
+                        bottom: '0',
+                        height: '0%',
+                        width: '3px',
+                        backgroundColor: '#e4ddf8',
+                        animation: 'nothing 0.5s forwards',
+                      }
+                      : 'transparent',
                 }}
                 classes={{
                   root: 'hover-item',
                 }}
-                onClick={() => navigate(item.to)}
+                onClick={() => {
+                  navigate(item.to);
+                  setActiveItem(item.label);
+                }}
               >
                 <ListItemIcon
                   sx={{
@@ -239,7 +282,10 @@ const MiniDrawer = ({ children }: IProps) => {
                 classes={{
                   root: 'hover-item',
                 }}
-                onClick={() => navigate(item.to)}
+                onClick={() => {
+                  navigate(item.to);
+                  setActiveItem(item.label);
+                }}
               >
                 <ListItemIcon
                   sx={{
