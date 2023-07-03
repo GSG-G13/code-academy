@@ -31,7 +31,6 @@ const LoadingBtn = ({ btnTitle, btnStartIcon }: IProps) => {
           borderRadius: '0.3rem',
           position: 'relative',
         }}
-        // eslint-disable-next-line react/jsx-no-bind
         onClick={() => handleClick()}
         startIcon={btnStartIcon}
         loading={loading}

@@ -27,7 +27,7 @@ const CohortCard = ({
   const cohortNav = useNavigate();
   return (
     <Grid item xs={15} sm={5} md={5} lg={3}>
-      <CohortCardDiv>
+      <CohortCardDiv onClick={() => cohortNav('/academy/cohorts/G13')}>
         <CohortCardImgDiv>
           <Avatar
             alt={alt}
