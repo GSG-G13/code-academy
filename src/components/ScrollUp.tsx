@@ -16,9 +16,10 @@ const Scroll = styled('div')`
   align-items: center;
   justify-content: center;
   border-radius: 0.25rem;
+  transition: background-color 0.3s;
   cursor: pointer;
   &:hover {
-    background: #277cf3;
+    background: rgba(0, 0, 0, 0.65);
   }
 `;
 
@@ -27,7 +28,7 @@ const ScrollUp = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 100) {
+      if (window.scrollY > 100) {
         setShowScroll(true);
       } else {
         setShowScroll(false);
