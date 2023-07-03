@@ -26,6 +26,7 @@ import { Drawer, AppBar, DrawerHeader } from './layout.styled';
 import Search from '../Search';
 import Image from '../Image';
 import '../../assets/style/academy.css';
+import { ScrollUp } from '..';
 
 interface IProps {
   children: React.ReactNode;
@@ -84,188 +85,192 @@ const MiniDrawer = ({ children }: IProps) => {
   `;
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <AppBar
-        position="fixed"
-        open={open}
-        sx={{
-          background: '#fff',
-          color: '#6c7293',
-          padding: '.2rem',
-          paddingLeft: open ? '0' : '62px',
-          boxShadow: 'none',
-        }}
-      >
-        <Toolbar>
-          <IconButton
-            aria-label="open drawer"
-            onClick={handleSideBar}
-            edge="start"
-            style={{ color: '#07689F' }}
-          >
-            <LuAlignJustify />
-          </IconButton>
-          <Search />
-          <Image />
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className="karam"
-        variant="permanent"
-        open={open}
-        sx={{
-          zIndex: 1202,
-        }}
-      >
-        {open ? null : (
-          <img
-            src="/favicon.png"
-            alt="logo"
-            style={{
-              height: '55px',
-              maxWidth: '100%',
-              objectFit: 'contain',
-              marginBottom: '1rem',
-              marginTop: '.8rem',
-              padding: '.3rem',
-              marginRight: '.4rem',
-            }}
-          />
-        )}
-        <DrawerHeader
+    <>
+      <ScrollUp />
+      <Box sx={{ display: 'flex' }}>
+        <AppBar
+          position="fixed"
+          open={open}
           sx={{
-            justifyContent: 'space-around',
-            padding: '1rem 8px 0 8px',
-            zIndex: 2,
-            ...(!open && { display: 'none' }),
+            background: '#fff',
+            color: '#6c7293',
+            padding: '.2rem',
+            paddingLeft: open ? '0' : '62px',
+            boxShadow: 'none',
           }}
         >
-          <img
-            src="/logo.png"
-            alt="logo"
-            style={{
-              height: '45px',
-              objectFit: 'contain',
-              marginRight: '1rem',
-              marginBottom: '1rem',
+          <Toolbar>
+            <IconButton
+              aria-label="open drawer"
+              onClick={handleSideBar}
+              edge="start"
+              style={{ color: '#07689F' }}
+            >
+              <LuAlignJustify />
+            </IconButton>
+            <Search />
+            <Image />
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className="karam"
+          variant="permanent"
+          open={open}
+          sx={{
+            zIndex: 1202,
+          }}
+        >
+          {open ? null : (
+            <img
+              src="/favicon.png"
+              alt="logo"
+              style={{
+                height: '55px',
+                maxWidth: '100%',
+                objectFit: 'contain',
+                marginBottom: '1rem',
+                marginTop: '.8rem',
+                padding: '.3rem',
+                marginRight: '.4rem',
+              }}
+            />
+          )}
+          <DrawerHeader
+            sx={{
+              justifyContent: 'space-around',
+              padding: '1rem 8px 0 8px',
+              zIndex: 2,
+              ...(!open && { display: 'none' }),
             }}
-          />
-        </DrawerHeader>
-        <List>
-          {[
-            { label: 'G13', to: '/academy', icon: RiHome4Line },
-            { label: 'Community', to: '/academy/community', icon: RiGlobalLine },
-          ].map((item) => (
-            <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                  position: 'relative',
-                }}
-                classes={{
-                  root: 'hover-item',
-                }}
-                onClick={() => navigate(item.to)}
-              >
-                <ListItemIcon
+          >
+            <img
+              src="/logo.png"
+              alt="logo"
+              style={{
+                height: '45px',
+                objectFit: 'contain',
+                marginRight: '1rem',
+                marginBottom: '1rem',
+              }}
+            />
+          </DrawerHeader>
+          <List>
+            {[
+              { label: 'G13', to: '/academy', icon: RiHome4Line },
+              { label: 'Community', to: '/academy/community', icon: RiGlobalLine },
+            ].map((item) => (
+              <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 2 : 'auto',
-                    justifyContent: 'center',
-                    color: '#007fff',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                    position: 'relative',
                   }}
+                  classes={{
+                    root: 'hover-item',
+                  }}
+                  onClick={() => navigate(item.to)}
                 >
-                  <item.icon style={{ fontSize: '1.3rem' }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.label}
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 2 : 'auto',
+                      justifyContent: 'center',
+                      color: '#007fff',
+                    }}
+                  >
+                    <item.icon style={{ fontSize: '1.3rem' }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.label}
+                    sx={{
+                      opacity: open ? 1 : 0,
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+            {open ? <Title>COMMUNITY</Title> : <Dot />}
+            {[
+              { label: 'My Profile', to: '/academy/my-profile', icon: RiUserLine },
+              { label: 'Cohorts', to: '/academy/cohorts', icon: RiDashboardLine },
+              { label: 'Members', to: '/academy/members', icon: RiGroupLine },
+              { label: 'Saves', to: '/academy/saves', icon: BiBookmarks },
+            ].map((item) => (
+              <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
+                <ListItemButton
                   sx={{
-                    opacity: open ? 1 : 0,
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                    position: 'relative',
                   }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-          {open ? <Title>COMMUNITY</Title> : <Dot />}
-          {[
-            { label: 'My Profile', to: '/academy/my-profile', icon: RiUserLine },
-            { label: 'Cohorts', to: '/academy/cohorts', icon: RiDashboardLine },
-            { label: 'Members', to: '/academy/members', icon: RiGroupLine },
-            { label: 'Saves', to: '/academy/saves', icon: BiBookmarks },
-          ].map((item) => (
-            <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                  position: 'relative',
-                }}
-                classes={{
-                  root: 'hover-item',
-                }}
-                onClick={() => navigate(item.to)}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 2 : 'auto',
-                    justifyContent: 'center',
-                    color: '#007fff',
+                  classes={{
+                    root: 'hover-item',
                   }}
+                  onClick={() => navigate(item.to)}
                 >
-                  <item.icon style={{ fontSize: '1.3rem' }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.label}
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 2 : 'auto',
+                      justifyContent: 'center',
+                      color: '#007fff',
+                    }}
+                  >
+                    <item.icon style={{ fontSize: '1.3rem' }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.label}
+                    sx={{
+                      opacity: open ? 1 : 0,
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+            {open ? <Title>OTHERS</Title> : <Dot />}
+            {[{ label: 'logout', to: '/academy/logout', icon: RiLogoutCircleLine }].map((item) => (
+              <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
+                <ListItemButton
                   sx={{
-                    opacity: open ? 1 : 0,
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-          {open ? <Title>OTHERS</Title> : <Dot />}
-          {[{ label: 'logout', to: '/academy/logout', icon: RiLogoutCircleLine }].map((item) => (
-            <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-                classes={{
-                  root: 'hover-item',
-                }}
-                onClick={() => navigate(item.to)}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 2 : 'auto',
-                    justifyContent: 'center',
-                    color: '#007fff',
+                  classes={{
+                    root: 'hover-item',
                   }}
+                  onClick={() => navigate(item.to)}
                 >
-                  <item.icon style={{ fontSize: '1.3rem' }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.label}
-                  sx={{
-                    opacity: open ? 1 : 0,
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-      </Drawer>
-      <OutletContainer>{children}</OutletContainer>
-      <style>{hoverItemStyles}</style>
-    </Box>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 2 : 'auto',
+                      justifyContent: 'center',
+                      color: '#007fff',
+                    }}
+                  >
+                    <item.icon style={{ fontSize: '1.3rem' }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.label}
+                    sx={{
+                      opacity: open ? 1 : 0,
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+        </Drawer>
+        <OutletContainer>{children}</OutletContainer>
+        <style>{hoverItemStyles}</style>
+      </Box>
+
+    </>
   );
 };
 
