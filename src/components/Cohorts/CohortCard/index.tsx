@@ -1,6 +1,6 @@
 import { Grid, Avatar } from '@mui/material';
 import { RiArrowRightLine } from 'react-icons/ri';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   CohortCardDiv,
@@ -21,31 +21,26 @@ interface IProps {
   endDate: string;
 }
 
-const CohortCard = ({
-  alt, imgSrc, cohortName, cohortMembers, startDate, endDate,
-}: IProps) => {
+const CohortCard = ({ alt, imgSrc, cohortName, cohortMembers, startDate, endDate }: IProps) => {
   const cohortNav = useNavigate();
   return (
     <Grid item xs={15} sm={5} md={5} lg={3}>
-      <CohortCardDiv>
+      <CohortCardDiv onClick={() => cohortNav('/academy/cohorts/G13')}>
         <CohortCardImgDiv>
           <Avatar
             alt={alt}
             src={imgSrc}
             sx={{
-              width: 90, height: 90, boxShadow: '0 0 0 5px #ffffff', zIndex: 1,
+              width: 90,
+              height: 90,
+              boxShadow: '0 0 0 5px #ffffff',
+              zIndex: 1,
             }}
           />
         </CohortCardImgDiv>
         <CohortCardDetails>
-          <CohortName>
-            <Link to={cohortName}>{cohortName}</Link>
-          </CohortName>
-          <CohortMembers>
-            {cohortMembers}
-            {' '}
-            Members
-          </CohortMembers>
+          <CohortName>{cohortName} </CohortName>
+          <CohortMembers>{cohortMembers} Members</CohortMembers>
           <Date>
             <p>{startDate}</p>
             <RiArrowRightLine />

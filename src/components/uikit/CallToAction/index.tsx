@@ -1,13 +1,18 @@
 import { IoHelpBuoyOutline } from 'react-icons/io5';
 import {
-  Layer, ContentContainer, CTADescription, CTAContainer, CTATitle, HelpCenterButton,
+  Layer,
+  ContentContainer,
+  CTADescription,
+  CTAContainer,
+  CTATitle,
+  HelpCenterButton,
 } from './index.style';
 
 const CallToAction = () => (
   <CTAContainer>
     <Layer>
       <ContentContainer>
-        <CTATitle>We are all close together, be toxic</CTATitle>
+        <CTATitle>We are all close together</CTATitle>
         <CTADescription>
           A problem, a question, an emergency?
           <br />
