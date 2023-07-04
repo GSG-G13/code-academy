@@ -12,27 +12,36 @@ const ButtonsWrapper = styled.div`
   border-radius: 0.3rem;
 `;
 
-const CohortTopBar = () => (
-  <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
-    <Grid item sm={6} lg={6} md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
-      <ButtonsWrapper>
-        <LoadingBtn btnTitle="All Cohorts" btnStartIcon={<FaUserFriends />} />
-        <LoadingBtn btnTitle="My Groups" btnStartIcon={<FaUserFriends />} />
-      </ButtonsWrapper>
+const CohortTopBar = ({ cohortsCount }: { cohortsCount: string }) => {
+  return (
+    <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
+      <Grid item sm={6} lg={6} md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
+        <ButtonsWrapper>
+          <LoadingBtn
+            btnTitle={'All Cohort'}
+            cohortsCount={cohortsCount}
+            btnStartIcon={<FaUserFriends />}
+          />
+             <LoadingBtn
+            btnTitle={'My Cohort'}
+            cohortsCount={cohortsCount}
+            btnStartIcon={<FaUserFriends />}
+          />
+        </ButtonsWrapper>
+      </Grid>
+      <Grid
+        item
+        sm={6}
+        lg={3}
+        md={6}
+        xs={12}
+        sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
+      >
+        <Box sx={{ '& > button': { m: 0 } }}>
+          <InputWithIcon />
+        </Box>
+      </Grid>
     </Grid>
-    <Grid
-      item
-      sm={6}
-      lg={3}
-      md={6}
-      xs={12}
-      sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
-    >
-      <Box sx={{ '& > button': { m: 0 } }}>
-        <InputWithIcon />
-      </Box>
-    </Grid>
-  </Grid>
-);
-
+  );
+};
 export default CohortTopBar;

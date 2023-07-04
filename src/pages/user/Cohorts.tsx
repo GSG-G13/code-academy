@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { JSX } from '@emotion/react/jsx-dev-runtime';
 import {
@@ -12,8 +12,6 @@ import {
 } from '../../components';
 import { cohortsRoutes } from '../../services';
 import { ReqError, Cohort, CohortData } from '../../utils';
-import { CohortsProvider } from '../../contexts/CohortsContext ';
-import LoadingBtn from '../../components/Cohorts/CohortsTopBar/LoadingButton';
 
 const CohortsContainer = styled.div`
   padding: 1rem 1rem;
@@ -25,9 +23,10 @@ const Cohorts = (): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<string>('1');
   const [pages, setPages] = useState<string>('0');
 
-  const { mutate } = useMutation(
-    async (page: number) => {
-      const response = await cohortsRoutes.getAllByPage(page);
+  const { data, error } = useQuery<{ data: CohortData }>(
+    ['cohorts', currentPage],
+    async () => {
+      const response = await cohortsRoutes.getAllByPage(Number(currentPage));
       console.log(response.data);
       return response.data as { data: CohortData };
     },
@@ -42,16 +41,17 @@ const Cohorts = (): JSX.Element => {
 
         setCohorts(allCohorts);
       },
-      onError: (err: ReqError) => {
-        toast.error(err.response.data.data.message);
-      },
-    },
+    }
   );
 
-  useEffect(() => mutate(Number(currentPage)), [currentPage]);
+  useEffect(() => {
+    if (error) {
+      toast.error(error.response.data.data.message);
+    }
+  }, [error]);
+
   return (
     <>
-      <CohortsProvider>
         <CohortsContainer>
           <PageTitle>Cohorts</PageTitle>
           <CohortTopBar cohortsCount={cohortsCount} />
@@ -62,7 +62,6 @@ const Cohorts = (): JSX.Element => {
             setCurrentPage={setCurrentPage}
           />
         </CohortsContainer>
-      </CohortsProvider>
       <CallToAction />
     </>
   );

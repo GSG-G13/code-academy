@@ -10,6 +10,7 @@ interface IProps {
 }
 
 const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount }: IProps) => {
+
   const [loading, setLoading] = React.useState(true);
 
   function handleClick() {
@@ -47,7 +48,7 @@ const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount }: IProps) => {
         variant="contained"
       >
         <p>{btnTitle}</p>
-        <MembersCountBox>{cohortsCount}fc</MembersCountBox>
+        <MembersCountBox>{cohortsCount}</MembersCountBox>
       </LoadingButton>
     </Box>
   );
