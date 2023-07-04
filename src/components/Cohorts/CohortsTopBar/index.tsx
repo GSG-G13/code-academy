@@ -12,18 +12,20 @@ const ButtonsWrapper = styled.div`
   border-radius: 0.3rem;
 `;
 
-const CohortTopBar = ({ cohortsCount }: { cohortsCount: string }) => (
+const CohortTopBar = ({ cohortsCount, setAll }: { cohortsCount: string; setAll: boolean }) => (
   <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
     <Grid item sm={6} lg={6} md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
       <ButtonsWrapper>
         <LoadingBtn
           btnTitle="All Cohort"
+          onClick={() => setAll(true)}
           cohortsCount={cohortsCount}
           btnStartIcon={<FaUserFriends />}
         />
         <LoadingBtn
           btnTitle="My Cohort"
           cohortsCount={cohortsCount}
+          onClick={() => setAll(false)}
           btnStartIcon={<FaUserFriends />}
         />
       </ButtonsWrapper>

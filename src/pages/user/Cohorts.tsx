@@ -12,7 +12,7 @@ import {
   PaginationCohort,
 } from '../../components';
 import { cohortsRoutes } from '../../services';
-import { ReqError, Cohort, CohortData } from '../../utils';
+import { Cohort, CohortData } from '../../utils';
 
 const CohortsContainer = styled.div`
   padding: 1rem 1rem;
@@ -23,11 +23,17 @@ const Cohorts = (): JSX.Element => {
   const [cohortsCount, setCohortsCount] = useState<string>('0');
   const [currentPage, setCurrentPage] = useState<string>('1');
   const [pages, setPages] = useState<string>('0');
+  const [all, setAll] = useState<boolean>(true);
 
-  const { data, error } = useQuery<{ data: CohortData }>(
-    ['cohorts', currentPage],
+  const { error } = useQuery<{ data: CohortData }>(
+    ['cohorts', currentPage, all],
     async () => {
-      const response = await cohortsRoutes.getAllByPage(Number(currentPage));
+      if (all) {
+        const response = await cohortsRoutes.getAllByPage(Number(currentPage));
+        return response.data as { data: CohortData };
+      }
+
+      const response = await cohortsRoutes.getAllByPage2(Number(currentPage));
       return response.data as { data: CohortData };
     },
     {
@@ -37,7 +43,6 @@ const Cohorts = (): JSX.Element => {
         setCohortsCount(allCohortsCount);
         setCurrentPage(currentPage);
         setPages(pages);
-
         setCohorts(allCohorts);
       },
     },
@@ -53,7 +58,7 @@ const Cohorts = (): JSX.Element => {
     <>
       <CohortsContainer>
         <PageTitle>Cohorts</PageTitle>
-        <CohortTopBar cohortsCount={cohortsCount} />
+        <CohortTopBar cohortsCount={cohortsCount} setAll={setAll} />
         <CohortsWrapper cohorts={cohorts} />
         <PaginationCohort currentPage={currentPage} pages={pages} setCurrentPage={setCurrentPage} />
       </CohortsContainer>
@@ -61,4 +66,5 @@ const Cohorts = (): JSX.Element => {
     </>
   );
 };
+
 export default Cohorts;
