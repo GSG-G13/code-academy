@@ -54,7 +54,7 @@ class HttpService {
   }
 
   async logout() {
-    return apiClient.post(`${this.endpoint}/logout`);
+    return apiClient.get(`${this.endpoint}/logout`);
   }
 }
 

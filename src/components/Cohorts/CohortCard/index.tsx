@@ -25,8 +25,8 @@ const CohortCard = ({ alt, imgSrc, cohortName, cohortMembers, startDate, endDate
   const cohortNav = useNavigate();
   return (
     <Grid item xs={15} sm={5} md={5} lg={3}>
-      <CohortCardDiv onClick={() => cohortNav('/academy/cohorts/G13')}>
-        <CohortCardImgDiv>
+      <CohortCardDiv>
+        <CohortCardImgDiv onClick={() => cohortNav('/academy/cohorts/G13')}>
           <Avatar
             alt={alt}
             src={imgSrc}
@@ -39,8 +39,14 @@ const CohortCard = ({ alt, imgSrc, cohortName, cohortMembers, startDate, endDate
           />
         </CohortCardImgDiv>
         <CohortCardDetails>
-          <CohortName>{cohortName} </CohortName>
-          <CohortMembers>{cohortMembers} Members</CohortMembers>
+          <CohortName>
+            {cohortName}
+          </CohortName>
+          <CohortMembers>
+            {cohortMembers}
+            {' '}
+            Members
+          </CohortMembers>
           <Date>
             <p>{startDate}</p>
             <RiArrowRightLine />

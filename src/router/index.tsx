@@ -1,6 +1,7 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
 import { Members, Login, Cohorts } from '../pages';
 import MiniDrawer from '../components/Layout/layout';
+import RequireAuthProvider from '../contexts';
 
 const router = createBrowserRouter([
   {
@@ -15,10 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: (
-      <div>
+      <RequireAuthProvider>
         <h1>Admin</h1>
         <Outlet />
-      </div>
+      </RequireAuthProvider>
     ),
     children: [
       { index: true, element: <div>Dashboard</div> },
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
   {
     path: '/academy',
     element: (
-      <div>
+      <RequireAuthProvider>
         <MiniDrawer>
           <Outlet />
         </MiniDrawer>
-      </div>
+      </RequireAuthProvider>
     ),
     children: [
       {

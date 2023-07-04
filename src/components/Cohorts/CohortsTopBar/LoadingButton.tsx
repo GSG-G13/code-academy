@@ -10,7 +10,6 @@ interface IProps {
 }
 
 const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount }: IProps) => {
-
   const [loading, setLoading] = React.useState(true);
 
   function handleClick() {
@@ -41,7 +40,7 @@ const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount }: IProps) => {
           borderRadius: '0.3rem',
           position: 'relative',
         }}
-        onClick={handleClick}
+        onClick={() => handleClick()}
         startIcon={btnStartIcon}
         loading={loading}
         loadingPosition="start"

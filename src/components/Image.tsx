@@ -10,6 +10,22 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
+import { authRoutes } from '../services';
+
+interface ReqError extends AxiosResponse {
+  response: {
+    data: {
+      error: boolean;
+      data: {
+        message: string;
+      };
+    };
+  };
+}
 
 const StyledPaper = styled(Paper)`
   margin: 10px;
@@ -65,6 +81,17 @@ const Image = () => {
     prevOpen.current = open;
   }, [open]);
 
+  const navigate = useNavigate();
+
+  const { mutate: logout } = useMutation(() => authRoutes.logout(), {
+    onSuccess: () => {
+      navigate('/academy/login');
+    },
+    onError: (err: ReqError) => {
+      toast.error(err.response.data.data.message);
+    },
+  });
+
   return (
     <Stack direction="row" spacing={2}>
       <StyledBadge
@@ -116,7 +143,7 @@ const Image = () => {
                   >
                     <StyledMenuItem>Profile</StyledMenuItem>
                     <StyledMenuItem>My account</StyledMenuItem>
-                    <StyledMenuItem>Logout</StyledMenuItem>
+                    <StyledMenuItem onClick={() => logout()}>Logout</StyledMenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </StyledPaper>
