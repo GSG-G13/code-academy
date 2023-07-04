@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
@@ -27,21 +28,19 @@ const Cohorts = (): JSX.Element => {
     ['cohorts', currentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage(Number(currentPage));
-      console.log(response.data);
       return response.data as { data: CohortData };
     },
     {
       onSuccess: (data) => {
         const { cohorts: allCohorts, pagination } = data.data;
         const { allCohortsCount, currentPage, pages } = pagination;
-
         setCohortsCount(allCohortsCount);
         setCurrentPage(currentPage);
         setPages(pages);
 
         setCohorts(allCohorts);
       },
-    }
+    },
   );
 
   useEffect(() => {
@@ -52,16 +51,12 @@ const Cohorts = (): JSX.Element => {
 
   return (
     <>
-        <CohortsContainer>
-          <PageTitle>Cohorts</PageTitle>
-          <CohortTopBar cohortsCount={cohortsCount} />
-          <CohortsWrapper cohorts={cohorts} />
-          <PaginationCohort
-            currentPage={currentPage}
-            pages={pages}
-            setCurrentPage={setCurrentPage}
-          />
-        </CohortsContainer>
+      <CohortsContainer>
+        <PageTitle>Cohorts</PageTitle>
+        <CohortTopBar cohortsCount={cohortsCount} />
+        <CohortsWrapper cohorts={cohorts} />
+        <PaginationCohort currentPage={currentPage} pages={pages} setCurrentPage={setCurrentPage} />
+      </CohortsContainer>
       <CallToAction />
     </>
   );

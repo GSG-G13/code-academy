@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { Grid } from '@mui/material';
 
 import { CohortCard } from '..';

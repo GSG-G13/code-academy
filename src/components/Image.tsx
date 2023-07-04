@@ -139,6 +139,7 @@ const Image = () => {
                     autoFocusItem={open}
                     id="composition-menu"
                     aria-labelledby="composition-button"
+                    // eslint-disable-next-line react/jsx-no-bind
                     onKeyDown={handleListKeyDown}
                   >
                     <StyledMenuItem>Profile</StyledMenuItem>

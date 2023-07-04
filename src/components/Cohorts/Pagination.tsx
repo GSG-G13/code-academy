@@ -10,6 +10,7 @@ const BasicPagination = ({
   currentPage: string;
   setCurrentPage: (page: string) => void;
 }) => {
+  // eslint-disable-next-line no-undef
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page.toString());
   };
