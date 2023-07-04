@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 const Layer = styled.div`
   background-color: rgba(78, 100, 221, 0.9);
   width: 100%;
-  height: 100%;
 `;
 
 const ContentContainer = styled.div`
@@ -60,6 +59,7 @@ const HelpCenterButton = styled.a`
   justify-content: center;
   align-items: center;
   box-sizing: content-box;
+  cursor: pointer;
 
   &:hover {
     background-color: #4e64dd;

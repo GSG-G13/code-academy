@@ -269,7 +269,6 @@ const MiniDrawer = ({ children }: IProps) => {
         <OutletContainer>{children}</OutletContainer>
         <style>{hoverItemStyles}</style>
       </Box>
-
     </>
   );
 };
