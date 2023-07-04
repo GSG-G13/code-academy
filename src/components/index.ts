@@ -1,3 +1,4 @@
+import { CohortsWrapper, CohortCard, CohortTopBar } from './Cohorts';
 import { PageTitle, CallToAction } from './uikit';
 import { CohortMembersTopBar, UserCard, UsersCardsWrapper, Pagination } from './Members';
 
@@ -16,7 +17,7 @@ import {
   Button,
 } from './LoginForm/Login.styled';
 import LoginForm from './LoginForm';
-import ScrollUp from './scrollUp';
+import ScrollUp from './ScrollUp';
 
 export {
   CodeAcademy,
@@ -39,4 +40,7 @@ export {
   CohortMembersTopBar,
   Pagination,
   ScrollUp,
+  CohortsWrapper,
+  CohortCard,
+  CohortTopBar,
 };

@@ -27,7 +27,7 @@ const ScrollUp = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 100) {
+      if (window.scrollY > 100) {
         setShowScroll(true);
       } else {
         setShowScroll(false);
