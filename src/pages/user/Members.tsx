@@ -8,7 +8,11 @@ import {
 } from '../../components';
 
 const MembersContainer = styled.div`
+<<<<<<< HEAD
     padding: 1rem 1rem;
+=======
+  padding: 1rem 1rem;
+>>>>>>> a8e14760a4f25b8c79113e911020cadf8fcb00b9
 `;
 
 const Members = () => (
