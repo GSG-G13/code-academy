@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { styled } from 'styled-components';
 import {
@@ -10,8 +10,6 @@ import {
   Pagination,
 } from '../../components';
 import { membersRoutes } from '../../services';
-import { ReqError } from '../../utils';
-import { MembersProvider } from '../../contexts/MembersContext ';
 import { Member, MemberData } from '../../utils';
 
 const MembersContainer = styled.div`
@@ -24,9 +22,10 @@ const Members = (): JSX.Element => {
   const [currentPage, setCurrentPage] = useState<string>('1');
   const [pages, setPages] = useState<string>('0');
 
-  const { mutate } = useMutation(
-    async (page: number) => {
-      const response = await membersRoutes.getAllByPage(page);
+  const { error } = useQuery<{ data: MemberData }>(
+    ['members', currentPage],
+    async () => {
+      const response = await membersRoutes.getAllByPage(Number(currentPage));
       return response.data as { data: MemberData };
     },
     {
@@ -37,29 +36,26 @@ const Members = (): JSX.Element => {
         setMembersCount(allMembersCount);
         setCurrentPage(currentPage);
         setPages(pages);
-
         setMembers(allMembers);
-      },
-      onError: (err: ReqError) => {
-        toast.error(err.response.data.data.message);
       },
     },
   );
 
   useEffect(() => {
-    return mutate(Number(currentPage));
-  }, [currentPage]);
+    if (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred';
+      toast.error(errorMessage);
+    }
+  }, [error]);
 
   return (
     <>
-      <MembersProvider>
-        <MembersContainer>
-          <PageTitle>Members</PageTitle>
-          <CohortMembersTopBar membersCount={membersCount} />
-          <UsersCardsWrapper members={members} />
-          <Pagination currentPage={currentPage} pages={pages} setCurrentPage={setCurrentPage} />
-        </MembersContainer>
-      </MembersProvider>
+      <MembersContainer>
+        <PageTitle>Members</PageTitle>
+        <CohortMembersTopBar membersCount={membersCount} />
+        <UsersCardsWrapper members={members} />
+        <Pagination currentPage={currentPage} pages={pages} setCurrentPage={setCurrentPage} />
+      </MembersContainer>
       <CallToAction />
     </>
   );

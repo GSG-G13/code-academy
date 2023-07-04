@@ -18,6 +18,11 @@ interface LoginResponse {
     user: User;
   };
 }
+
+interface Arg {
+  page?: string;
+}
+
 class HttpService {
   endpoint: string;
 
@@ -25,8 +30,8 @@ class HttpService {
     this.endpoint = endpoint;
   }
 
-  async getAll<T>() {
-    return apiClient.get<T[]>(this.endpoint);
+  async getAll<T>({ page }: Arg) {
+    return apiClient.get<T[]>(`${this.endpoint}?page=${page}`);
   }
 
   async getAllByPage<T>(page: number) {
