@@ -1,6 +1,6 @@
 import { Grid, Avatar } from '@mui/material';
 import { RiArrowRightLine } from 'react-icons/ri';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   CohortCardDiv,
@@ -27,8 +27,8 @@ const CohortCard = ({
   const cohortNav = useNavigate();
   return (
     <Grid item xs={15} sm={5} md={5} lg={3}>
-      <CohortCardDiv onClick={() => cohortNav('/academy/cohorts/G13')}>
-        <CohortCardImgDiv>
+      <CohortCardDiv>
+        <CohortCardImgDiv onClick={() => cohortNav('/academy/cohorts/G13')}>
           <Avatar
             alt={alt}
             src={imgSrc}
@@ -39,7 +39,7 @@ const CohortCard = ({
         </CohortCardImgDiv>
         <CohortCardDetails>
           <CohortName>
-            <Link to={cohortName}>{cohortName}</Link>
+            {cohortName}
           </CohortName>
           <CohortMembers>
             {cohortMembers}

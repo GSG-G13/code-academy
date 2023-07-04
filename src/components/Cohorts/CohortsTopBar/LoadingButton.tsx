@@ -22,7 +22,7 @@ const LoadingBtn = ({ btnTitle, btnStartIcon }: IProps) => {
       <LoadingButton
         sx={{
           backgroundColor: '#4E64DD',
-          'border-color': 'rgba(0,0,0,0)',
+          borderColor: 'rgba(0,0,0,0)',
           padding: '0.5rem 1rem',
           fontFamily: 'Poppins',
           textTransform: 'capitalize',
