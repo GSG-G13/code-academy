@@ -73,7 +73,7 @@ const hoverItemStyles = `
 
 const MiniDrawer = ({ children }: IProps) => {
   const [open, setOpen] = React.useState(true);
-  const [activeItem, setActiveItem] = React.useState('');
+  const [activeItem, setActiveItem] = React.useState('G13');
   const handleSideBar = () => {
     setOpen((prev) => !prev);
   };
