@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { JSX } from '@emotion/react/jsx-dev-runtime';
 import {
@@ -17,50 +17,114 @@ import { Cohort, CohortData } from '../../utils';
 const CohortsContainer = styled.div`
   padding: 1rem 1rem;
 `;
-
 const Cohorts = (): JSX.Element => {
-  const [cohorts, setCohorts] = useState<Cohort[]>([]);
-  const [cohortsCount, setCohortsCount] = useState<string>('0');
-  const [currentPage, setCurrentPage] = useState<string>('1');
-  const [pages, setPages] = useState<string>('0');
-  const [all, setAll] = useState<boolean>(true);
+  const [allCohorts, setAllCohorts] = useState<Cohort[]>([]);
+  const [allCohortsCount, setAllCohortsCount] = useState<string>('0');
+  const [allCurrentPage, setAllCurrentPage] = useState<string>('1');
+  const [allPages, setAllPages] = useState<string>('0');
+  const [cohortsToPass, setCohortsToPass] = useState<'myCohorts' | 'allCohorts'>('allCohorts');
 
-  const { error } = useQuery<{ data: CohortData }>(
-    ['cohorts', currentPage, all],
+  const [myCohorts, setMyCohorts] = useState<Cohort[]>([]);
+  const [myCohortsCount, setMyCohortsCount] = useState<string>('0');
+  const [myCurrentPage, setMyCurrentPage] = useState<string>('1');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [myPages, setMyPages] = useState<string>('0');
+  const { error: allError } = useQuery<{ data: CohortData }>(
+    ['allCohorts', allCurrentPage],
     async () => {
-      if (all) {
-        const response = await cohortsRoutes.getAllByPage(Number(currentPage));
-        return response.data as { data: CohortData };
-      }
-
-      const response = await cohortsRoutes.getAllByPage2(Number(currentPage));
+      const response = await cohortsRoutes.getAllByPage(Number(allCurrentPage));
       return response.data as { data: CohortData };
     },
     {
       onSuccess: (data) => {
         const { cohorts: allCohorts, pagination } = data.data;
         const { allCohortsCount, currentPage, pages } = pagination;
-        setCohortsCount(allCohortsCount);
-        setCurrentPage(currentPage);
-        setPages(pages);
-        setCohorts(allCohorts);
+        setAllCohorts(allCohorts);
+        setAllCohortsCount(allCohortsCount);
+        setAllCurrentPage(currentPage);
+        setAllPages(pages);
+      },
+    },
+  );
+
+  const { mutate: refetchAllCohortsCountMutate } = useMutation({
+    mutationKey: ['refetchAllCohorts'],
+    mutationFn: async () => {
+      const response = await cohortsRoutes.getAllByPage(Number(allCurrentPage));
+      return response.data as { data: CohortData };
+    },
+    onSuccess: (data) => {
+      setAllCohortsCount(String(data.data.pagination.allCohortsCount));
+    },
+  });
+
+  const refetchAllCohortsCount = () => {
+    refetchAllCohortsCountMutate();
+    setCohortsToPass('allCohorts');
+  };
+  const { mutate: refetchMyCohortsCountMutate } = useMutation({
+    mutationKey: ['refetchAllCohorts'],
+    mutationFn: async () => {
+      const response = await cohortsRoutes.getAllByPage2(Number(allCurrentPage));
+      return response.data as { data: CohortData };
+    },
+    onSuccess: (data) => {
+      setMyCohortsCount(String(data.data.pagination.allCohortsCount));
+    },
+  });
+
+  const refetchMyCohortsCount = () => {
+    refetchMyCohortsCountMutate();
+    setCohortsToPass('myCohorts');
+  };
+
+  const { error: myError } = useQuery<{ data: CohortData }>(
+    ['myCohorts', myCurrentPage],
+    async () => {
+      const response = await cohortsRoutes.getAllByPage2(Number(myCurrentPage));
+      return response.data as { data: CohortData };
+    },
+    {
+      onSuccess: (data) => {
+        const { cohorts: myCohorts, pagination } = data.data;
+        const { allCohortsCount, currentPage, pages } = pagination;
+        setMyCohorts(myCohorts);
+        setMyCohortsCount(allCohortsCount);
+        setMyCurrentPage(currentPage);
+        setMyPages(pages);
       },
     },
   );
 
   useEffect(() => {
-    if (error) {
-      toast.error(error.response.data.data.message);
+    if (allError) {
+      toast.error(allError.response.data.data.message);
     }
-  }, [error]);
+  }, [allError]);
+
+  useEffect(() => {
+    if (myError) {
+      toast.error(myError.response.data.data.message);
+    }
+  }, [myError]);
 
   return (
     <>
       <CohortsContainer>
         <PageTitle>Cohorts</PageTitle>
-        <CohortTopBar cohortsCount={cohortsCount} setAll={setAll} />
-        <CohortsWrapper cohorts={cohorts} />
-        <PaginationCohort currentPage={currentPage} pages={pages} setCurrentPage={setCurrentPage} />
+        <CohortTopBar
+          cohortsCount={allCohortsCount}
+          myCohortsCount={myCohortsCount}
+          refetchMyCohortsCount={refetchMyCohortsCount}
+          refetchAllCohortsCount={refetchAllCohortsCount}
+          setMyCohorts={setMyCohortsCount}
+        />
+        <CohortsWrapper cohorts={cohortsToPass === 'allCohorts' ? allCohorts : myCohorts} />
+        <PaginationCohort
+          currentPage={allCurrentPage}
+          pages={allPages}
+          setCurrentPage={setAllCurrentPage}
+        />
       </CohortsContainer>
       <CallToAction />
     </>

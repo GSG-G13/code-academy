@@ -1,6 +1,13 @@
 import { AppBarProps, DecodeJwtType, LoggedUserObjectType, AuthProviderPropsType } from './helpers';
 import loginSchema from './validation';
-import { Cohort, CohortData, CohortPagination, CohortsContextProps, ReqError } from './types';
+import {
+  Cohort,
+  CohortData,
+  CohortPagination,
+  CohortsContextProps,
+  ReqError,
+  myCohortData,
+} from './types';
 
 export type {
   loginSchema,
@@ -13,5 +20,6 @@ export type {
   DecodeJwtType,
   LoggedUserObjectType,
   AuthProviderPropsType,
+  myCohortData,
 };
 export default loginSchema;

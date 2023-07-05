@@ -1,31 +1,44 @@
+import React from 'react';
 import { Box, Grid } from '@mui/material';
-import { styled } from 'styled-components';
+import { styled } from '@mui/system';
 import { FaUserFriends } from 'react-icons/fa';
 import InputWithIcon from './InputWithIcon';
 import LoadingBtn from './LoadingButton';
 
-const ButtonsWrapper = styled.div`
+const ButtonsWrapper = styled('div')`
   display: flex;
   column-gap: 10px;
   padding: 5px;
-  background-color: #ffff;
+  background-color: #ffffff;
   border-radius: 0.3rem;
 `;
 
-const CohortTopBar = ({ cohortsCount, setAll }: { cohortsCount: string; setAll: boolean }) => (
+type CohortTopBarProps = {
+  cohortsCount: string;
+  myCohortsCount: string;
+  refetchAllCohortsCount: () => void;
+  refetchMyCohortsCount: () => void;
+};
+
+const CohortTopBar: React.FC<CohortTopBarProps> = ({
+  cohortsCount,
+  refetchAllCohortsCount,
+  refetchMyCohortsCount,
+  myCohortsCount,
+}) => (
   <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
     <Grid item sm={6} lg={6} md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
       <ButtonsWrapper>
         <LoadingBtn
           btnTitle="All Cohort"
-          onClick={() => setAll(true)}
           cohortsCount={cohortsCount}
+          handleClick={refetchAllCohortsCount}
           btnStartIcon={<FaUserFriends />}
         />
         <LoadingBtn
           btnTitle="My Cohort"
-          cohortsCount={cohortsCount}
-          onClick={() => setAll(false)}
+          cohortsCount={myCohortsCount}
+          handleClick={refetchMyCohortsCount}
           btnStartIcon={<FaUserFriends />}
         />
       </ButtonsWrapper>
@@ -44,4 +57,5 @@ const CohortTopBar = ({ cohortsCount, setAll }: { cohortsCount: string; setAll: 
     </Grid>
   </Grid>
 );
+
 export default CohortTopBar;

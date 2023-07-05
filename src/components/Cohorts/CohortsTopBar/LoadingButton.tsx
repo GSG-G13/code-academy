@@ -7,14 +7,11 @@ interface IProps {
   btnTitle: string;
   btnStartIcon: React.ReactElement;
   cohortsCount: string;
+  handleClick: () => void;
 }
 
-const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount }: IProps) => {
+const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount, handleClick }: IProps) => {
   const [loading, setLoading] = React.useState(true);
-
-  // function handleClick() {
-  //   setLoading(true);
-  // }
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -40,7 +37,7 @@ const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount }: IProps) => {
           borderRadius: '0.3rem',
           position: 'relative',
         }}
-      //  onClick={() => handleClick()}
+        onClick={() => handleClick()}
         startIcon={btnStartIcon}
         loading={loading}
         loadingPosition="start"
