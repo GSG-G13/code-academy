@@ -1,3 +1,4 @@
 import loginSchema from './loginSchema';
+import postSchema from './postSchema';
 
-export default loginSchema;
+export { loginSchema, postSchema };

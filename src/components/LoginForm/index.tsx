@@ -5,9 +5,9 @@ import { AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, ForgetPassword, Form, InputForm, TitleLogin } from './Login.styled';
-import loginSchema from '../../utils';
 
 import { authRoutes } from '../../services';
+import { loginSchema } from '../../utils/validation';
 
 interface FormData {
   email: string;
