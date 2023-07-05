@@ -18,6 +18,7 @@ import {
   Button,
 } from './LoginForm/Login.styled';
 import LoginForm from './LoginForm';
+import ScrollUp from './ScrollUp';
 
 export {
   CodeAcademy,
@@ -41,6 +42,7 @@ export {
   Pagination,
   MyCohortWrapper,
   MembersBar,
+  ScrollUp,
   CohortsWrapper,
   CohortCard,
   CohortTopBar,
