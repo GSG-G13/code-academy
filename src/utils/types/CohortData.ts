@@ -5,6 +5,7 @@ interface CohortData {
   cohorts: Cohorts[];
   pagination: PaginationData;
   allCohortsCount: number;
+  myPagination: PaginationData;
 }
 
 export default CohortData;

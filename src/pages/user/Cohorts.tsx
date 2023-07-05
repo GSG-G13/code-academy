@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import { JSX } from '@emotion/react/jsx-dev-runtime';
 import {
@@ -17,19 +17,24 @@ import { Cohort, CohortData } from '../../utils';
 const CohortsContainer = styled.div`
   padding: 1rem 1rem;
 `;
+
 const Cohorts = (): JSX.Element => {
   const [allCohorts, setAllCohorts] = useState<Cohort[]>([]);
   const [allCohortsCount, setAllCohortsCount] = useState<string>('0');
   const [allCurrentPage, setAllCurrentPage] = useState<string>('1');
   const [allPages, setAllPages] = useState<string>('0');
   const [cohortsToPass, setCohortsToPass] = useState<'myCohorts' | 'allCohorts'>('allCohorts');
-
   const [myCohorts, setMyCohorts] = useState<Cohort[]>([]);
   const [myCohortsCount, setMyCohortsCount] = useState<string>('0');
   const [myCurrentPage, setMyCurrentPage] = useState<string>('1');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [myPages, setMyPages] = useState<string>('0');
-  const { error: allError } = useQuery<{ data: CohortData }>(
+
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    data: allData,
+    error: allError,
+    refetch: refetchAllCohorts,
+  } = useQuery<{ data: CohortData }>(
     ['allCohorts', allCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage(Number(allCurrentPage));
@@ -47,38 +52,17 @@ const Cohorts = (): JSX.Element => {
     },
   );
 
-  const { mutate: refetchAllCohortsCountMutate } = useMutation({
-    mutationKey: ['refetchAllCohorts'],
-    mutationFn: async () => {
-      const response = await cohortsRoutes.getAllByPage(Number(allCurrentPage));
-      return response.data as { data: CohortData };
-    },
-    onSuccess: (data) => {
-      setAllCohortsCount(String(data.data.pagination.allCohortsCount));
-    },
-  });
-
   const refetchAllCohortsCount = () => {
-    refetchAllCohortsCountMutate();
+    refetchAllCohorts();
     setCohortsToPass('allCohorts');
   };
-  const { mutate: refetchMyCohortsCountMutate } = useMutation({
-    mutationKey: ['refetchAllCohorts'],
-    mutationFn: async () => {
-      const response = await cohortsRoutes.getAllByPage2(Number(allCurrentPage));
-      return response.data as { data: CohortData };
-    },
-    onSuccess: (data) => {
-      setMyCohortsCount(String(data.data.pagination.allCohortsCount));
-    },
-  });
 
-  const refetchMyCohortsCount = () => {
-    refetchMyCohortsCountMutate();
-    setCohortsToPass('myCohorts');
-  };
-
-  const { error: myError } = useQuery<{ data: CohortData }>(
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    data: myData,
+    error: myError,
+    refetch: refetchMyCohorts,
+  } = useQuery<{ data: CohortData }>(
     ['myCohorts', myCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage2(Number(myCurrentPage));
@@ -95,6 +79,11 @@ const Cohorts = (): JSX.Element => {
       },
     },
   );
+
+  const refetchMyCohortsCount = () => {
+    refetchMyCohorts();
+    setCohortsToPass('myCohorts');
+  };
 
   useEffect(() => {
     if (allError) {
@@ -121,9 +110,9 @@ const Cohorts = (): JSX.Element => {
         />
         <CohortsWrapper cohorts={cohortsToPass === 'allCohorts' ? allCohorts : myCohorts} />
         <PaginationCohort
-          currentPage={allCurrentPage}
-          pages={allPages}
-          setCurrentPage={setAllCurrentPage}
+          currentPage={cohortsToPass === 'allCohorts' ? allCurrentPage : myCurrentPage}
+          pages={cohortsToPass === 'allCohorts' ? allPages : myPages}
+          setCurrentPage={cohortsToPass === 'allCohorts' ? setAllCurrentPage : setMyCurrentPage}
         />
       </CohortsContainer>
       <CallToAction />
