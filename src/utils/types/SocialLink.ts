@@ -7,4 +7,4 @@ interface SocialLink {
     icon: ReactElement;
   }
 
-  export default SocialLink;
+export default SocialLink;

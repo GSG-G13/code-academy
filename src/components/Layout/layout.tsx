@@ -22,14 +22,14 @@ import { LuAlignJustify } from 'react-icons/lu';
 import { BiBookmarks } from 'react-icons/bi';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 import { Drawer, AppBar, DrawerHeader, Dot, Title } from './layout.styled';
 import Search from '../Search';
 import Image from '../Image';
 import '../../assets/style/academy.css';
 import { authRoutes } from '../../services';
-import { useMutation } from 'react-query';
 import { ReqError } from '../../utils';
-import { toast } from 'react-toastify';
 
 interface IProps {
   children: React.ReactNode;

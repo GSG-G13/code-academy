@@ -16,7 +16,7 @@ const MembersContainer = styled.div`
   padding: calc(70px + 1rem) 1rem 1rem;
 `;
 
-const Members = (): JSX.Element => {
+const Members = () => {
   const [members, setMembers] = useState<Member[]>([]);
   const [membersCount, setMembersCount] = useState<string>('0');
   const [currentPage, setCurrentPage] = useState<string>('1');
@@ -31,11 +31,11 @@ const Members = (): JSX.Element => {
     {
       onSuccess: (data) => {
         const { members: allMembers, pagination } = data.data;
-        const { allMembersCount, currentPage, pages } = pagination;
+        const { allMembersCount, currentPage: current, pages: myPages } = pagination;
 
         setMembersCount(allMembersCount);
-        setCurrentPage(currentPage);
-        setPages(pages);
+        setCurrentPage(current);
+        setPages(myPages);
         setMembers(allMembers);
       },
     },

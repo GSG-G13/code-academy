@@ -43,7 +43,14 @@ const UsersCardsWrapper = ({ members }: { members: Member[] }) => {
           alt={member.fullName}
           img={member.avatar}
           name={member.fullName}
-          cohort={member.cohorts[0] ? `[${member.cohorts}]`.toLocaleUpperCase().length < 11 ? `[${member.cohorts}]`.toLocaleUpperCase() : (`${`[${member.cohorts}]`.slice(0, 8)}]...`).toLocaleUpperCase() : ''}
+          cohort={
+            // eslint-disable-next-line no-nested-ternary
+            member.cohorts[0]
+              ? `[${member.cohorts}]`.toLocaleUpperCase().length < 11
+                ? `[${member.cohorts}]`.toLocaleUpperCase()
+                : `${`[${member.cohorts}]`.slice(0, 8)}]...`.toLocaleUpperCase()
+              : ''
+          }
           jobTitle={member.careerStatus}
         >
           <UserSocialLinks>
