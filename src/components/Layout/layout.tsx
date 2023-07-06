@@ -277,4 +277,5 @@ export default MiniDrawer;
 
 const OutletContainer = styled.div`
   width: 100%;
+  padding-top: calc(70px);
 `;
