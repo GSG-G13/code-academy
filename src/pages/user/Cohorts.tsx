@@ -33,7 +33,6 @@ const Cohorts = (): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     data: allData,
     error: allError,
-    refetch: refetchAllCohorts,
   } = useQuery<{ data: CohortData }>(
     ['allCohorts', allCurrentPage],
     async () => {
@@ -53,7 +52,6 @@ const Cohorts = (): JSX.Element => {
   );
 
   const refetchAllCohortsCount = () => {
-    refetchAllCohorts();
     setCohortsToPass('allCohorts');
   };
 
@@ -61,7 +59,6 @@ const Cohorts = (): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     data: myData,
     error: myError,
-    refetch: refetchMyCohorts,
   } = useQuery<{ data: CohortData }>(
     ['myCohorts', myCurrentPage],
     async () => {
@@ -81,7 +78,6 @@ const Cohorts = (): JSX.Element => {
   );
 
   const refetchMyCohortsCount = () => {
-    refetchMyCohorts();
     setCohortsToPass('myCohorts');
   };
 
