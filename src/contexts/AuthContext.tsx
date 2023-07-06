@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Navigate } from 'react-router-dom';
 import { AuthProviderPropsType } from '../utils/helpers';
 import useAuth from '../hooks';
@@ -11,11 +10,13 @@ const RequireAuthProvider: React.FC<AuthProviderPropsType> = ({ children }) => {
     return <div>Loading...</div>;
   }
 
-  return user.userId ? (
-    children
-  ) : (
-    <Navigate to="/academy/login" />
-  );
+  if (!user.id || user.isAdmin) {
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    return <Navigate to="/academy/login/" />;
+  }
+
+  return children;
 };
 
 export default RequireAuthProvider;
