@@ -89,5 +89,8 @@ const Title = styled('span')`
   margin: 1.2rem 0.8rem;
   display: block;
 `;
+const OutletContainer = styled('div')`
+  width: 100%;
+`;
 
-export { Drawer, AppBar, DrawerHeader, Dot, Title };
+export { Drawer, AppBar, DrawerHeader, Dot, Title, OutletContainer };

@@ -13,7 +13,7 @@ import { membersRoutes } from '../../services';
 import { Member, MemberData } from '../../utils';
 
 const MembersContainer = styled.div`
-  padding: calc(70px + 1rem) 1rem 1rem;
+  padding: 1rem 1rem;
 `;
 
 const Members = () => {

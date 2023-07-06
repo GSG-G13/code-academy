@@ -7,7 +7,7 @@ const CallToAction = () => (
   <CTAContainer>
     <Layer>
       <ContentContainer>
-        <CTATitle>We are all close together, be toxic</CTATitle>
+        <CTATitle>We are all close together</CTATitle>
         <CTADescription>
           A problem, a question, an emergency?
           <br />
