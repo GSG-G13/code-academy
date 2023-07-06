@@ -16,7 +16,7 @@ import {
   InputForm,
   Button,
 } from './LoginForm/Login.styled';
-import LoginForm from './LoginForm';
+
 import ScrollUp from './ScrollUp';
 
 export {
@@ -32,7 +32,6 @@ export {
   Span,
   InputForm,
   Button,
-  LoginForm,
   PageTitle,
   CallToAction,
   UserCard,
