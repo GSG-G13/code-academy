@@ -20,45 +20,32 @@ import {
 } from 'react-icons/ri';
 import { LuAlignJustify } from 'react-icons/lu';
 import { BiBookmarks } from 'react-icons/bi';
-import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { Drawer, AppBar, DrawerHeader } from './layout.styled';
+import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
+import { AxiosResponse } from 'axios';
+import { Drawer, AppBar, DrawerHeader, Dot, Title, OutletContainer } from './layout.styled';
 import Search from '../Search';
 import Image from '../Image';
 import '../../assets/style/academy.css';
 import { ScrollUp } from '..';
+import { authRoutes } from '../../services';
 
 interface IProps {
   children: React.ReactNode;
 }
-
-const MiniDrawer = ({ children }: IProps) => {
-  const [open, setOpen] = React.useState(true);
-
-  const handleSideBar = () => {
-    setOpen((prev) => !prev);
+interface ReqError extends AxiosResponse {
+  response: {
+    data: {
+      error: boolean;
+      data: {
+        message: string;
+      };
+    };
   };
+}
 
-  const navigate = useNavigate();
-
-  const Dot = styled.span`
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    background: #676773;
-    margin: 1.2rem auto;
-    display: block;
-  `;
-
-  const Title = styled.span`
-    font-size: 0.8rem;
-    color: #dbdbde;
-    margin: 1.2rem 0.8rem;
-    display: block;
-  `;
-
-  const hoverItemStyles = `
+const hoverItemStyles = `
     .hover-item {
       cursor: pointer;
     }
@@ -83,6 +70,24 @@ const MiniDrawer = ({ children }: IProps) => {
 
     }
   `;
+
+const MiniDrawer = ({ children }: IProps) => {
+  const [open, setOpen] = React.useState(true);
+  const [activeItem, setActiveItem] = React.useState('G13');
+  const handleSideBar = () => {
+    setOpen((prev) => !prev);
+  };
+
+  const navigate = useNavigate();
+
+  const { mutate: logout } = useMutation(() => authRoutes.logout(), {
+    onSuccess: () => {
+      navigate('/academy/login');
+    },
+    onError: (err: ReqError) => {
+      toast.error(err.response.data.data.message);
+    },
+  });
 
   return (
     <>
@@ -166,11 +171,32 @@ const MiniDrawer = ({ children }: IProps) => {
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
                     position: 'relative',
+                    background:
+                      activeItem === item.label
+                        ? 'linear-gradient(45deg, #0f0f18, transparent)'
+                        : 'transparent',
+                    '&::after':
+                      activeItem === item.label
+                        ? {
+                          content: '""',
+                          display: 'block',
+                          position: 'absolute',
+                          left: '0',
+                          bottom: '0',
+                          height: '0%',
+                          width: '3px',
+                          backgroundColor: '#e4ddf8',
+                          animation: 'nothing 0.5s forwards',
+                        }
+                        : 'transparent',
                   }}
                   classes={{
                     root: 'hover-item',
                   }}
-                  onClick={() => navigate(item.to)}
+                  onClick={() => {
+                    navigate(item.to);
+                    setActiveItem(item.label);
+                  }}
                 >
                   <ListItemIcon
                     sx={{
@@ -205,11 +231,32 @@ const MiniDrawer = ({ children }: IProps) => {
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
                     position: 'relative',
+                    background:
+                      activeItem === item.label
+                        ? 'linear-gradient(45deg, #0f0f18, transparent)'
+                        : 'transparent',
+                    '&::after':
+                      activeItem === item.label
+                        ? {
+                          content: '""',
+                          display: 'block',
+                          position: 'absolute',
+                          left: '0',
+                          bottom: '0',
+                          height: '0%',
+                          width: '3px',
+                          backgroundColor: '#e4ddf8',
+                          animation: 'nothing 0.5s forwards',
+                        }
+                        : 'transparent',
                   }}
                   classes={{
                     root: 'hover-item',
                   }}
-                  onClick={() => navigate(item.to)}
+                  onClick={() => {
+                    navigate(item.to);
+                    setActiveItem(item.label);
+                  }}
                 >
                   <ListItemIcon
                     sx={{
@@ -231,7 +278,7 @@ const MiniDrawer = ({ children }: IProps) => {
               </ListItem>
             ))}
             {open ? <Title>OTHERS</Title> : <Dot />}
-            {[{ label: 'logout', to: '/academy/logout', icon: RiLogoutCircleLine }].map((item) => (
+            {[{ label: 'logout', icon: RiLogoutCircleLine }].map((item) => (
               <ListItem key={item.label} disablePadding sx={{ display: 'flex' }}>
                 <ListItemButton
                   sx={{
@@ -242,7 +289,7 @@ const MiniDrawer = ({ children }: IProps) => {
                   classes={{
                     root: 'hover-item',
                   }}
-                  onClick={() => navigate(item.to)}
+                  onClick={() => logout()}
                 >
                   <ListItemIcon
                     sx={{
@@ -274,7 +321,3 @@ const MiniDrawer = ({ children }: IProps) => {
 };
 
 export default MiniDrawer;
-
-const OutletContainer = styled.div`
-  width: 100%;
-`;

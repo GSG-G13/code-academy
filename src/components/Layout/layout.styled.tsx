@@ -73,4 +73,24 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export { Drawer, AppBar, DrawerHeader };
+const Dot = styled('span')`
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  background: #676773;
+  margin: 1.2rem auto;
+  display: block;
+`;
+
+const Title = styled('span')`
+  font-size: 0.8rem;
+  color: #dbdbde;
+  margin: 1.2rem 0.8rem;
+  display: block;
+`;
+const OutletContainer = styled('div')`
+  width: 100%;
+`;
+
+export { Drawer, AppBar, DrawerHeader, Dot, Title, OutletContainer };
