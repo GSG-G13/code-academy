@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Avatar, FormLabel, FormHelperText } from '@mui/material';
 import { RiAttachment2 } from 'react-icons/ri';
 import { LoadingButton } from '@mui/lab';
@@ -5,18 +7,17 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 import { useMutation } from 'react-query';
-import { AxiosResponse } from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PostDetails, PostWrapper, TextArea, FileAndBtn, File } from './style';
-import { postsRoutes } from '../../../services';
+import { postsRoutes, uploadRoutes } from '../../../services';
 import { postSchema } from '../../../utils/validation';
 
 interface FormData {
   postContent: string;
-  postImage: string | null;
+  postImage: File | null;
 }
 
-interface ReqError extends AxiosResponse {
+interface ReqError {
   response: {
     data: {
       error: boolean;
@@ -32,26 +33,61 @@ const AddPost = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({ resolver: zodResolver(postSchema), mode: 'onBlur' });
 
-  const { isLoading, mutate, error } = useMutation(
-    (data: FormData) => postsRoutes.create({
-      isPublic: true,
-      content: data.postContent,
-      image: data.postImage || null, // Include the first file in the request payload
-    }),
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  const handleImageSelect = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    if (evt.target.files != null) {
+      setSelectedImage(evt.target.files[0]);
+    }
+  };
+
+  const { isLoading, mutate } = useMutation(
+    async (data: FormData) => {
+      try {
+        if (selectedImage) {
+          const s3ImgUploadUrlResponse = await uploadRoutes.getAll();
+          const s3ImgUploadUrl = s3ImgUploadUrlResponse.data;
+
+          await axios.put(s3ImgUploadUrl.data.url, selectedImage);
+          const imageUrl = s3ImgUploadUrl.data.url.split('?')[0];
+
+          await postsRoutes.create({
+            isPublic: true,
+            content: data.postContent,
+            image: imageUrl,
+          });
+        } else {
+          await postsRoutes.create({
+            isPublic: true,
+            content: data.postContent,
+            image: null,
+          });
+        }
+        setSelectedImage(null);
+
+        toast.success('');
+      } catch (err) {
+        const errorMessage = err?.response?.data?.data?.message || 'Failed to create post';
+        toast.error(errorMessage);
+      }
+    },
     {
       onSuccess: () => {
         toast.success('Post created successfully');
       },
       onError: (err: ReqError) => {
-        toast.error(err.response.data.data.message);
+        const errorMessage = err.response.data.data.message;
+        toast.error(errorMessage);
       },
     },
   );
 
   const handlePost = (data: FormData) => {
     mutate(data);
+    reset();
   };
 
   return (
@@ -64,8 +100,8 @@ const AddPost = () => {
             id="postContent"
             {...register('postContent')}
           />
-          <FormHelperText error={!!errors.postContent?.message || !!error}>
-            {errors.postContent?.message || error?.response.data.data.message}
+          <FormHelperText error={!!errors.postContent?.message}>
+            {errors.postContent?.message}
           </FormHelperText>
           <FileAndBtn>
             <File>
@@ -78,6 +114,7 @@ const AddPost = () => {
                 id="postImage"
                 hidden
                 accept=".jpg,.jpeg,.png,.gif"
+                onChange={handleImageSelect}
               />
             </File>
             <LoadingButton loading={isLoading} variant="contained" size="small" type="submit">

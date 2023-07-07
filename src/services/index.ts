@@ -6,6 +6,7 @@ import {
   postsRoutes,
   likesRoutes,
   membersRoutes,
+  uploadRoutes,
 } from './services';
 
 export {
@@ -16,4 +17,5 @@ export {
   postsRoutes,
   likesRoutes,
   apiClient,
+  uploadRoutes,
 };
