@@ -36,7 +36,7 @@ const Cohorts = (): JSX.Element => {
   } = useQuery<{ data: CohortData }>(
     ['allCohorts', allCurrentPage],
     async () => {
-      const response = await cohortsRoutes.getAllByPage(Number(allCurrentPage));
+      const response = await cohortsRoutes.getAllByPage1(Number(allCurrentPage));
       return response.data as { data: CohortData };
     },
     {

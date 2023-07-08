@@ -1,16 +1,22 @@
-import { AppBarProps, DecodeJwtType, LoggedUserObjectType, AuthProviderPropsType } from './helpers';
-import loginSchema from './validation';
 import {
+  AppBarProps,
+  DecodeJwtType,
+  LoggedUserObjectType,
+  AuthProviderPropsType,
+  ReqError,
+  Member,
+  MemberData,
+  MembersContextProps,
+  SocialLink,
   Cohort,
   CohortData,
   CohortPagination,
   CohortsContextProps,
-  ReqError,
   myCohortData,
 } from './types';
+import loginSchema from './validation';
 
 export type {
-  loginSchema,
   Cohort,
   CohortData,
   CohortPagination,
@@ -21,5 +27,9 @@ export type {
   LoggedUserObjectType,
   AuthProviderPropsType,
   myCohortData,
+  Member,
+  MemberData,
+  MembersContextProps,
+  SocialLink,
 };
-export default loginSchema;
+export { loginSchema };
