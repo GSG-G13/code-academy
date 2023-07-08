@@ -6,6 +6,13 @@ const cohortsRoutes = create('/cohorts');
 const membersRoutes = create('/members');
 const postsRoutes = create('/posts');
 const likesRoutes = create('/likes');
+const profileRoutes = create('/profile');
 export {
-  authRoutes, membersRoutes, usersRoutes, cohortsRoutes, postsRoutes, likesRoutes,
+  authRoutes,
+  membersRoutes,
+  usersRoutes,
+  cohortsRoutes,
+  postsRoutes,
+  likesRoutes,
+  profileRoutes,
 };

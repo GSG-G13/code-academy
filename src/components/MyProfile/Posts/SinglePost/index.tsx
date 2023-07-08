@@ -41,8 +41,8 @@ const SinglePost = ({
       </UserNameWithPublish>
     </PostUserInfo>
     <PostContentWithImg>
-      <p>{postContent}</p>
-      <img src={postImg} alt={postImgAlt} />
+      <p>{postContent.length > 100 ? postContent : <strong>{postContent}</strong>}</p>
+      {postImg ? <img src={postImg} alt={postImgAlt} /> : null}
       <PostInteraction>
         <span>
           {likesCount}

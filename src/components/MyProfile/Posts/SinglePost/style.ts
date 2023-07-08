@@ -47,6 +47,8 @@ const PostContentWithImg = styled.div`
     width: 100%;
     object-fit: cover;
     margin-bottom: 5px;
+    height: 200px;
+    border-radius: 0.2rem;
   }
 `;
 
