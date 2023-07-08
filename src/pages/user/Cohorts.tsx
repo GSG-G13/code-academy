@@ -29,11 +29,7 @@ const Cohorts = (): JSX.Element => {
   const [myCurrentPage, setMyCurrentPage] = useState<string>('1');
   const [myPages, setMyPages] = useState<string>('0');
 
-  const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    data: allData,
-    error: allError,
-  } = useQuery<{ data: CohortData }>(
+  const { error: allError } = useQuery<{ data: CohortData }>(
     ['allCohorts', allCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage1(Number(allCurrentPage));
@@ -55,11 +51,7 @@ const Cohorts = (): JSX.Element => {
     setCohortsToPass('allCohorts');
   };
 
-  const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    data: myData,
-    error: myError,
-  } = useQuery<{ data: CohortData }>(
+  const { error: myError } = useQuery<{ data: CohortData }>(
     ['myCohorts', myCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage2(Number(myCurrentPage));
