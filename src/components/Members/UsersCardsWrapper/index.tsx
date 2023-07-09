@@ -1,18 +1,11 @@
 import { RiLinkedinLine, RiGithubLine, RiGoogleLine } from 'react-icons/ri';
 import { Grid } from '@mui/material';
-import { ReactElement } from 'react';
 import UserCard from '../UserCard';
 import UserSocialLinkBox from '../UserCard/UserSocialLink';
 import { UserSocialLinks } from '../UserCard/style';
+import { Member, SocialLink } from '../../../utils';
 
-interface SocialLink {
-  name: string;
-  iconColor: string;
-  hoverColor: string;
-  icon: ReactElement;
-}
-
-const UsersCardsWrapper = () => {
+const UsersCardsWrapper = ({ members }: { members: Member[] }) => {
   const links: SocialLink[] = [
     {
       name: 'Github',
@@ -33,7 +26,6 @@ const UsersCardsWrapper = () => {
       icon: <RiGoogleLine />,
     },
   ];
-
   return (
     <Grid
       container
@@ -45,23 +37,31 @@ const UsersCardsWrapper = () => {
         lg: 15,
       }}
     >
-      <UserCard
-        alt="Khaled Al Nabaheen"
-        img="https://a.foxdcg.com/dpp-uploaded/images/credits/502556198884/alert_missing_persons_unit_ryan_broussard_square_2x.jpg?fit=inside%7C*:278"
-        name="Khaled Al Nabaheen"
-        cohort="G13"
-        jobTitle="FullStack-Developer"
-      >
-        <UserSocialLinks>
-          {links.map(({
-            name, iconColor, hoverColor, icon,
-          }) => (
-            <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
-              {icon}
-            </UserSocialLinkBox>
-          ))}
-        </UserSocialLinks>
-      </UserCard>
+      {members.map((member) => (
+        <UserCard
+          key={member.userId}
+          alt={member.fullName}
+          img={member.avatar}
+          name={member.fullName}
+          cohort={
+            // eslint-disable-next-line no-nested-ternary
+            member.cohorts[0]
+              ? `[${member.cohorts}]`.toLocaleUpperCase().length < 11
+                ? `[${member.cohorts}]`.toLocaleUpperCase()
+                : `${`[${member.cohorts}]`.slice(0, 8)}]...`.toLocaleUpperCase()
+              : ''
+          }
+          jobTitle={member.careerStatus}
+        >
+          <UserSocialLinks>
+            {links.map(({ name, iconColor, hoverColor, icon }) => (
+              <UserSocialLinkBox socialLink={name} iconColor={iconColor} hoverColor={hoverColor}>
+                {icon}
+              </UserSocialLinkBox>
+            ))}
+          </UserSocialLinks>
+        </UserCard>
+      ))}
     </Grid>
   );
 };
