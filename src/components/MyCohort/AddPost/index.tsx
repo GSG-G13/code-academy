@@ -48,7 +48,7 @@ const AddPost = () => {
     async (data: FormData) => {
       try {
         if (selectedImage) {
-          const s3ImgUploadUrlResponse = await uploadRoutes.getAll();
+          const s3ImgUploadUrlResponse = await uploadRoutes.getImageUrl();
           const s3ImgUploadUrl = s3ImgUploadUrlResponse.data;
 
           await axios.put(s3ImgUploadUrl.data.url, selectedImage);

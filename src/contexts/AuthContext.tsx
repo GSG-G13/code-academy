@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Navigate } from 'react-router-dom';
-import { AuthProviderPropsType } from '../utils/helpers';
+import { AuthProviderPropsType } from '../utils';
 import useAuth from '../hooks';
 
 const RequireAuthProvider: React.FC<AuthProviderPropsType> = ({ children }) => {
