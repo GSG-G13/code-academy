@@ -2,6 +2,7 @@ import { Outlet, createBrowserRouter } from 'react-router-dom';
 import { Members, Login, Cohorts, MyProfile } from '../pages';
 import MiniDrawer from '../components/Layout/layout';
 import RequireAuthProvider from '../contexts';
+import MyCohort from '../pages/user/MyCohort';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Home</div>,
+        element: <MyCohort />,
       },
       { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <Cohorts /> },
