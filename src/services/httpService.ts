@@ -19,10 +19,6 @@ interface LoginResponse {
   };
 }
 
-interface Arg {
-  page?: string;
-}
-
 class HttpService {
   endpoint: string;
 
