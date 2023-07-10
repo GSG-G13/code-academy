@@ -56,8 +56,6 @@ const AddPost = () => {
       try {
         if (!checkImage) {
           if (selectedImage) {
-            console.log(selectedImage.type);
-
             const s3ImgUploadUrlResponse = await uploadRoutes.getImageUrl();
             const s3ImgUploadUrl = s3ImgUploadUrlResponse.data;
 
