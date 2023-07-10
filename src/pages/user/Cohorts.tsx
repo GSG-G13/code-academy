@@ -1,9 +1,8 @@
 /* eslint-disable no-shadow */
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useIsFetching } from 'react-query';
 import { toast } from 'react-toastify';
-import { JSX } from '@emotion/react/jsx-dev-runtime';
 import {
   CallToAction,
   CohortTopBar,
@@ -18,7 +17,7 @@ const CohortsContainer = styled.div`
   padding: 1rem 1rem;
 `;
 
-const Cohorts = (): JSX.Element => {
+const Cohorts = () => {
   const [allCohorts, setAllCohorts] = useState<Cohort[]>([]);
   const [allCohortsCount, setAllCohortsCount] = useState<string>('0');
   const [allCurrentPage, setAllCurrentPage] = useState<string>('1');
@@ -28,8 +27,9 @@ const Cohorts = (): JSX.Element => {
   const [myCohortsCount, setMyCohortsCount] = useState<string>('0');
   const [myCurrentPage, setMyCurrentPage] = useState<string>('1');
   const [myPages, setMyPages] = useState<string>('0');
+  const [allLoading, setAllLoading] = useState<boolean>(true);
 
-  const { error: allError } = useQuery<{ data: CohortData }>(
+  const { isLoading: allLoadingQuery, error: allError } = useQuery<{ data: CohortData }>(
     ['allCohorts', allCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage1(Number(allCurrentPage));
@@ -43,6 +43,9 @@ const Cohorts = (): JSX.Element => {
         setAllCohortsCount(allCohortsCount);
         setAllCurrentPage(currentPage);
         setAllPages(pages);
+        setTimeout(() => {
+          setAllLoading(false);
+        }, 4000); // Delay loading state change by 4 seconds
       },
     },
   );
@@ -51,7 +54,7 @@ const Cohorts = (): JSX.Element => {
     setCohortsToPass('allCohorts');
   };
 
-  const { error: myError } = useQuery<{ data: CohortData }>(
+  const { isLoading: myLoading, error: myError } = useQuery<{ data: CohortData }>(
     ['myCohorts', myCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage2(Number(myCurrentPage));
@@ -76,6 +79,7 @@ const Cohorts = (): JSX.Element => {
   useEffect(() => {
     if (allError) {
       toast.error(allError.response.data.data.message);
+      setAllLoading(false);
     }
   }, [allError]);
 
@@ -84,6 +88,8 @@ const Cohorts = (): JSX.Element => {
       toast.error(myError.response.data.data.message);
     }
   }, [myError]);
+
+  const isFetching = useIsFetching();
 
   return (
     <>
@@ -96,12 +102,18 @@ const Cohorts = (): JSX.Element => {
           refetchAllCohortsCount={refetchAllCohortsCount}
           setMyCohorts={setMyCohortsCount}
         />
-        <CohortsWrapper cohorts={cohortsToPass === 'allCohorts' ? allCohorts : myCohorts} />
-        <PaginationCohort
-          currentPage={cohortsToPass === 'allCohorts' ? allCurrentPage : myCurrentPage}
-          pages={cohortsToPass === 'allCohorts' ? allPages : myPages}
-          setCurrentPage={cohortsToPass === 'allCohorts' ? setAllCurrentPage : setMyCurrentPage}
-        />
+        {(allLoading || allLoadingQuery || myLoading || isFetching) ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <CohortsWrapper cohorts={cohortsToPass === 'allCohorts' ? allCohorts : myCohorts} />
+            <PaginationCohort
+              currentPage={cohortsToPass === 'allCohorts' ? allCurrentPage : myCurrentPage}
+              pages={cohortsToPass === 'allCohorts' ? allPages : myPages}
+              setCurrentPage={cohortsToPass === 'allCohorts' ? setAllCurrentPage : setMyCurrentPage}
+            />
+          </>
+        )}
       </CohortsContainer>
       <CallToAction />
     </>

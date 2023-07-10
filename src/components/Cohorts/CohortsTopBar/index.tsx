@@ -34,12 +34,14 @@ const CohortTopBar: React.FC<CohortTopBarProps> = ({
           cohortsCount={cohortsCount}
           handleClick={refetchAllCohortsCount}
           btnStartIcon={<FaUserFriends />}
+          isLoading
         />
         <LoadingBtn
           btnTitle="My Cohort"
           cohortsCount={myCohortsCount}
           handleClick={refetchMyCohortsCount}
           btnStartIcon={<FaUserFriends />}
+          isLoading
         />
       </ButtonsWrapper>
     </Grid>

@@ -8,9 +8,10 @@ interface IProps {
   btnStartIcon: React.ReactElement;
   cohortsCount: string;
   handleClick: () => void;
+  isLoading: boolean;
 }
 
-const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount, handleClick }: IProps) => (
+const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount, handleClick, isLoading }: IProps) => (
   <Box sx={{ '& > button': { m: 0 } }}>
     <LoadingButton
       sx={{
@@ -24,8 +25,9 @@ const LoadingBtn = ({ btnTitle, btnStartIcon, cohortsCount, handleClick }: IProp
         borderRadius: '0.3rem',
         position: 'relative',
       }}
-      onClick={() => handleClick()}
+      onClick={handleClick}
       startIcon={btnStartIcon}
+      loading={isLoading}
       loadingPosition="start"
       variant="contained"
     >
