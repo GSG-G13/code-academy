@@ -37,38 +37,51 @@ const AddPost = () => {
   } = useForm<FormData>({ resolver: zodResolver(postSchema), mode: 'onBlur' });
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-
+  const [checkImage, setCheckImage] = useState(false);
+  const isValidFileType = (fileType: string) => {
+    const validFileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    return validFileTypes.includes(fileType);
+  };
   const handleImageSelect = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    if (evt.target.files != null) {
+    if (evt.target.files != null && isValidFileType(evt.target.files[0].type)) {
       setSelectedImage(evt.target.files[0]);
+    } else {
+      toast.error('Invalid image type, please choose another image');
+      setCheckImage(true);
     }
   };
 
   const { isLoading, mutate } = useMutation(
     async (data: FormData) => {
       try {
-        if (selectedImage) {
-          const s3ImgUploadUrlResponse = await uploadRoutes.getImageUrl();
-          const s3ImgUploadUrl = s3ImgUploadUrlResponse.data;
+        if (!checkImage) {
+          if (selectedImage) {
+            console.log(selectedImage.type);
 
-          await axios.put(s3ImgUploadUrl.data.url, selectedImage);
-          const imageUrl = s3ImgUploadUrl.data.url.split('?')[0];
+            const s3ImgUploadUrlResponse = await uploadRoutes.getImageUrl();
+            const s3ImgUploadUrl = s3ImgUploadUrlResponse.data;
 
-          await postsRoutes.create({
-            isPublic: true,
-            content: data.postContent,
-            image: imageUrl,
-          });
+            await axios.put(s3ImgUploadUrl.data.url, selectedImage);
+            const imageUrl = s3ImgUploadUrl.data.url.split('?')[0];
+
+            await postsRoutes.create({
+              isPublic: true,
+              content: data.postContent,
+              image: imageUrl,
+            });
+          } else {
+            await postsRoutes.create({
+              isPublic: true,
+              content: data.postContent,
+              image: null,
+            });
+          }
+          setSelectedImage(null);
+          toast.success('Post created successfully');
         } else {
-          await postsRoutes.create({
-            isPublic: true,
-            content: data.postContent,
-            image: null,
-          });
+          toast.error('Post not created');
+          setCheckImage(false);
         }
-        setSelectedImage(null);
-
-        toast.success('');
       } catch (err) {
         const errorMessage = err?.response?.data?.data?.message || 'Failed to create post';
         toast.error(errorMessage);
@@ -76,7 +89,7 @@ const AddPost = () => {
     },
     {
       onSuccess: () => {
-        toast.success('Post created successfully');
+        reset();
       },
       onError: (err: ReqError) => {
         const errorMessage = err.response.data.data.message;
@@ -87,7 +100,6 @@ const AddPost = () => {
 
   const handlePost = (data: FormData) => {
     mutate(data);
-    reset();
   };
 
   return (
