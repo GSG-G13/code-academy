@@ -7,9 +7,10 @@ import { DecodeJwtType, LoggedUserObjectType } from '../utils/helpers';
 
 const useAuth = () => {
   const [user, setUser] = useState<LoggedUserObjectType>({
-    userId: null,
-    userName: null,
-    userEmail: null,
+    id: null,
+    username: null,
+    email: null,
+    isAdmin: null,
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,13 +20,7 @@ const useAuth = () => {
     if (token) {
       const decode: DecodeJwtType = jwtDecode(token);
       if (decode) {
-        const { id, username, email } = decode;
-
-        setUser({
-          userId: id,
-          userName: username,
-          userEmail: email,
-        });
+        setUser({ ...decode });
       }
     }
 
