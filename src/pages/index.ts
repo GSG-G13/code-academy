@@ -1,3 +1,3 @@
-import { Members, LoginUser, LoginAdmin, Cohorts } from './user';
+import { Members, LoginUser, LoginAdmin, Cohorts, MyProfile } from './user';
 
-export { Members, LoginUser, LoginAdmin, Cohorts };
+export { Members, LoginUser, LoginAdmin, Cohorts, MyProfile };

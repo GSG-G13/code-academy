@@ -1,6 +1,11 @@
 import { IoHelpBuoyOutline } from 'react-icons/io5';
 import {
-  Layer, ContentContainer, CTADescription, CTAContainer, CTATitle, HelpCenterButton,
+  Layer,
+  ContentContainer,
+  CTADescription,
+  CTAContainer,
+  CTATitle,
+  HelpCenterButton,
 } from './index.style';
 
 const CallToAction = () => (

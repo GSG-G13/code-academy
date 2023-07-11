@@ -1,6 +1,7 @@
-import { CohortsWrapper, CohortCard, CohortTopBar } from './Cohorts';
+import { CohortsWrapper, CohortCard, CohortTopBar, PaginationCohort } from './Cohorts';
 import { PageTitle, CallToAction } from './uikit';
 import { CohortMembersTopBar, UserCard, UsersCardsWrapper, Pagination } from './Members';
+import { MyCohortWrapper, MembersBar } from './MyCohort';
 
 import {
   CodeAcademy,
@@ -38,8 +39,11 @@ export {
   UsersCardsWrapper,
   CohortMembersTopBar,
   Pagination,
+  MyCohortWrapper,
+  MembersBar,
   ScrollUp,
   CohortsWrapper,
   CohortCard,
   CohortTopBar,
+  PaginationCohort,
 };

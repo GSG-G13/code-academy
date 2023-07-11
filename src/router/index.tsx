@@ -1,9 +1,17 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
-import { Members, LoginUser, LoginAdmin, Cohorts } from '../pages';
+import {
+  Members,
+  LoginUser,
+  LoginAdmin,
+  Cohorts,
+  MyProfile,
+} from '../pages';
 import MiniDrawer from '../components/Layout/user/layout';
 import RequireAuthProvider from '../contexts';
 import Layout from '../components/Layout/admin/layout';
 import RequireAuthAdminProvider from '../contexts/AdminContext';
+
+import MyCohort from '../pages/user/MyCohort';
 
 const router = createBrowserRouter([
   {
@@ -54,13 +62,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Home</div>,
+        element: <MyCohort />,
       },
       { path: 'community', element: <div>Community</div> },
       { path: 'cohorts', element: <Cohorts /> },
       { path: 'cohorts/:cohortName', element: <div>Single Cohort</div> },
       { path: 'members', element: <Members /> },
-      { path: 'my-profile', element: <div>My Profile</div> },
+      { path: 'my-profile', element: <MyProfile /> },
       { path: 'saves', element: <div>Saves</div> },
     ],
   },

@@ -19,6 +19,10 @@ interface LoginResponse {
   };
 }
 
+interface Arg {
+  page?: string;
+}
+
 class HttpService {
   endpoint: string;
 
@@ -26,8 +30,20 @@ class HttpService {
     this.endpoint = endpoint;
   }
 
-  async getAll<T>() {
-    return apiClient.get<T[]>(this.endpoint);
+  async getAll<T>({ page }: Arg) {
+    return apiClient.get<T[]>(`${this.endpoint}?page=${page}`);
+  }
+
+  async getAllByPage<T>(page: number) {
+    return apiClient.get<T>(`${this.endpoint}?page=${page}`);
+  }
+
+  async getAllByPage1<T>(page: number) {
+    return apiClient.get<T>(`${this.endpoint}?page=${page}`);
+  }
+
+  async getAllByPage2<T>(page: number) {
+    return apiClient.get<T>(`${this.endpoint}/my?page=${page}`);
   }
 
   async getOne<T>(id: number) {
@@ -52,6 +68,10 @@ class HttpService {
 
   async logout() {
     return apiClient.get(`${this.endpoint}/logout`);
+  }
+
+  async posts() {
+    return apiClient.get(`${this.endpoint}/posts`);
   }
 }
 
