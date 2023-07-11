@@ -61,6 +61,10 @@ class HttpService {
   async logout() {
     return apiClient.get(`${this.endpoint}/logout`);
   }
+
+  async posts() {
+    return apiClient.get(`${this.endpoint}/posts`);
+  }
 }
 
 const create = (endpoint: string) => new HttpService(endpoint);

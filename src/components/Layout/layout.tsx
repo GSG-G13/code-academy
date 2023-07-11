@@ -24,7 +24,8 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { AxiosResponse } from 'axios';
-import { Drawer, AppBar, DrawerHeader, Dot, Title, OutletContainer } from './layout.styled';
+import { styled } from 'styled-components';
+import { Drawer, AppBar, DrawerHeader, Dot, Title } from './layout.styled';
 import Search from '../Search';
 import Image from '../Image';
 import '../../assets/style/academy.css';
@@ -321,3 +322,8 @@ const MiniDrawer = ({ children }: IProps) => {
 };
 
 export default MiniDrawer;
+
+const OutletContainer = styled.div`
+  width: 100%;
+  padding-top: calc(70px);
+`;
