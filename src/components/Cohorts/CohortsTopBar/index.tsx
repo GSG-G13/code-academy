@@ -18,6 +18,8 @@ type CohortTopBarProps = {
   myCohortsCount: string;
   refetchAllCohortsCount: () => void;
   refetchMyCohortsCount: () => void;
+  allLoadingQuery: boolean;
+  myLoading: boolean;
 };
 
 const CohortTopBar: React.FC<CohortTopBarProps> = ({
@@ -25,6 +27,8 @@ const CohortTopBar: React.FC<CohortTopBarProps> = ({
   refetchAllCohortsCount,
   refetchMyCohortsCount,
   myCohortsCount,
+  allLoadingQuery,
+  myLoading,
 }) => (
   <Grid container sx={{ marginBottom: '40px', justifyContent: 'space-between' }}>
     <Grid item sm={6} lg={6} md={6} xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
@@ -34,14 +38,14 @@ const CohortTopBar: React.FC<CohortTopBarProps> = ({
           cohortsCount={cohortsCount}
           handleClick={refetchAllCohortsCount}
           btnStartIcon={<FaUserFriends />}
-          isLoading
+          isLoading={allLoadingQuery}
         />
         <LoadingBtn
           btnTitle="My Cohort"
           cohortsCount={myCohortsCount}
           handleClick={refetchMyCohortsCount}
           btnStartIcon={<FaUserFriends />}
-          isLoading
+          isLoading={myLoading}
         />
       </ButtonsWrapper>
     </Grid>

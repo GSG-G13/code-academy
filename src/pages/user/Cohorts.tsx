@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useQuery, useIsFetching } from 'react-query';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 import {
   CallToAction,
@@ -27,7 +27,6 @@ const Cohorts = () => {
   const [myCohortsCount, setMyCohortsCount] = useState<string>('0');
   const [myCurrentPage, setMyCurrentPage] = useState<string>('1');
   const [myPages, setMyPages] = useState<string>('0');
-  const [allLoading, setAllLoading] = useState<boolean>(true);
 
   const { isLoading: allLoadingQuery, error: allError } = useQuery<{ data: CohortData }>(
     ['allCohorts', allCurrentPage],
@@ -43,9 +42,6 @@ const Cohorts = () => {
         setAllCohortsCount(allCohortsCount);
         setAllCurrentPage(currentPage);
         setAllPages(pages);
-        setTimeout(() => {
-          setAllLoading(false);
-        }, 4000); // Delay loading state change by 4 seconds
       },
     },
   );
@@ -79,7 +75,6 @@ const Cohorts = () => {
   useEffect(() => {
     if (allError) {
       toast.error(allError.response.data.data.message);
-      setAllLoading(false);
     }
   }, [allError]);
 
@@ -88,8 +83,6 @@ const Cohorts = () => {
       toast.error(myError.response.data.data.message);
     }
   }, [myError]);
-
-  const isFetching = useIsFetching();
 
   return (
     <>
@@ -101,19 +94,17 @@ const Cohorts = () => {
           refetchMyCohortsCount={refetchMyCohortsCount}
           refetchAllCohortsCount={refetchAllCohortsCount}
           setMyCohorts={setMyCohortsCount}
+          allLoadingQuery={allLoadingQuery}
+          myLoading={myLoading}
         />
-        {(allLoading || allLoadingQuery || myLoading || isFetching) ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            <CohortsWrapper cohorts={cohortsToPass === 'allCohorts' ? allCohorts : myCohorts} />
-            <PaginationCohort
-              currentPage={cohortsToPass === 'allCohorts' ? allCurrentPage : myCurrentPage}
-              pages={cohortsToPass === 'allCohorts' ? allPages : myPages}
-              setCurrentPage={cohortsToPass === 'allCohorts' ? setAllCurrentPage : setMyCurrentPage}
-            />
-          </>
-        )}
+        <>
+          <CohortsWrapper cohorts={cohortsToPass === 'allCohorts' ? allCohorts : myCohorts} />
+          <PaginationCohort
+            currentPage={cohortsToPass === 'allCohorts' ? allCurrentPage : myCurrentPage}
+            pages={cohortsToPass === 'allCohorts' ? allPages : myPages}
+            setCurrentPage={cohortsToPass === 'allCohorts' ? setAllCurrentPage : setMyCurrentPage}
+          />
+        </>
       </CohortsContainer>
       <CallToAction />
     </>
