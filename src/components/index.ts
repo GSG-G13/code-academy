@@ -1,4 +1,4 @@
-import { CohortsWrapper, CohortCard, CohortTopBar } from './Cohorts';
+import { CohortsWrapper, CohortCard, CohortTopBar, PaginationCohort } from './Cohorts';
 import { PageTitle, CallToAction } from './uikit';
 import { CohortMembersTopBar, UserCard, UsersCardsWrapper, Pagination } from './Members';
 import { MyCohortWrapper, MembersBar } from './MyCohort';
@@ -17,7 +17,7 @@ import {
   InputForm,
   Button,
 } from './LoginForm/Login.styled';
-import LoginForm from './LoginForm';
+
 import ScrollUp from './ScrollUp';
 
 export {
@@ -33,7 +33,6 @@ export {
   Span,
   InputForm,
   Button,
-  LoginForm,
   PageTitle,
   CallToAction,
   UserCard,
@@ -46,4 +45,5 @@ export {
   CohortsWrapper,
   CohortCard,
   CohortTopBar,
+  PaginationCohort,
 };

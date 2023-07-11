@@ -38,6 +38,14 @@ class HttpService {
     return apiClient.get<T>(`${this.endpoint}?page=${page}`);
   }
 
+  async getAllByPage1<T>(page: number) {
+    return apiClient.get<T>(`${this.endpoint}?page=${page}`);
+  }
+
+  async getAllByPage2<T>(page: number) {
+    return apiClient.get<T>(`${this.endpoint}/my?page=${page}`);
+  }
+
   async getOne<T>(id: number) {
     return apiClient.get<T>(`${this.endpoint}/${id}`);
   }
@@ -60,6 +68,10 @@ class HttpService {
 
   async logout() {
     return apiClient.get(`${this.endpoint}/logout`);
+  }
+
+  async posts() {
+    return apiClient.get(`${this.endpoint}/posts`);
   }
 }
 

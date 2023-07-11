@@ -24,12 +24,11 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { AxiosResponse } from 'axios';
-import { Drawer, AppBar, DrawerHeader, Dot, Title, OutletContainer } from './layout.styled';
-import Search from '../Search';
-import Image from '../Image';
-import '../../assets/style/academy.css';
-import { ScrollUp } from '..';
-import { authRoutes } from '../../services';
+import { Drawer, AppBar, DrawerHeader, Dot, Title, OutletContainer } from '../layout.styled';
+import Search from '../../Search';
+import Image from '../../Image';
+import { ScrollUp } from '../..';
+import { authRoutes } from '../../../services';
 
 interface IProps {
   children: React.ReactNode;

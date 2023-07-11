@@ -1,6 +1,11 @@
+import CohortData from './CohortData';
+import CohortPagination from './CohortPagination';
+import Cohort from './Cohorts';
+import CohortsContextProps from './CohortsContextProps';
+import ReqError from './ReqError';
+import myCohortData from './myCohortData';
 import AppBarProps from './AppBarProps';
 import DecodeJwtType from './DecodeJwtType';
-import ReqError from './ReqError';
 import LoggedUserObjectType from './LoggedUserObjectType';
 import AuthProviderPropsType from './AuthProviderPropsType';
 import Member from './Member';
@@ -18,4 +23,9 @@ export type {
   MemberData,
   MembersContextProps,
   SocialLink,
+  CohortData,
+  CohortPagination,
+  Cohort,
+  CohortsContextProps,
+  myCohortData,
 };

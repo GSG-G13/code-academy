@@ -7,6 +7,7 @@ import {
   likesRoutes,
   membersRoutes,
   uploadRoutes,
+  profileRoutes,
 } from './services';
 
 export {
@@ -18,4 +19,5 @@ export {
   likesRoutes,
   apiClient,
   uploadRoutes,
+  profileRoutes,
 };

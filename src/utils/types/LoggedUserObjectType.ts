@@ -1,7 +1,8 @@
 interface LoggedUserObjectType {
-  userId: number | null;
-  userName: string | null;
-  userEmail: string | null;
+  id: number | null;
+  username: string | null;
+  email: string | null;
+  isAdmin: boolean | null;
 }
 
 export default LoggedUserObjectType;

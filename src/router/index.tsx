@@ -1,7 +1,16 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
-import { Members, Login, Cohorts } from '../pages';
-import MiniDrawer from '../components/Layout/layout';
+import {
+  Members,
+  LoginUser,
+  LoginAdmin,
+  Cohorts,
+  MyProfile,
+} from '../pages';
+import MiniDrawer from '../components/Layout/user/layout';
 import RequireAuthProvider from '../contexts';
+import Layout from '../components/Layout/admin/layout';
+import RequireAuthAdminProvider from '../contexts/AdminContext';
+
 import MyCohort from '../pages/user/MyCohort';
 
 const router = createBrowserRouter([
@@ -17,15 +26,28 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: (
-      <RequireAuthProvider>
-        <h1>Admin</h1>
-        <Outlet />
-      </RequireAuthProvider>
+      <RequireAuthAdminProvider>
+        <Layout>
+          <Outlet />
+        </Layout>
+      </RequireAuthAdminProvider>
     ),
     children: [
-      { index: true, element: <div>Dashboard</div> },
-      { path: 'settings', element: <div>Settings</div> },
+      {
+        index: true,
+        element: <div>Home</div>,
+      },
+      { path: 'community', element: <div>Community</div> },
+      { path: 'cohorts', element: <Cohorts /> },
+      { path: 'cohorts/:cohortName', element: <div>Single Cohort</div> },
+      { path: 'members', element: <Members /> },
+      { path: 'my-profile', element: <div>My Profile</div> },
+      { path: 'saves', element: <div>Saves</div> },
     ],
+  },
+  {
+    path: '/admin/login',
+    element: <LoginAdmin />,
   },
   // user routes
   {
@@ -46,17 +68,13 @@ const router = createBrowserRouter([
       { path: 'cohorts', element: <Cohorts /> },
       { path: 'cohorts/:cohortName', element: <div>Single Cohort</div> },
       { path: 'members', element: <Members /> },
-      { path: 'my-profile', element: <div>My Profile</div> },
+      { path: 'my-profile', element: <MyProfile /> },
       { path: 'saves', element: <div>Saves</div> },
     ],
   },
   {
     path: '/academy/login',
-    element: <Login />,
-  },
-  {
-    path: '/admin/login',
-    element: <div>Admin Login</div>,
+    element: <LoginUser />,
   },
   {
     path: '/admin/*',

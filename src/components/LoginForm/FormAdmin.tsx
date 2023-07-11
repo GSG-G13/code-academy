@@ -5,10 +5,9 @@ import { AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, ForgetPassword, Form, InputForm, TitleLogin } from './Login.styled';
-import { loginSchema } from '../../utils';
+import loginSchema from '../../utils';
+
 import { authRoutes } from '../../services';
-import FormAdmin from './FormAdmin';
-import FormUser from './FormUser';
 
 interface FormData {
   email: string;
@@ -37,7 +36,12 @@ const LoginForm = () => {
   const { isLoading, mutate, error } = useMutation((data: FormData) => authRoutes.login(data), {
     onSuccess: (data) => {
       localStorage.setItem('user', JSON.stringify(data.data.data.user));
-      navigate('/academy');
+      if (data.data.data.user.isAdmin) {
+        navigate('/admin');
+      } else {
+        toast.error('This page just for Admin');
+        navigate('/admin');
+      }
     },
     onError: (err: ReqError) => {
       toast.error(err.response.data.data.message);
@@ -50,7 +54,7 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <TitleLogin>Login</TitleLogin>
+      <TitleLogin>Login Admin</TitleLogin>
       <InputForm
         id="email"
         label="Email"
@@ -76,4 +80,4 @@ const LoginForm = () => {
   );
 };
 
-export { FormAdmin, FormUser, LoginForm };
+export default LoginForm;

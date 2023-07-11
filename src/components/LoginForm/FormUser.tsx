@@ -5,10 +5,9 @@ import { AxiosResponse } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Button, ForgetPassword, Form, InputForm, TitleLogin } from './Login.styled';
-import { loginSchema } from '../../utils';
+import loginSchema from '../../utils';
+
 import { authRoutes } from '../../services';
-import FormAdmin from './FormAdmin';
-import FormUser from './FormUser';
 
 interface FormData {
   email: string;
@@ -33,11 +32,12 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(loginSchema), mode: 'onBlur' });
-
   const { isLoading, mutate, error } = useMutation((data: FormData) => authRoutes.login(data), {
     onSuccess: (data) => {
       localStorage.setItem('user', JSON.stringify(data.data.data.user));
-      navigate('/academy');
+
+      // eslint-disable-next-line no-unused-expressions
+      data.data.data.user ? navigate('/academy') : '';
     },
     onError: (err: ReqError) => {
       toast.error(err.response.data.data.message);
@@ -76,4 +76,4 @@ const LoginForm = () => {
   );
 };
 
-export { FormAdmin, FormUser, LoginForm };
+export default LoginForm;

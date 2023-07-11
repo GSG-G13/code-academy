@@ -1,5 +1,7 @@
 import Members from './Members';
-import Login from './Login';
+import LoginUser from './LoginUser';
+import LoginAdmin from './LoginAdmin';
 import Cohorts from './Cohorts';
+import MyProfile from './MyProfile';
 
-export { Members, Login, Cohorts };
+export { Members, LoginUser, LoginAdmin, Cohorts, MyProfile };

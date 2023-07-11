@@ -21,9 +21,7 @@ interface IProps {
   endDate: string;
 }
 
-const CohortCard = ({
-  alt, imgSrc, cohortName, cohortMembers, startDate, endDate,
-}: IProps) => {
+const CohortCard = ({ alt, imgSrc, cohortName, cohortMembers, startDate, endDate }: IProps) => {
   const cohortNav = useNavigate();
   return (
     <Grid item xs={15} sm={5} md={5} lg={3}>
@@ -33,7 +31,10 @@ const CohortCard = ({
             alt={alt}
             src={imgSrc}
             sx={{
-              width: 90, height: 90, boxShadow: '0 0 0 5px #ffffff', zIndex: 1,
+              width: 90,
+              height: 90,
+              boxShadow: '0 0 0 5px #ffffff',
+              zIndex: 1,
             }}
           />
         </CohortCardImgDiv>
