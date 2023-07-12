@@ -19,10 +19,6 @@ interface LoginResponse {
   };
 }
 
-interface Arg {
-  page?: string;
-}
-
 class HttpService {
   endpoint: string;
 
@@ -30,8 +26,12 @@ class HttpService {
     this.endpoint = endpoint;
   }
 
-  async getAll<T>({ page }: Arg) {
-    return apiClient.get<T[]>(`${this.endpoint}?page=${page}`);
+  async getAll<T>() {
+    return apiClient.get<T[]>(`${this.endpoint}`);
+  }
+
+  async getImageUrl<T>() {
+    return apiClient.get<T[]>(`${this.endpoint}`);
   }
 
   async getAllByPage<T>(page: number) {

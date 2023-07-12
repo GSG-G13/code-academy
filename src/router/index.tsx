@@ -1,11 +1,5 @@
 import { Outlet, createBrowserRouter } from 'react-router-dom';
-import {
-  Members,
-  LoginUser,
-  LoginAdmin,
-  Cohorts,
-  MyProfile,
-} from '../pages';
+import { Members, LoginUser, LoginAdmin, Cohorts, MyProfile } from '../pages';
 import MiniDrawer from '../components/Layout/user/layout';
 import RequireAuthProvider from '../contexts';
 import Layout from '../components/Layout/admin/layout';

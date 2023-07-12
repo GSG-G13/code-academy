@@ -14,7 +14,7 @@ import {
   CohortsContextProps,
   myCohortData,
 } from './types';
-import loginSchema from './validation';
+import { loginSchema } from './validation';
 
 export type {
   Cohort,
