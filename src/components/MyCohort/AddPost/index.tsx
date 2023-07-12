@@ -75,7 +75,6 @@ const AddPost = () => {
             });
           }
           setSelectedImage(null);
-          toast.success('Post created successfully');
         } else {
           toast.error('Post not created');
           setCheckImage(false);
@@ -87,6 +86,7 @@ const AddPost = () => {
     },
     {
       onSuccess: () => {
+        toast.success('Post created successfully');
         reset();
       },
       onError: (err: ReqError) => {
