@@ -32,4 +32,4 @@ export type {
   MembersContextProps,
   SocialLink,
 };
-export { loginSchema };
+export default loginSchema;
