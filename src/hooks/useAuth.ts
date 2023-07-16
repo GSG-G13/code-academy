@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 
-import { DecodeJwtType, LoggedUserObjectType } from '../utils/helpers';
+import { DecodeJwtType, LoggedUserObjectType } from '../utils';
 
 const useAuth = () => {
   const [user, setUser] = useState<LoggedUserObjectType>({

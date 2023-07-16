@@ -19,3 +19,7 @@
     justify-content: space-between;
   }
 }
+
+body {
+  background-color: #f5f5f5;
+}

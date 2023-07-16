@@ -15,6 +15,7 @@ import {
   myCohortData,
 } from './types';
 import { loginSchema } from './validation';
+import convertDate from './helpers';
 
 export type {
   Cohort,
@@ -32,4 +33,4 @@ export type {
   MembersContextProps,
   SocialLink,
 };
-export default loginSchema;
+export { convertDate, loginSchema };

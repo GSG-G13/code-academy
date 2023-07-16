@@ -28,6 +28,12 @@ interface ReqError {
   };
 }
 
+interface S3ImgUploadUrlResponse {
+    data: {
+      url: string;
+    };
+}
+
 const AddPost = () => {
   const {
     register,
@@ -56,7 +62,7 @@ const AddPost = () => {
       try {
         if (!checkImage) {
           if (selectedImage) {
-            const s3ImgUploadUrlResponse = await uploadRoutes.getImageUrl();
+            const s3ImgUploadUrlResponse = await uploadRoutes.getImageUrl<S3ImgUploadUrlResponse>();
             const s3ImgUploadUrl = s3ImgUploadUrlResponse.data;
 
             await axios.put(s3ImgUploadUrl.data.url, selectedImage);
@@ -79,8 +85,8 @@ const AddPost = () => {
           toast.error('Post not created');
           setCheckImage(false);
         }
-      } catch (err) {
-        const errorMessage = err?.response?.data?.data?.message || 'Failed to create post';
+      } catch (err: unknown) {
+        const errorMessage = (err as ReqError)?.response?.data?.data?.message || 'Failed to create post';
         toast.error(errorMessage);
       }
     },

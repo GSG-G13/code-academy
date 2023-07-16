@@ -31,7 +31,7 @@ class HttpService {
   }
 
   async getImageUrl<T>() {
-    return apiClient.get<T[]>(`${this.endpoint}`);
+    return apiClient.get<T>(`${this.endpoint}`);
   }
 
   async getAllByPage<T>(page: number) {
