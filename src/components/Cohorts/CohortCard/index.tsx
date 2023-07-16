@@ -14,14 +14,14 @@ import {
 
 interface IProps {
   alt: string;
-  imgSrc: string;
+  thumbnail: string;
   cohortName: string;
   cohortMembers: number;
   startDate: string;
   endDate: string;
 }
 
-const CohortCard = ({ alt, imgSrc, cohortName, cohortMembers, startDate, endDate }: IProps) => {
+const CohortCard = ({ alt, thumbnail, cohortName, cohortMembers, startDate, endDate }: IProps) => {
   const cohortNav = useNavigate();
   return (
     <Grid item xs={15} sm={5} md={5} lg={3}>
@@ -29,7 +29,7 @@ const CohortCard = ({ alt, imgSrc, cohortName, cohortMembers, startDate, endDate
         <CohortCardImgDiv onClick={() => cohortNav('/academy/cohorts/G13')}>
           <Avatar
             alt={alt}
-            src={imgSrc}
+            src={thumbnail}
             sx={{
               width: 90,
               height: 90,

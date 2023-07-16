@@ -11,7 +11,11 @@ import {
   PaginationCohort,
 } from '../../components';
 import { cohortsRoutes } from '../../services';
-import { Cohort, CohortData } from '../../utils';
+import { Cohort, CohortData, ReqError } from '../../utils';
+
+interface APIResponse<T> {
+  data: T;
+}
 
 const CohortsContainer = styled.div`
   padding: 1rem 1rem;
@@ -28,11 +32,11 @@ const Cohorts = () => {
   const [myCurrentPage, setMyCurrentPage] = useState<string>('1');
   const [myPages, setMyPages] = useState<string>('0');
 
-  const { isLoading: allLoadingQuery, error: allError } = useQuery<{ data: CohortData }>(
+  const { isLoading: allLoadingQuery, error: allError } = useQuery<APIResponse<CohortData>>(
     ['allCohorts', allCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage1(Number(allCurrentPage));
-      return response.data as { data: CohortData };
+      return response.data as APIResponse<CohortData>;
     },
     {
       onSuccess: (data) => {
@@ -50,11 +54,11 @@ const Cohorts = () => {
     setCohortsToPass('allCohorts');
   };
 
-  const { isLoading: myLoading, error: myError } = useQuery<{ data: CohortData }>(
+  const { isLoading: myLoading, error: myError } = useQuery<APIResponse<CohortData>>(
     ['myCohorts', myCurrentPage],
     async () => {
       const response = await cohortsRoutes.getAllByPage2(Number(myCurrentPage));
-      return response.data as { data: CohortData };
+      return response.data as APIResponse<CohortData>;
     },
     {
       onSuccess: (data) => {
@@ -74,13 +78,13 @@ const Cohorts = () => {
 
   useEffect(() => {
     if (allError) {
-      toast.error(allError.response.data.data.message);
+      toast.error((allError as ReqError).response?.data?.data?.message);
     }
   }, [allError]);
 
   useEffect(() => {
     if (myError) {
-      toast.error(myError.response.data.data.message);
+      toast.error((myError as ReqError).response?.data.data.message);
     }
   }, [myError]);
 
@@ -93,7 +97,6 @@ const Cohorts = () => {
           myCohortsCount={myCohortsCount}
           refetchMyCohortsCount={refetchMyCohortsCount}
           refetchAllCohortsCount={refetchAllCohortsCount}
-          setMyCohorts={setMyCohortsCount}
           allLoadingQuery={allLoadingQuery}
           myLoading={myLoading}
         />

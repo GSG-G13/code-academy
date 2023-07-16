@@ -61,7 +61,7 @@ const ProfileDetailsWrapper = () => {
         <TabPanelStyle value="3">
           <CohortCard
             alt="G13"
-            imgSrc="https://intranet.cera-theme.com/wp-content/themes/cera/assets/images/avatars/user-group.png"
+            thumbnail="https://intranet.cera-theme.com/wp-content/themes/cera/assets/images/avatars/user-group.png"
             cohortName="G13"
             cohortMembers={20}
             startDate="20 May"
@@ -69,7 +69,7 @@ const ProfileDetailsWrapper = () => {
           />
           <CohortCard
             alt="G13"
-            imgSrc="https://intranet.cera-theme.com/wp-content/themes/cera/assets/images/avatars/user-group.png"
+            thumbnail="https://intranet.cera-theme.com/wp-content/themes/cera/assets/images/avatars/user-group.png"
             cohortName="G13"
             cohortMembers={20}
             startDate="20 May"
