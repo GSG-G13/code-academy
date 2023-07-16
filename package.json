@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development vite",
-    "build": "NODE_ENV=production tsc && vite build",
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "cross-env NODE_ENV=development && vite",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --fix",
     "preview": "vite preview",
