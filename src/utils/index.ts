@@ -13,6 +13,8 @@ import {
   CohortPagination,
   CohortsContextProps,
   myCohortData,
+  UserInfo,
+  DataApi,
 } from './types';
 import { loginSchema } from './validation';
 import convertDate from './helpers';
@@ -32,5 +34,7 @@ export type {
   MemberData,
   MembersContextProps,
   SocialLink,
+  UserInfo,
+  DataApi,
 };
 export { convertDate, loginSchema };
