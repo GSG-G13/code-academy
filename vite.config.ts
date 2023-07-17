@@ -10,6 +10,8 @@ const { REACT_APP_API_URL, NODE_ENV } = process.env;
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: true,
+    port: 3000,
     proxy: {
       '/api/v1': {
         target: NODE_ENV === 'development' ? 'http://localhost:8080' : REACT_APP_API_URL,
