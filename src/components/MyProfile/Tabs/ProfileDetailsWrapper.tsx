@@ -4,9 +4,17 @@ import { useQuery } from 'react-query';
 import Posts from '../Posts';
 import ProfileDetails from '../ProfileDetails';
 import { CohortCard } from '../..';
-import { profileRoutes } from '../../../services';
+import { cohortsRoutes, profileRoutes } from '../../../services';
 import convertDate from '../../../utils/helpers/convertDate';
 
+interface ICohorts {
+  id: number;
+  thumbnail: string;
+  cohort_name: string;
+  end_date: string;
+  start_date: string;
+  members: number;
+}
 interface IPost {
   avatar: string;
   commentsCount: string;
@@ -22,11 +30,14 @@ interface IPost {
 }
 
 const ProfileDetailsWrapper = () => {
-  const { data } = useQuery({
+  const { data: myCohorts } = useQuery({
+    queryKey: ['myCohorts'],
+    queryFn: async () => cohortsRoutes.my(),
+  });
+  const { data: posts } = useQuery({
     queryKey: ['my-posts'],
     queryFn: async () => profileRoutes.posts(),
   });
-
   return (
     <Grid
       container
@@ -41,7 +52,7 @@ const ProfileDetailsWrapper = () => {
     >
       <Grid item xs={11} sm={11} md={11} lg={11}>
         <TabPanelStyle value="1">
-          {data?.data.data.posts.map((post: IPost) => (
+          {posts?.data.data.posts.map((post: IPost) => (
             <Posts
               alt={post.avatar}
               src={post.avatar}
@@ -59,22 +70,17 @@ const ProfileDetailsWrapper = () => {
           <ProfileDetails />
         </TabPanelStyle>
         <TabPanelStyle value="3">
-          <CohortCard
-            alt="G13"
-            thumbnail="https://intranet.cera-theme.com/wp-content/themes/cera/assets/images/avatars/user-group.png"
-            cohortName="G13"
-            cohortMembers={20}
-            startDate="20 May"
-            endDate="30 May"
-          />
-          <CohortCard
-            alt="G13"
-            thumbnail="https://intranet.cera-theme.com/wp-content/themes/cera/assets/images/avatars/user-group.png"
-            cohortName="G13"
-            cohortMembers={20}
-            startDate="20 May"
-            endDate="30 May"
-          />
+          {myCohorts?.data.data.cohorts.map((cohort: ICohorts) => (
+            <CohortCard
+              key={cohort.id}
+              alt={cohort.cohort_name}
+              thumbnail={cohort.thumbnail}
+              cohortName={cohort.cohort_name}
+              cohortMembers={cohort.members}
+              startDate={cohort.start_date}
+              endDate={cohort.end_date}
+            />
+          ))}
         </TabPanelStyle>
         <TabPanelStyle value="4">
           <Posts

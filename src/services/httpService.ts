@@ -73,6 +73,10 @@ class HttpService {
   async posts() {
     return apiClient.get(`${this.endpoint}/posts`);
   }
+
+  async my() {
+    return apiClient.get(`${this.endpoint}/my`);
+  }
 }
 
 const create = (endpoint: string) => new HttpService(endpoint);
