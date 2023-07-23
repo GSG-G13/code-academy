@@ -12,6 +12,7 @@ import Member from './Member';
 import MemberData from './MemberData';
 import MembersContextProps from './MembersContextProps';
 import SocialLink from './SocialLink';
+import { DataApi, UserInfo } from './UserInfo';
 
 export type {
   AppBarProps,
@@ -28,4 +29,6 @@ export type {
   Cohort,
   CohortsContextProps,
   myCohortData,
+  UserInfo,
+  DataApi,
 };
