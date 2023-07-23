@@ -1,5 +1,5 @@
 import { TabPanel } from '@mui/lab';
-import { Grid, styled } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useQuery } from 'react-query';
 import Posts from '../Posts';
 import ProfileDetails from '../ProfileDetails';
@@ -15,6 +15,7 @@ interface ICohorts {
   start_date: string;
   members: number;
 }
+
 interface IPost {
   avatar: string;
   commentsCount: string;
@@ -27,6 +28,7 @@ interface IPost {
   updatedAt: string;
   userId: number;
   username: string;
+  isLiked: boolean;
 }
 
 const ProfileDetailsWrapper = () => {
@@ -38,6 +40,7 @@ const ProfileDetailsWrapper = () => {
     queryKey: ['my-posts'],
     queryFn: async () => profileRoutes.posts(),
   });
+
   return (
     <Grid
       container
@@ -51,10 +54,11 @@ const ProfileDetailsWrapper = () => {
       sx={{ paddingTop: '3%' }}
     >
       <Grid item xs={11} sm={11} md={11} lg={11}>
-        <TabPanelStyle value="1">
+        <TabPanel value="1">
           {posts?.data.data.posts.map((post: IPost) => (
             <Posts
-              alt={post.avatar}
+              key={post.id}
+              alt={post.username}
               src={post.avatar}
               username={post.username}
               publishDate={convertDate(post.createdAt)}
@@ -63,13 +67,15 @@ const ProfileDetailsWrapper = () => {
               postImgAlt={post.image}
               likesCount={post.likesCount}
               commentsCount={post.commentsCount}
+              isLiked={post.isLiked}
+              id={post.id}
             />
           ))}
-        </TabPanelStyle>
-        <TabPanelStyle value="2">
+        </TabPanel>
+        <TabPanel value="2">
           <ProfileDetails />
-        </TabPanelStyle>
-        <TabPanelStyle value="3">
+        </TabPanel>
+        <TabPanel value="3">
           {myCohorts?.data.data.cohorts.map((cohort: ICohorts) => (
             <CohortCard
               key={cohort.id}
@@ -81,8 +87,8 @@ const ProfileDetailsWrapper = () => {
               endDate={cohort.end_date}
             />
           ))}
-        </TabPanelStyle>
-        <TabPanelStyle value="4">
+        </TabPanel>
+        <TabPanel value="4">
           <Posts
             alt="K"
             src="K"
@@ -93,8 +99,10 @@ const ProfileDetailsWrapper = () => {
             postImgAlt="K"
             likesCount="10"
             commentsCount="10"
+            id={0}
+            isLiked={false}
           />
-        </TabPanelStyle>
+        </TabPanel>
       </Grid>
       <Grid item xs={4} sm={4} md={4} lg={4}>
         <h2>Members Bar Hereeee</h2>
@@ -102,9 +110,5 @@ const ProfileDetailsWrapper = () => {
     </Grid>
   );
 };
-
-const TabPanelStyle = styled(TabPanel)`
-  padding: 0;
-`;
 
 export default ProfileDetailsWrapper;
