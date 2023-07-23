@@ -54,6 +54,10 @@ class HttpService {
     return apiClient.post(this.endpoint, body);
   }
 
+  async send(id: number) {
+    return apiClient.post(`${this.endpoint}/${id}`);
+  }
+
   async update<T extends Global>(body: T) {
     return apiClient.put(`${this.endpoint}/${body.id}`, body);
   }
